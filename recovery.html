@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Crect width=&apos;32&apos; height=&apos;32&apos; rx=&apos;6&apos; fill=&apos;%230A2240&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;5&apos; fill=&apos;%2335A889&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3C/svg%3E">
+<title>Contract &amp; Spend Recovery | Automintly</title>
+<meta name="description" content="We reconcile your vendor invoices against your contracts and find the overcharges. You pay 25% of what you actually recover, and nothing if we find nothing.">
+<link rel="canonical" href="https://automintly.com/recovery.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://automintly.com/recovery.html">
+<meta property="og:site_name" content="Automintly">
+<meta property="og:title" content="Contract &amp; Spend Recovery | Automintly">
+<meta property="og:description" content="Your suppliers are billing you more than your contracts say. We find the difference. 25% of what you recover, nothing if we find nothing.">
+<meta property="og:image" content="https://automintly.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contract &amp; Spend Recovery | Automintly">
+<meta name="twitter:description" content="25% of what we recover. Nothing if we find nothing.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Contract & Spend Recovery",
+  "provider": { "@type": "Organization", "name": "Automintly", "url": "https://automintly.com" },
+  "serviceType": "Vendor billing recovery audit",
+  "description": "Vendor invoices reconciled against contracts to identify overcharges, unauthorised fees, billing after cancellation, unclaimed service credits and warranty entitlements. Priced at 25% of amounts recovered.",
+  "areaServed": "US"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0A2240; --navy-800:#0F2E56; --navy-700:#154273;
+    --blue-600:#247B68; --blue-500:#35A889; --blue-tint:#DFF8EE;
+    --bg:#FFFFFF; --bg-2:#F4FBF8; --line:#D7DFE9;
+    --text:#1B2430; --muted:#5B6472;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --radius:12px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{animation:none!important;transition:none!important;} }
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+  @media (max-width:720px){ .wrap{ padding:0 20px; } }
+  h1,h2,h3{ margin:0; font-weight:750; letter-spacing:-0.035em; color:var(--navy-900); }
+  :focus-visible{ outline:2px solid var(--blue-600); outline-offset:2px; }
+
+  .utility{ background:var(--navy-900); color:#B9C8DC; font-size:13px; padding:8px 0; }
+  .utility .wrap{ display:flex; justify-content:space-between; gap:12px; }
+  .utility a{ color:#fff; text-decoration:none; font-weight:600; }
+  .utility a:hover{ text-decoration:underline; }
+
+  header{ position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:26px 32px; min-height:82px; max-width:1200px; margin:0 auto; }
+  .logo{ font-weight:800; font-size:24px; letter-spacing:-.8px; text-decoration:none; color:var(--navy-900); }.logo span{color:#35A889}
+  .navlinks{ display:flex; gap:30px; list-style:none; margin:0; padding:0; }
+  .navlinks a{ text-decoration:none; font-size:14.5px; color:var(--muted); font-weight:500; }
+  .navlinks a:hover{ color:var(--navy-900); }
+  .navcta{ background:var(--blue-600); color:#fff; text-decoration:none; padding:10px 20px; border-radius:var(--radius); font-size:14px; font-weight:600; white-space:nowrap; }
+  .navcta:hover, .navcta:focus-visible, .navcta:active{ background:var(--blue-500); color:#fff; }
+  @media (max-width:900px){ .navlinks{ display:none; } }
+
+  /* Industry tab bar */
+  .indbar{ background:var(--bg-2); border-bottom:1px solid var(--line); position:sticky; top:82px; z-index:45; }
+  .indbar-inner{ max-width:1200px; margin:0 auto; padding:0 32px; display:flex; gap:4px; overflow-x:auto; scrollbar-width:thin; }
+  @media (max-width:720px){ .indbar-inner{ padding:0 20px; } }
+  .indtab{
+    flex:0 0 auto; background:none; border:none; border-bottom:3px solid transparent;
+    padding:14px 16px; font-family:inherit; font-size:14px; font-weight:600;
+    color:var(--muted); cursor:pointer; white-space:nowrap;
+  }
+  .indtab:hover{ color:var(--navy-900); }
+  .indtab[aria-selected="true"]{ color:var(--navy-900); border-bottom-color:var(--blue-600); }
+
+  /* Hero */
+  .hero{ background:var(--bg-2); border-bottom:1px solid var(--line); }
+  .hero-inner{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; padding:64px 0; align-items:center; }
+  @media (max-width:900px){ .hero-inner{ grid-template-columns:1fr; padding:44px 0; gap:34px; } }
+  .eyebrow{ display:inline-block; font-size:12.5px; font-weight:600; color:var(--blue-600); background:#fff; padding:5px 12px; border-radius:3px; border:1px solid var(--line); }
+  .hero h1{ font-size:clamp(30px,4.2vw,44px); line-height:1.15; max-width:17ch; margin-top:18px; }
+  .hero .sub{ margin-top:18px; font-size:16.5px; color:var(--muted); max-width:50ch; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+  .btn-primary{ background:var(--blue-600); color:#fff; text-decoration:none; font-weight:600; padding:13px 24px; border-radius:var(--radius); font-size:15px; display:inline-block; }
+  .btn-primary:hover, .btn-primary:focus-visible, .btn-primary:active{ background:var(--blue-500); color:#fff; }
+  .btn-outline{ color:var(--navy-900); text-decoration:none; font-weight:600; font-size:15px; padding:13px 24px; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+  .btn-outline:hover{ border-color:var(--blue-600); color:var(--blue-600); }
+
+  .calc{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:26px; }
+  .calc h3{ font-size:17px; }
+  .calc p.note{ font-size:13px; color:var(--muted); margin-top:6px; }
+  .calc-field{ margin-top:16px; }
+  .calc-field label{ display:block; font-size:13px; font-weight:600; color:var(--navy-900); margin-bottom:6px; }
+  .calc-field input{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:var(--radius); font-family:inherit; font-size:15px; color:var(--text); }
+  .calc-field input:focus{ outline:2px solid var(--blue-600); border-color:var(--blue-600); }
+  .calc-out{ margin-top:20px; padding-top:18px; border-top:1px solid var(--line); }
+  .calc-out .label{ font-size:13px; color:var(--muted); }
+  .calc-out .val{ font-size:32px; font-weight:700; color:var(--navy-900); margin-top:4px; }
+  .calc-out .sublabel{ font-size:12.5px; color:var(--muted); margin-top:8px; }
+
+  /* Pain */
+  .pain{ padding:68px 0; border-bottom:1px solid var(--line); }
+  .pain h2{ font-size:29px; max-width:24ch; }
+  .pain-grid{ margin-top:40px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .pain-grid{ grid-template-columns:1fr; } }
+  .pain-card{ border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .pain-card .tagnum{ font-size:12.5px; font-weight:600; color:var(--blue-600); }
+  .pain-card h3{ font-size:17.5px; margin-top:12px; }
+  .pain-card p{ color:var(--muted); font-size:14px; margin-top:10px; }
+
+  /* Stack */
+  .stack{ padding:76px 0; background:var(--bg-2); border-bottom:1px solid var(--line); }
+  .stack h2{ font-size:30px; }
+  .stack .lead{ color:var(--muted); font-size:15.5px; margin-top:12px; max-width:62ch; }
+  .stack-grid{ margin-top:40px; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media (max-width:800px){ .stack-grid{ grid-template-columns:1fr; } }
+  .stack-card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .stack-card .idx{ font-size:12.5px; font-weight:600; color:var(--blue-600); }
+  .stack-card h3{ font-size:18px; margin-top:10px; }
+  .stack-card ul{ margin:14px 0 0; padding-left:18px; color:var(--muted); font-size:13.5px; display:flex; flex-direction:column; gap:7px; }
+
+  /* Guarantees */
+  .proof{ padding:76px 0; border-bottom:1px solid var(--line); }
+  .proof h2{ font-size:30px; max-width:20ch; }
+  .proof .lead{ color:var(--muted); font-size:15.5px; margin-top:12px; max-width:62ch; }
+  .g-grid{ margin-top:40px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .g-grid{ grid-template-columns:1fr; } }
+  .g-card{ border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .g-card .g-label{ font-size:12.5px; font-weight:600; color:var(--blue-600); }
+  .g-card h3{ font-size:18px; margin-top:10px; }
+  .g-card p{ color:var(--muted); font-size:14px; margin-top:10px; }
+
+  /* Steps */
+  .steps-sec{ padding:76px 0; background:var(--bg-2); border-bottom:1px solid var(--line); }
+  .steps-sec h2{ font-size:30px; }
+  .steps{ margin-top:40px; display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#fff; }
+  @media (max-width:800px){ .steps{ grid-template-columns:1fr; } }
+  .step{ padding:30px; border-left:1px solid var(--line); }
+  .step:first-child{ border-left:none; }
+  @media (max-width:800px){ .step{ border-left:none; border-top:1px solid var(--line); } .step:first-child{ border-top:none; } }
+  .step-badge{ width:34px; height:34px; background:var(--blue-600); color:#fff; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; }
+  .step h3{ font-size:18px; margin-top:16px; }
+  .step p{ color:var(--muted); font-size:14px; margin-top:10px; }
+
+  /* CTA */
+  .cta{ background:var(--navy-900); padding:84px 0; }
+  .cta h2{ color:#fff; font-size:clamp(27px,3.6vw,38px); max-width:19ch; }
+  .cta p{ color:#B9C8DC; font-size:16px; margin-top:16px; max-width:54ch; }
+  .cta .btn-primary{ margin-top:26px; }
+
+  footer{ background:var(--navy-900); border-top:1px solid #1C3559; padding:40px 0 26px; }
+  .foot-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; align-items:center; }
+  .foot-row .logo{ color:#fff; }
+  .foot-row a{ color:#8FA3BE; text-decoration:none; font-size:13.5px; }
+  .foot-bottom{ margin-top:28px; padding-top:18px; border-top:1px solid #1C3559; color:#6E84A2; font-size:12.5px; }
+</style>
+<style>
+  /* recovery page */
+  .rec-hero{ background:var(--bg-2); border-bottom:1px solid var(--line); }
+  .rec-hero-inner{ display:grid; grid-template-columns:1.05fr .95fr; gap:52px; padding:64px 0; align-items:start; }
+  @media (max-width:900px){ .rec-hero-inner{ grid-template-columns:1fr; padding:44px 0; gap:34px; } }
+  .rec-card{ background:#fff; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .rec-card-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; padding:13px 22px; background:var(--blue-tint); border-bottom:1px solid var(--line); }
+  .rec-card-head .t{ font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-600); }
+  .rec-card-head .n{ font-size:12.5px; color:var(--muted); }
+  .rec-card-body{ padding:4px 22px 16px; }
+  .rec-line{ display:grid; grid-template-columns:1fr auto; gap:12px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--line); }
+  .rec-line:last-child{ border-bottom:none; }
+  .rec-line .k{ font-size:14px; }
+  .rec-line .k small{ display:block; color:var(--muted); font-size:12px; margin-top:3px; }
+  .rec-line .v{ font-size:15px; font-weight:600; color:var(--navy-900); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .rec-line .v.over{ color:#B3261E; }
+  .rec-line.tot{ border-top:2px solid var(--line); padding-top:14px; }
+  .rec-line.tot .k{ font-weight:600; }
+  .rec-line.tot .v{ font-size:22px; color:#B3261E; }
+  .rec-card-foot{ padding:11px 22px; border-top:1px solid var(--line); background:#FBF6F5; font-size:12.5px; color:var(--muted); }
+  .checks-grid{ margin-top:40px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .checks-grid{ grid-template-columns:1fr; } }
+  .price-band{ display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:center; }
+  @media (max-width:800px){ .price-band{ grid-template-columns:1fr; gap:24px; } }
+  .price-fig{ font-size:clamp(64px,10vw,104px); font-weight:800; line-height:.9; color:var(--blue-600); letter-spacing:-.04em; }
+  .price-fig span{ display:block; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:14px; }
+  .fit-cols{ margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:44px; }
+  @media (max-width:800px){ .fit-cols{ grid-template-columns:1fr; gap:30px; } }
+  .fit-cols ul{ list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .fit-cols li{ position:relative; padding-left:22px; color:var(--muted); font-size:14px; }
+  .fit-cols li::before{ content:"—"; position:absolute; left:0; color:var(--blue-600); }
+  .fit-cols.no li::before{ content:"\00d7"; color:#B3261E; }
+  details.faq-item{ border-bottom:1px solid var(--line); }
+  details.faq-item summary{ cursor:pointer; padding:17px 0; font-weight:600; font-size:15.5px; color:var(--navy-900); list-style:none; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+  details.faq-item summary::-webkit-details-marker{ display:none; }
+  details.faq-item summary::after{ content:"+"; color:var(--blue-600); font-size:20px; }
+  details.faq-item[open] summary::after{ content:"\2013"; }
+  details.faq-item p{ padding-bottom:19px; margin:0; color:var(--muted); font-size:14px; max-width:64ch; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">auto<span>mintly</span></a>
+    <ul class="navlinks">
+      <li><a href="industries.html">Industries</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="roi-calculator.html">ROI Calculator</a></li>
+      <li><a href="index.html#guarantees">Guarantees</a></li>
+      <li><a href="recovery.html" aria-current="page">Recovery</a></li>
+      <li><a href="index.html#packages">Packages</a></li>
+    </ul>
+    <a href="index.html#cta" class="navcta">Request a review</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="rec-hero">
+    <div class="wrap rec-hero-inner">
+      <div>
+        <span class="eyebrow">Contract &amp; spend recovery</span>
+        <h1>Your suppliers are billing you more than your contracts say.</h1>
+        <p class="sub">We put the contract next to the invoice and find the difference. You pay 25% of what you actually get back. If we find nothing, you owe nothing.</p>
+        <div class="hero-ctas">
+          <a href="index.html#cta" class="btn-primary">Request a review</a>
+          <a href="#how" class="btn-outline">How it works</a>
+        </div>
+        <p style="margin-top:18px; font-size:13px; color:var(--muted);">Send your five largest suppliers. Invoices and contracts, in whatever format they live in.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-head">
+          <span class="t">Reconciliation</span>
+          <span class="n">Waste &amp; recycling · 11 months</span>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-line"><span class="k">Contracted rate<small>Schedule A, §2 — rate table</small></span><span class="v">$412.00 / mo</span></div>
+          <div class="rec-line"><span class="k">Invoiced rate<small>INV-2291 → INV-2301</small></span><span class="v over">$487.00 / mo</span></div>
+          <div class="rec-line"><span class="k">Overcharge per month</span><span class="v over">$75.00</span></div>
+          <div class="rec-line tot"><span class="k">Recoverable</span><span class="v">$825.00</span></div>
+        </div>
+        <div class="rec-card-foot">Illustration, not a client result. One line item, one contract clause, ten minutes.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <h2>Forty checks, run against every supplier</h2>
+      <p class="lead">None of these are exotic. They persist because nobody ever puts the agreement beside the bill.</p>
+      <div class="checks-grid">
+        <div class="g-card">
+          <div class="g-label">Rates</div>
+          <h3>Rate above contract</h3>
+          <p>The invoiced rate quietly exceeds the rate you signed. The most common finding, and usually the easiest to correct.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Rates</div>
+          <h3>Escalators applied wrongly</h3>
+          <p>An annual increase applied twice in a year, before the anniversary, or above a cap your contract already sets.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Surcharges</div>
+          <h3>Fees above their cap</h3>
+          <p>Fuel and environmental surcharges are frequently capped by formula and frequently exceed it. One sentence in the contract, printed on every invoice.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Surcharges</div>
+          <h3>Fees with no provision</h3>
+          <p>Administrative, regulatory recovery, environmental. We ask one question of each: where in this agreement does this fee appear?</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Phantom charges</div>
+          <h3>Billing after cancellation</h3>
+          <p>Phone lines at a building you sold. Software seats for people who left. Containers at a site you closed.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Phantom charges</div>
+          <h3>Duplicate payments</h3>
+          <p>The same invoice paid twice — once by cheque, once by transfer. Routine wherever two people can both approve a payment.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Entitlements</div>
+          <h3>Unclaimed service credits</h3>
+          <p>Your contract owes you a credit when uptime or response times are missed. They are almost never applied automatically, and most expire within 30 to 60 days.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Entitlements</div>
+          <h3>Warranty paid out of pocket</h3>
+          <p>Repairs billed on equipment still under manufacturer warranty, or a re-repair inside the warranty on the previous one.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Leases</div>
+          <h3>CAM reconciliation errors</h3>
+          <p>Pro-rata share miscalculated, capital works amortised into operating expenses, expense caps quietly exceeded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps-sec" id="how">
+    <div class="wrap">
+      <h2>Four steps, about two weeks</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-badge">1</div>
+          <h3>You send documents</h3>
+          <p>Your five largest suppliers: twelve months of invoices, and the contracts or rate schedules that go with them. PDFs, a drive folder, forwarded email, photographs of paper. Sorting them is our job, not yours.</p>
+        </div>
+        <div class="step">
+          <div class="step-badge">2</div>
+          <h3>We reconcile</h3>
+          <p>Every line item against every contract term, working down forty checks. Each finding is logged with the clause it relies on, the invoices affected, and the arithmetic written out.</p>
+        </div>
+        <div class="step">
+          <div class="step-badge">3</div>
+          <h3>You get a report, and decide</h3>
+          <p>Findings separated by how confident we are, including the weak ones we would not push. You choose what to pursue. Anything you would rather leave alone, we leave alone.</p>
+        </div>
+        <div class="step">
+          <div class="step-badge">4</div>
+          <h3>You claim, we prepare</h3>
+          <p>We write the correction request; you send it, on your letterhead, to your supplier. We invoice 25% once the credit or refund actually lands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <div class="price-band">
+        <div class="price-fig">25%<span>of what you recover</span></div>
+        <div>
+          <h2>There is no other fee.</h2>
+          <p class="lead">No retainer to start, no hourly rate, no minimum engagement. We are paid a quarter of what you actually receive — cash refunded, credits applied, charges removed before you pay them.</p>
+          <p class="lead" style="margin-top:14px;">Find nothing, and you have spent a folder of PDFs and nothing else. After the first recovery, most clients move to ongoing monitoring so errors are caught in the month they happen rather than a year later — a flat monthly fee, and we only raise it once we have found you something.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack">
+    <div class="wrap">
+      <h2>Where we find the most</h2>
+      <div class="fit-cols">
+        <div>
+          <h3 style="font-size:18px;">A good fit</h3>
+          <ul>
+            <li>15 to 100 staff, with real vendor spend and no full-time controller</li>
+            <li>Property management — utilities, waste, landscaping, maintenance, CAM</li>
+            <li>Multi-site operators, where one error repeats across every location</li>
+            <li>Manufacturers and distributors — freight, packaging, equipment service</li>
+            <li>Anyone who has never had their supplier contracts checked against their bills</li>
+          </ul>
+        </div>
+        <div class="fit-cols no">
+          <h3 style="font-size:18px;">Probably not</h3>
+          <ul>
+            <li>A controller already reconciles every invoice line to the signed rate schedule</li>
+            <li>Fewer than ten employees — too few suppliers for the work to pay for itself</li>
+            <li>No written contracts anywhere, so there is nothing to reconcile against</li>
+            <li>You want a guaranteed recovery figure before we have looked</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <h2>What we will not do</h2>
+      <p class="lead">Worth saying before you ask.</p>
+      <div class="g-grid" style="margin-top:32px;">
+        <div class="g-card">
+          <div class="g-label">No promised figure</div>
+          <h3>We will not guarantee an amount</h3>
+          <p>Not before looking, and not after. What is recoverable depends on your contracts and your suppliers, and anyone quoting a figure in advance is guessing.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">You hold the relationship</div>
+          <h3>We will not contact your suppliers</h3>
+          <p>You send every claim, in your name. We prepare it and stay out of the relationship.</p>
+        </div>
+        <div class="g-card">
+          <div class="g-label">Not legal advice</div>
+          <h3>We report facts, not opinions</h3>
+          <p>We report what a contract records and what an invoice charged. Whether to press a claim is your decision, and your lawyer's if the amount warrants it.</p>
+        </div>
+      </div>
+      <div class="g-grid" style="margin-top:20px;">
+        <div class="g-card">
+          <div class="g-label">Nothing for old news</div>
+          <h3>We will not charge for what you already knew</h3>
+          <p>Tell us at the start what you already suspect. Those items are excluded from our fee, in writing, before we begin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps-sec">
+    <div class="wrap">
+      <h2>The questions people actually ask</h2>
+      <div style="margin-top:34px; border-top:1px solid var(--line);">
+        <details class="faq-item">
+          <summary>What is the catch? Why would you work for nothing?</summary>
+          <p>We are not working for nothing — we are betting we will find something, and if we are wrong that is our loss rather than yours. We price it this way because you have no particular reason to trust us yet.</p>
+        </details>
+        <details class="faq-item">
+          <summary>I do not want to upset suppliers we depend on.</summary>
+          <p>You send the claim, not us, and it goes as a billing correction rather than an accusation — most of these genuinely are errors. You also choose what to pursue. If there is a supplier you would rather not push, we leave that one alone and say so.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Our bookkeeper already checks the invoices.</summary>
+          <p>Against what was approved, most likely, which catches arithmetic. This is a check against the contract, which is a different thing. If someone is comparing every invoice line to the signed rate schedule, you do not need us.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I know you will find anything?</summary>
+          <p>You do not, and neither do we until we look. That is the entire reason you are not paying up front.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What counts as money recovered?</summary>
+          <p>Cash refunded to you, a credit memo once it is applied against an invoice, a charge removed before you pay it, or a corrected rate going forward — valued at twelve months. Each is defined in the engagement agreement before you sign anything, and we invoice only once the money has actually reached you.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How far back do you look?</summary>
+          <p>Twelve months. Beyond that, many contracts treat invoices as accepted, so older findings tend not to be collectable. Anything we notice outside that window we report anyway, at no charge.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How long does it take to see money?</summary>
+          <p>Findings inside two weeks of receiving documents. Credits and refunds usually land 30 to 90 days after a claim is sent, depending on the supplier.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who sees our financial documents?</summary>
+          <p>One person. They are held in access-controlled storage under a mutual confidentiality agreement, and returned or destroyed at the end of the engagement. We will not name you as a client or describe the work without your written permission.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="cta">
+    <div class="wrap">
+      <h2>Send five suppliers. See what is there.</h2>
+      <p>Your largest five by annual spend, twelve months of invoices, and the contracts that go with them. We will tell you within two weeks whether there is anything worth pursuing — and if there is not, we will tell you that too.</p>
+      <a href="index.html#cta" class="btn-primary">Request a review</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <a href="index.html" class="logo">auto<span>mintly</span></a>
+      <a href="mailto:automintly@gmail.com">automintly@gmail.com</a>
+      <a href="privacy.html">Privacy policy</a>
+    </div>
+    <div class="foot-bottom">© 2026 Automintly. Estimates shown are illustrative and not a guarantee of results.</div>
+  </div>
+</footer>
+
+</body>
+</html>

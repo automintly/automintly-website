@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Crect width=&apos;32&apos; height=&apos;32&apos; rx=&apos;6&apos; fill=&apos;%230A2240&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;5&apos; fill=&apos;%2335A889&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3C/svg%3E">
 <title>Automation by Industry | Automintly — Built Around How Your Sector Works</title>
-<meta name="description" content="Automation stacks tailored by industry: home services, dental and medical, salons and spas, auto, professional firms, real estate, retail, and creators and media. See what missed calls and manual work cost your sector.">
+<meta name="description" content="Automation stacks tailored by industry: home services, dental and medical, salons and spas, auto, professional firms, real estate, and retail. See what missed calls and manual work cost your sector.">
 <link rel="canonical" href="https://automintly.com/industries.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -30,15 +30,15 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy-900:#0A2240; --navy-800:#0F2E56; --navy-700:#154273;
     --blue-600:#247B68; --blue-500:#35A889; --blue-tint:#DFF8EE;
     --bg:#FFFFFF; --bg-2:#F4FBF8; --line:#D7DFE9;
     --text:#1B2430; --muted:#5B6472;
-    --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    --radius:4px;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --radius:12px;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
@@ -47,7 +47,7 @@
   a{ color:inherit; }
   .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
   @media (max-width:720px){ .wrap{ padding:0 20px; } }
-  h1,h2,h3{ margin:0; font-weight:700; letter-spacing:-0.01em; color:var(--navy-900); }
+  h1,h2,h3{ margin:0; font-weight:750; letter-spacing:-0.035em; color:var(--navy-900); }
   :focus-visible{ outline:2px solid var(--blue-600); outline-offset:2px; }
 
   .utility{ background:var(--navy-900); color:#B9C8DC; font-size:13px; padding:8px 0; }
@@ -57,8 +57,7 @@
 
   header{ position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
   .nav{ display:flex; align-items:center; justify-content:space-between; padding:26px 32px; min-height:82px; max-width:1200px; margin:0 auto; }
-  .logo{ font-weight:800; font-size:24px; letter-spacing:-.8px; text-decoration:none; color:var(--navy-900); }
-  .logo span{ color:var(--blue-500); }
+  .logo{ font-weight:800; font-size:24px; letter-spacing:-.8px; text-decoration:none; color:var(--navy-900); }.logo span{color:#35A889}
   .navlinks{ display:flex; gap:30px; list-style:none; margin:0; padding:0; }
   .navlinks a{ text-decoration:none; font-size:14.5px; color:var(--muted); font-weight:500; }
   .navlinks a:hover{ color:var(--navy-900); }
@@ -173,9 +172,10 @@
       <li><a href="index.html#process">Process</a></li>
       <li><a href="roi-calculator.html">ROI Calculator</a></li>
       <li><a href="index.html#guarantees">Guarantees</a></li>
+      <li><a href="recovery.html">Recovery</a></li>
       <li><a href="index.html#packages">Packages</a></li>
     </ul>
-    <a href="#cta" class="navcta">Request an estimate</a>
+    <a href="#cta" class="navcta">Book a consultation</a>
   </div>
 </header>
 
@@ -192,7 +192,7 @@
         <h1 id="h-title"></h1>
         <p class="sub" id="h-sub"></p>
         <div class="hero-ctas">
-          <a href="#cta" class="btn-primary" id="primary-cta">Request a project estimate</a>
+          <a href="#cta" class="btn-primary" id="primary-cta">Book a consultation</a>
           <a href="#stack" class="btn-outline">See what we build</a>
         </div>
       </div>
@@ -242,9 +242,9 @@
       <p class="lead">You have probably been pitched by a vendor who disappeared once the invoice cleared. Here is what we commit to instead.</p>
       <div class="g-grid">
         <div class="g-card">
-          <div class="g-label">ROI commitment</div>
-          <h3>We hit the projection or we keep working</h3>
-          <p>Your audit projects a specific number of hours saved. If we have not reached it within 90 days of going live, we keep optimizing at no additional cost until we do.</p>
+          <div class="g-label">Written acceptance criteria</div>
+          <h3>We agree what "done" means before we build</h3>
+          <p>Before any work starts, we put in writing what the automation must do and how it will be tested. You are never left arguing about whether something was delivered.</p>
         </div>
         <div class="g-card">
           <div class="g-label">Response SLA</div>
@@ -266,7 +266,7 @@
       <div class="steps">
         <div class="step">
           <div class="step-badge">1</div>
-          <h3>Paid strategy session</h3>
+          <h3>20-minute call</h3>
           <p>A 20-minute call where we look at your volume, booking rate, and current tools, and tell you where the biggest leaks are.</p>
         </div>
         <div class="step">
@@ -286,8 +286,8 @@
   <section class="cta" id="cta">
     <div class="wrap">
       <h2>Find out what your gaps are actually costing.</h2>
-      <p>We will review your current setup, identify the highest-value automation opportunity, and provide a clear paid project estimate with scope and success criteria.</p>
-      <a href="index.html#cta" class="btn-primary">Request a project estimate</a>
+      <p>A 20-minute call. We will look at your current setup and tell you where the money is leaking — and if automation is not worth it for your business yet, we will say so.</p>
+      <a href="index.html#cta" class="btn-primary">Book a consultation</a>
     </div>
   </section>
 
@@ -297,7 +297,7 @@
   <div class="wrap">
     <div class="foot-row">
       <a href="index.html" class="logo">auto<span>mintly</span></a>
-      <a href="index.html#cta">Request an estimate</a>
+      <a href="mailto:automintly@gmail.com">automintly@gmail.com</a>
       <a href="privacy.html">Privacy policy</a>
     </div>
     <div class="foot-bottom">© 2026 Automintly. Estimates shown are illustrative and not a guarantee of results.</div>
@@ -567,7 +567,7 @@ const INDUSTRIES = {
     el('calc-output-note').textContent = d.outputNote || 'Based on your inputs. Actual results vary by market and close rate.';
 
     var primary = el('primary-cta');
-    primary.textContent = d.primaryLabel || 'Request a project estimate';
+    primary.textContent = d.primaryLabel || 'Book a consultation';
     primary.href = d.primaryHref || '#cta';
     if(d.primaryHref){ primary.target = '_blank'; primary.rel = 'noopener'; }
     else { primary.removeAttribute('target'); primary.removeAttribute('rel'); }

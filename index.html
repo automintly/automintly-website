@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Crect width=&apos;32&apos; height=&apos;32&apos; rx=&apos;6&apos; fill=&apos;%230A2240&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;5&apos; fill=&apos;%231B6FC9&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23EAF2FB&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23EAF2FB&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23EAF2FB&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23EAF2FB&apos;/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Crect width=&apos;32&apos; height=&apos;32&apos; rx=&apos;6&apos; fill=&apos;%230A2240&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;5&apos; fill=&apos;%2335A889&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;8&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;7&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3Ccircle cx=&apos;25&apos; cy=&apos;24&apos; r=&apos;2.4&apos; fill=&apos;%23DFF8EE&apos;/%3E%3C/svg%3E">
 <title>Automintly | AI Automation Agency — Phone Agents, Workflow &amp; Systems Automation</title>
 <meta name="description" content="Automintly is an AI automation agency building phone agents, workflow automation, and custom systems integration with published pricing and measurable outcomes.">
 <link rel="canonical" href="https://automintly.com/">
@@ -28,6 +28,7 @@
   "@id": "https://automintly.com/#organization",
   "name": "Automintly",
   "url": "https://automintly.com/",
+  "email": "automintly@gmail.com",
   "description": "Automintly is an AI automation agency that designs, builds, and maintains AI phone agents, workflow automation, and custom systems integration for businesses of any size.",
   "slogan": "End-to-end automation, engineered under one roof.",
   "priceRange": "$$",
@@ -103,7 +104,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy-900:#0A2240;
@@ -117,8 +118,8 @@
     --line:#D7DFE9;
     --text:#1B2430;
     --muted:#5B6472;
-    --sans:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --radius:4px;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius:12px;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
@@ -127,7 +128,7 @@
   a{ color:inherit; }
   .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
   @media (max-width:720px){ .wrap{ padding:0 20px; } }
-  h1,h2,h3{ font-family:var(--sans); font-weight:700; margin:0; letter-spacing:-0.01em; color:var(--navy-900); }
+  h1,h2,h3{ font-family:var(--sans); font-weight:750; margin:0; letter-spacing:-0.035em; color:var(--navy-900); }
   :focus-visible{ outline:2px solid var(--blue-600); outline-offset:2px; }
 
   /* ---------- Utility bar ---------- */
@@ -140,7 +141,9 @@
   header{ position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); }
   .nav{ display:flex; align-items:center; justify-content:space-between; padding:26px 32px; min-height:82px; max-width:1200px; margin:0 auto; }
   .logo{ font-weight:800; font-size:24px; letter-spacing:-.8px; text-decoration:none; color:var(--navy-900); }
-  .logo span{ color:#35A889; }
+  .logo span{color:#35A889}
+  .service-link{display:inline-flex;margin-top:16px;color:var(--blue-600);font-size:13.5px;font-weight:700;text-decoration:none}
+  .service-link:hover{text-decoration:underline}
   .navlinks{ display:flex; gap:32px; list-style:none; margin:0; padding:0; }
   .navlinks a{ text-decoration:none; font-size:14.5px; color:var(--muted); font-weight:500; }
   .navlinks a:hover, .navlinks a:focus-visible{ color:var(--navy-900); }
@@ -217,6 +220,11 @@
   @media (max-width:560px){ .how-step{ grid-template-columns:1fr; gap:4px; } }
   .how-step-name{ font-size:13px; font-weight:600; color:var(--navy-900); }
   .how-step-text{ font-size:13.5px; color:var(--muted); line-height:1.5; }
+  .tool-stack{ margin-top:18px; padding:15px; border:1px solid #B9E2D5; border-radius:8px; background:var(--blue-tint); }
+  .tool-stack-title{ font-size:12px; font-weight:700; color:var(--navy-900); text-transform:uppercase; letter-spacing:.06em; }
+  .tool-stack p{ margin-top:6px; font-size:12.5px; }
+  .tool-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .tool-chip{ display:inline-flex; padding:5px 8px; border-radius:4px; background:#fff; border:1px solid var(--line); color:var(--navy-700); font-size:11.5px; font-weight:600; }
 
   .service-group{ margin-top:52px; }
   .service-group:first-of-type{ margin-top:40px; }
@@ -335,18 +343,6 @@
   table.pkg td.check{ color:var(--navy-900); font-weight:600; }
   .pkg-foot{ margin-top:18px; font-size:13.5px; color:var(--muted); }
 
-  .price-explain{ padding:0 0 80px; }
-  .price-explain-panel{ background:var(--blue-tint); border:1px solid #B9E2D5; border-radius:var(--radius); padding:34px; }
-  .price-explain h2{ font-size:28px; }
-  .price-explain .lead{ color:var(--muted); margin-top:10px; max-width:68ch; }
-  .price-factors{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:24px; }
-  .price-factor{ background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; }
-  .price-factor strong{ display:block; color:var(--navy-900); margin-bottom:6px; }
-  .price-factor span{ color:var(--muted); font-size:13.5px; }
-  .price-explain-note{ margin-top:22px; font-size:14px; color:var(--navy-900); font-weight:600; }
-  @media(max-width:900px){ .price-factors{ grid-template-columns:1fr 1fr; } }
-  @media(max-width:560px){ .price-factors{ grid-template-columns:1fr; } .price-explain-panel{ padding:24px; } }
-
   /* ---------- CTA ---------- */
   .cta{ background:var(--navy-900); padding:88px 0; }
   .cta h2{ color:#fff; font-size:clamp(28px,3.8vw,40px); max-width:18ch; }
@@ -363,6 +359,36 @@
   .foot-col a{ color:#8FA3BE; text-decoration:none; font-size:13.5px; }
   .foot-col a:hover{ color:#fff; }
   .foot-bottom{ margin-top:40px; padding-top:20px; border-top:1px solid #1C3559; color:#6E84A2; font-size:12.5px; }
+
+  /* ---------- Recovery ---------- */
+  .recovery{ scroll-margin-top:96px; padding:80px 0; background:var(--bg-2); border-bottom:1px solid var(--line); }
+  .rec-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:start; }
+  @media (max-width:900px){ .rec-grid{ grid-template-columns:1fr; gap:34px; } }
+  .rec-eyebrow{ display:inline-block; font-size:12.5px; font-weight:600; color:var(--blue-600); background:#fff; padding:5px 12px; border-radius:3px; border:1px solid var(--line); }
+  .recovery h2{ font-size:32px; margin-top:18px; max-width:20ch; }
+  .recovery .lead{ color:var(--muted); font-size:15.5px; margin-top:14px; max-width:52ch; }
+  .rec-points{ margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:0 30px; border-top:1px solid var(--line); }
+  @media (max-width:560px){ .rec-points{ grid-template-columns:1fr; } }
+  .rec-point{ padding:15px 0; border-bottom:1px solid var(--line); }
+  .rec-point h3{ font-size:15.5px; }
+  .rec-point p{ color:var(--muted); font-size:13.5px; margin:5px 0 0; }
+  .rec-ctas{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+  .rec-note{ font-size:13px; color:var(--muted); margin-top:16px; }
+  .rec-card{ background:#fff; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .rec-card-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; padding:13px 22px; background:var(--blue-tint); border-bottom:1px solid var(--line); }
+  .rec-card-head .t{ font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-600); }
+  .rec-card-head .n{ font-size:12.5px; color:var(--muted); }
+  .rec-card-body{ padding:4px 22px 16px; }
+  .rec-line{ display:grid; grid-template-columns:1fr auto; gap:12px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--line); }
+  .rec-line:last-child{ border-bottom:none; }
+  .rec-line .k{ font-size:14px; color:var(--text); }
+  .rec-line .k small{ display:block; color:var(--muted); font-size:12px; margin-top:3px; }
+  .rec-line .v{ font-size:15px; font-weight:600; color:var(--navy-900); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .rec-line .v.over{ color:#B3261E; }
+  .rec-line.tot{ border-top:2px solid var(--line); padding-top:14px; }
+  .rec-line.tot .k{ font-weight:600; color:var(--navy-900); }
+  .rec-line.tot .v{ font-size:22px; color:#B3261E; }
+  .rec-card-foot{ padding:11px 22px; border-top:1px solid var(--line); background:#FBF6F5; font-size:12.5px; color:var(--muted); }
 </style>
 
 <script src="conversion-tracking-config.js"></script>
@@ -379,9 +405,10 @@
       <li><a href="#process">Process</a></li>
       <li><a href="roi-calculator.html">ROI Calculator</a></li>
       <li><a href="#guarantees">Guarantees</a></li>
+      <li><a href="#recovery">Recovery</a></li>
       <li><a href="#packages">Packages</a></li>
     </ul>
-    <a href="#cta" class="navcta">Request an estimate</a>
+    <a href="#cta" class="navcta">Book a consultation</a>
   </div>
 </header>
 
@@ -407,9 +434,9 @@
       <div>
         <h1>End-to-end automation, engineered under one roof.</h1>
         <p class="sub">Automintly designs, builds, and maintains AI phone agents, workflow automations, and custom systems — all under one roof, with published pricing and outcomes you can measure.</p>
-        <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Tell us what you need. We'll give you a clear price before we start.</p>
+        <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Start with the automation that creates the clearest measurable return.</p>
         <div class="hero-ctas">
-          <a href="#cta" class="btn-primary">Request a project estimate</a>
+          <a href="#cta" class="btn-primary">Book a consultation</a>
           <a href="#guarantees" class="btn-outline">See how we're different</a>
         </div>
       </div>
@@ -422,6 +449,71 @@
           <div class="coverage-item"><span class="coverage-check">✓</span> Data &amp; reporting</div>
           <div class="coverage-item"><span class="coverage-check">✓</span> Custom systems integration</div>
           <div class="coverage-item"><span class="coverage-check">✓</span> Live automation dashboard</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- RECOVERY -->
+  <section class="recovery" id="recovery">
+    <div class="wrap">
+      <div class="rec-grid">
+        <div>
+          <span class="rec-eyebrow">Contract &amp; spend recovery</span>
+          <h2>Your suppliers are billing you more than your contracts say.</h2>
+          <p class="lead">A separate service from our automation work. We put the contract next to the invoice and find the difference. You pay 25% of what you actually get back — and nothing at all if we find nothing.</p>
+
+          <div class="rec-points">
+            <div class="rec-point">
+              <h3>Rates above contract</h3>
+              <p>The invoiced rate quietly exceeding the rate you signed.</p>
+            </div>
+            <div class="rec-point">
+              <h3>Fees above their cap</h3>
+              <p>Fuel and environmental surcharges past the ceiling your contract sets.</p>
+            </div>
+            <div class="rec-point">
+              <h3>Billing after cancellation</h3>
+              <p>Phone lines at a building you sold. Seats for people who left.</p>
+            </div>
+            <div class="rec-point">
+              <h3>Unclaimed service credits</h3>
+              <p>Credits you are owed. Most expire within 30 to 60 days.</p>
+            </div>
+          </div>
+
+          <div class="rec-ctas">
+            <a href="recovery.html" class="btn-primary">How recovery works</a>
+            <a href="#cta" class="btn-outline">Request a review</a>
+          </div>
+          <p class="rec-note">No retainer, no hourly rate, no minimum. Send your five largest suppliers to start.</p>
+        </div>
+
+        <div class="rec-card">
+          <div class="rec-card-head">
+            <span class="t">Reconciliation</span>
+            <span class="n">Waste &amp; recycling · 11 months</span>
+          </div>
+          <div class="rec-card-body">
+            <div class="rec-line">
+              <span class="k">Contracted rate<small>Schedule A, §2 — rate table</small></span>
+              <span class="v">$412.00 / mo</span>
+            </div>
+            <div class="rec-line">
+              <span class="k">Invoiced rate<small>INV-2291 → INV-2301</small></span>
+              <span class="v over">$487.00 / mo</span>
+            </div>
+            <div class="rec-line">
+              <span class="k">Overcharge per month</span>
+              <span class="v over">$75.00</span>
+            </div>
+            <div class="rec-line tot">
+              <span class="k">Recoverable</span>
+              <span class="v">$825.00</span>
+            </div>
+          </div>
+          <div class="rec-card-foot">Illustration, not a client result. One line item, one contract clause, ten minutes.</div>
         </div>
       </div>
     </div>
@@ -459,7 +551,7 @@
     <div class="wrap">
       <div class="services-head">
         <h2>Every automation your business needs</h2>
-        <p>Twenty-seven automation capabilities across five categories. Most clients start with two or three — the audit tells us which.</p>
+        <p>Twenty-seven automation capabilities across five categories. Open any service to see the implementation process, typical tools, integrations, and what appears in your Automintly dashboard. Most clients start with two or three — the audit tells us which.</p>
       </div>
       <div class="service-group">
         <div class="group-head">
@@ -471,8 +563,8 @@
         <div class="service-card">
           <div class="idx">01</div>
           <h3>AI phone &amp; voice agents</h3>
-          <p>A 24/7 receptionist that answers, qualifies, and books — plus outbound reminders and automatic missed-call text-back, so every lead gets a fast follow-up.</p>
-          <div class="cats"><span class="cat">Voice</span><span class="cat">Booking</span><span class="cat">Missed-call text-back</span></div>
+          <p>A 24/7 receptionist that answers, qualifies, and books — plus outbound calling for reminders and follow-up, so no call goes unanswered.</p>
+          <div class="cats"><span class="cat">Voice</span><span class="cat">Booking</span></div>
           <details class="how">
             <summary>How we do it</summary>
             <div class="how-body">
@@ -482,6 +574,22 @@
               <div class="how-step"><div class="how-step-name">Go live</div><div class="how-step-text">The agent takes calls with full transcripts and summaries pushed to your team, and every call is logged in your dashboard.</div></div>
             </div>
           </details>
+        </div>
+        <div class="service-card featured-service">
+          <div class="idx">02</div>
+          <h3>Automatic missed-call text back</h3>
+          <p>When your team misses a call, the caller automatically receives a useful follow-up text while your business is still top of mind. The conversation can answer approved questions, share your booking link, and alert staff when a person needs to step in.</p>
+          <div class="cats"><span class="cat">Twilio</span><span class="cat">SMS</span><span class="cat">Lead recovery</span></div>
+          <details class="how">
+            <summary>How we set it up</summary>
+            <div class="how-body">
+              <div class="how-step"><div class="how-step-name">Your Twilio account</div><div class="how-step-text">We guide you through a client-owned Twilio account and business number, so your business pays its own carrier usage directly instead of sharing another company's phone bill.</div></div>
+              <div class="how-step"><div class="how-step-name">Call routing</div><div class="how-step-text">The new number forwards calls to your existing business line. Answered calls continue normally; busy, failed, and unanswered calls trigger the approved follow-up.</div></div>
+              <div class="how-step"><div class="how-step-name">Replies &amp; knowledge</div><div class="how-step-text">We analyze your public website, load approved FAQs, connect booking links, set quiet hours, and define which questions the bot may answer versus escalate.</div></div>
+              <div class="how-step"><div class="how-step-name">Your dashboard</div><div class="how-step-text">Your private Automintly dashboard shows missed calls, sent texts, complete conversation history, replies, bookings, message volume, and recovery analytics. Automintly monitors connection health from the agency dashboard.</div></div>
+            </div>
+          </details>
+          <a class="service-link" href="#cta">Discuss missed-call text back →</a>
         </div>
         <div class="service-card">
           <div class="idx">02</div>
@@ -805,7 +913,7 @@
         <div class="service-grid">
 
         <div class="service-card">
-          <div class="idx">21</div>
+          <div class="idx">20</div>
           <h3>Data &amp; reporting automation</h3>
           <p>Live dashboards and scheduled reports that tell you what's happening in the business, without anyone building a spreadsheet.</p>
           <div class="cats"><span class="cat">Dashboards</span><span class="cat">Alerts</span></div>
@@ -820,7 +928,7 @@
           </details>
         </div>
         <div class="service-card">
-          <div class="idx">22</div>
+          <div class="idx">21</div>
           <h3>Custom systems &amp; complex integration</h3>
           <p>Multi-system orchestration across your CRM, ERP, and accounting tools, plus custom AI agents for workflows off-the-shelf tools can't touch.</p>
           <div class="cats"><span class="cat">Integration</span><span class="cat">Custom</span></div>
@@ -835,7 +943,7 @@
           </details>
         </div>
         <div class="service-card">
-          <div class="idx">23</div>
+          <div class="idx">22</div>
           <h3>Automation rescue &amp; migration</h3>
           <p>Inherited a broken Zapier stack or automations built by someone who left? We audit what exists, fix what's salvageable, and rebuild what isn't.</p>
           <div class="cats"><span class="cat">Migration</span><span class="cat">Rescue</span></div>
@@ -860,7 +968,7 @@
         <div class="service-grid">
 
         <div class="service-card">
-          <div class="idx">24</div>
+          <div class="idx">23</div>
           <h3>Appointment-based service businesses</h3>
           <p>Clinics, salons, trades, auto shops, studios, and firms — anywhere customers call in and book your team's time. Call answering, scheduling, follow-up, and no-show reduction built around your booking system.</p>
           <div class="cats"><span class="cat">Bookings</span><span class="cat">Follow-up</span></div>
@@ -876,7 +984,7 @@
         </div>
 
         <div class="service-card">
-          <div class="idx">25</div>
+          <div class="idx">24</div>
           <h3>Field &amp; dispatch operations</h3>
           <p>For businesses whose revenue depends on people in vehicles — trades, cleaning, landscaping, moving, mobile services. Routing, job costing, and customer updates that keep crews productive.</p>
           <div class="cats"><span class="cat">Dispatch</span><span class="cat">Field</span></div>
@@ -892,7 +1000,7 @@
         </div>
 
         <div class="service-card">
-          <div class="idx">26</div>
+          <div class="idx">25</div>
           <h3>Professional &amp; advisory firms</h3>
           <p>Law, accounting, consulting, insurance, and agencies. Intake screening, deadline tracking, document assembly, and client communication for businesses billing knowledge and time.</p>
           <div class="cats"><span class="cat">Intake</span><span class="cat">Matters</span></div>
@@ -908,7 +1016,7 @@
         </div>
 
         <div class="service-card">
-          <div class="idx">27</div>
+          <div class="idx">26</div>
           <h3>Retail, e-commerce &amp; multi-location</h3>
           <p>For businesses selling across channels or running several sites. Inventory sync, order routing, cross-location reporting, and customer service that scales without a headcount per location.</p>
           <div class="cats"><span class="cat">Multi-site</span><span class="cat">Channels</span></div>
@@ -1037,12 +1145,12 @@
         <div class="g-card g-lead">
           <div class="g-label">Performance pricing</div>
           <h3>Pay for outcomes, not projects</h3>
-          <p>On eligible builds you can pay per result instead of per project — per appointment booked, per hour saved, or a share of recovered revenue for the first year. Most agencies can't offer this because they don't measure what they build. We do, so we can put our fee where our projection is.</p>
+          <p>On eligible builds you can pay per result instead of per project — per appointment booked, per hour saved, or a share of recovered revenue for the first year. Most agencies can't offer this because they don't measure what they build.</p>
         </div>
         <div class="g-card g-lead">
-          <div class="g-label">Paid pilot</div>
-          <h3>A focused first build</h3>
-          <p>Start with one tightly scoped paid automation and a written success metric. You see the agreed result on your own dashboard before deciding whether to expand the engagement.</p>
+          <div class="g-label">Focused rollout</div>
+          <h3>Start with the clearest opportunity</h3>
+          <p>We begin with a tightly scoped automation tied to a measurable business outcome. You see exactly what it does, how it performs, and whether expanding the system makes financial sense.</p>
         </div>
       </div>
 
@@ -1066,9 +1174,9 @@
 
       <div class="g-grid" style="margin-top:20px;">
         <div class="g-card">
-          <div class="g-label">ROI commitment</div>
-          <h3>We hit the projection or keep working</h3>
-          <p>Your audit projects a specific number of hours saved. If we haven't reached it within 90 days of go-live, we keep optimizing at no additional cost until we do.</p>
+          <div class="g-label">Written acceptance criteria</div>
+          <h3>We agree what "done" means before we build</h3>
+          <p>Before any work starts, we put in writing what the automation must do and how it will be tested. You are never in the position of arguing about whether something was delivered.</p>
         </div>
         <div class="g-card">
           <div class="g-label">No lock-in</div>
@@ -1082,7 +1190,7 @@
         </div>
       </div>
 
-      <p style="margin-top:26px; font-size:13.5px; color:var(--muted);">Performance pricing and paid pilots are offered on eligible engagements and have conditions — we'll walk you through them before anything is signed. Nothing is buried in fine print.</p>
+      <p style="margin-top:26px; font-size:13.5px; color:var(--muted);">Performance pricing is offered on eligible engagements and has conditions — we'll walk you through them before anything is signed. Nothing is buried in fine print.</p>
     </div>
   </section>
 
@@ -1114,40 +1222,22 @@
           </tbody>
         </table>
       </div>
-      <p class="pkg-foot">Prices shown are starting points. Your free 20-minute call helps identify the strongest opportunity, and the final proposal confirms the approved scope and price before work begins. Some businesses need less than the package above, and we'll tell you when that's the case. Unless a signed proposal specifically says otherwise, package prices cover Automintly's implementation and management services only. If an automation covered by an active monthly plan stops working as originally approved, Automintly will troubleshoot and correct the Automintly-managed configuration at no additional service charge. New features, integrations, workflow changes, and problems caused by third-party providers or client-side changes may require a separate quote. The client is responsible for purchasing and maintaining all required third-party accounts and for all provider, licensing, phone-number, carrier, messaging, voice, AI, hosting, data-storage, payment-processing, tax, and usage-based charges. Additional work or fees outside the approved scope are quoted for client approval before they are incurred. Performance-based pricing is available as an alternative on eligible builds.</p>
-    </div>
-  </section>
-
-  <!-- HOW PRICING IS CALCULATED -->
-  <section class="price-explain" id="pricing-method">
-    <div class="wrap">
-      <div class="price-explain-panel">
-        <h2>Why every final quote is different</h2>
-        <p class="lead">The package prices above are starting points. Your proposal is based on the work required, the operating risk, and the conservative value the system can realistically affect—not a number pulled from thin air.</p>
-        <div class="price-factors">
-          <div class="price-factor"><strong>Discovery and workflow design</strong><span>We map the real process, edge cases, responsibilities, and success criteria before building.</span></div>
-          <div class="price-factor"><strong>Custom integrations</strong><span>We connect the phone, calendar, CRM, data, and business systems required by the approved scope.</span></div>
-          <div class="price-factor"><strong>Testing and launch</strong><span>Every build includes acceptance testing, failure handling, and a controlled go-live—not just a template installation.</span></div>
-          <div class="price-factor"><strong>Documentation and ownership</strong><span>Your workflows and datasets are documented and exportable, so the system remains yours.</span></div>
-          <div class="price-factor"><strong>Monitoring and support</strong><span>Ongoing plans cover monitoring, maintenance, response windows, and measured improvement. Voice, AI, hosting, and paid-app usage follow actual volume.</span></div>
-          <div class="price-factor"><strong>Measurable outcomes</strong><span>We compare the first-year fee with a conservative estimate of savings or recovered gross profit, then report volume, reliability, hours saved, and cost impact.</span></div>
-        </div>
-        <p class="price-explain-note">Before work begins, the proposal lists the deliverables, exclusions, acceptance tests, timeline, payment milestones, and anything that would require a change order.</p>
-      </div>
+      <p class="pkg-foot">Prices shown are starting points. A 20-minute call helps identify the strongest opportunity, and the final proposal confirms the approved scope and price before work begins. Some businesses need less than the package above, and we'll tell you when that's the case. Unless a signed proposal specifically says otherwise, package prices cover Automintly's implementation and management services only. If an automation covered by an active monthly plan stops working as originally approved, Automintly will troubleshoot and correct the Automintly-managed configuration at no additional service charge. New features, integrations, workflow changes, and problems caused by third-party providers or client-side changes may require a separate quote. The client is responsible for purchasing and maintaining all required third-party accounts and for all provider, licensing, phone-number, carrier, messaging, voice, AI, hosting, data-storage, payment-processing, tax, and usage-based charges. Additional work or fees outside the approved scope are quoted for client approval before they are incurred. Performance-based pricing is available as an alternative on eligible builds.</p>
     </div>
   </section>
 
   <!-- CTA -->
+  <a id="contact"></a>
   <section class="cta" id="cta">
     <div class="wrap cta-inner">
       <div>
-        <h2>Start with a clear scope and price.</h2>
-        <p>Tell us what is slowing your business down. We will scope the highest-value automation, define the deliverable, and give you a clear paid project estimate before work begins.</p>
+        <h2>Find the automation worth building first.</h2>
+        <p>Start with a complimentary 20-minute health check. We'll identify the strongest opportunity, explain what it would take to build, and show you how its results would be measured.</p>
         <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1eRk4Lj5et4_Sl8zZqZzZ4tybVrWLLq3aBD36NcXSlFtjmkQ6nJ1A2ENMD-Jmy49nTDh1CiJKm" class="btn-primary" target="_blank" rel="noopener">Book a 20-minute call</a>
       </div>
 
       <div class="form-card">
-        <h3>Request a project estimate</h3>
+        <h3>Start with a 20-minute call</h3>
         <p>We reply within one business day.</p>
         <form id="contact-form" name="health-check" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="health-check">
@@ -1209,15 +1299,13 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#packages">Packages</a></li>
-          <li><a href="https://flowmotic.com" target="_blank" rel="noopener">Creator tools by FlowMotic</a></li>
         </ul>
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="#cta">Request an estimate</a></li>
           <li><a href="mailto:automintly@gmail.com">automintly@gmail.com</a></li>
-          <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1eRk4Lj5et4_Sl8zZqZzZ4tybVrWLLq3aBD36NcXSlFtjmkQ6nJ1A2ENMD-Jmy49nTDh1CiJKm" target="_blank" rel="noopener">Book a 20-minute call</a></li>
+          <li><a href="#cta">Book an audit</a></li>
           <li><a href="privacy.html">Privacy policy</a></li>
         </ul>
       </div>
@@ -1227,6 +1315,52 @@
 </footer>
 
 <script>
+  (function(){
+    var toolsByService = {
+      'AI phone & voice agents':['Twilio or existing phone system','AI voice model','Calendar','CRM','Automintly dashboard'],
+      'Automatic missed-call text back':['Client-owned Twilio','Automintly dashboard','Business website & FAQs','Booking calendar','SMS compliance controls'],
+      'Customer support & chat agents':['Website chat','Twilio or WhatsApp','AI knowledge base','Helpdesk','Automintly dashboard'],
+      'Scheduling & calendar automation':['Google or Microsoft Calendar','Calendly or booking platform','CRM','Email & SMS','Automintly dashboard'],
+      'Reputation & review management':['Google Business Profile','Review platforms','Email & SMS','AI drafting','Automintly dashboard'],
+      'Sales & CRM automation':['Your CRM','Email & SMS','Forms','Automation workflows','Automintly dashboard'],
+      'Marketing automation':['Email platform','CRM','Social scheduling','AI content tools','Automintly dashboard'],
+      'Client onboarding & success':['CRM','Forms & e-signature','Email','Project management','Automintly dashboard'],
+      'Partner & affiliate program automation':['Affiliate tracking','CRM','Payments','Email','Partner dashboard'],
+      'Event & webinar automation':['Registration platform','Calendar','Email & SMS','CRM','Automintly dashboard'],
+      'E-commerce & fulfillment automation':['Shopify or storefront','Inventory system','Fulfillment provider','Email & SMS','Automintly dashboard'],
+      'Business process & document automation':['Forms','OCR & document AI','Cloud storage','Accounting or CRM','Automintly dashboard'],
+      'Financial operations automation':['Accounting platform','Bank feeds','Expense tools','Approval workflows','Automintly dashboard'],
+      'HR & recruiting automation':['Applicant tracking system','Calendar','Email','HR platform','Automintly dashboard'],
+      'IT helpdesk & internal ops automation':['Helpdesk','Slack or Teams','Identity provider','Workflow engine','Automintly dashboard'],
+      'Procurement & vendor management':['Forms','E-signature','Accounting or ERP','Approval workflows','Automintly dashboard'],
+      'Field operations & dispatch':['Field service platform','Maps & routing','SMS','CRM','Automintly dashboard'],
+      'Training & knowledge management':['Cloud documents','Learning platform','AI search','Slack or Teams','Automintly dashboard'],
+      'Compliance & monitoring automation':['Audit logs','Monitoring tools','Secure storage','Alerting','Automintly dashboard'],
+      'Translation & localization workflows':['Translation AI','Terminology library','CMS','Review workflow','Automintly dashboard'],
+      'Data & reporting automation':['CRM & accounting data','Database or warehouse','Reporting tools','Alerts','Automintly dashboard'],
+      'Custom systems & complex integration':['Official APIs','Webhooks','Custom services','Cloud database','Automintly dashboard'],
+      'Automation rescue & migration':['Existing automation tools','API diagnostics','Error monitoring','Documentation','Automintly dashboard'],
+      'Appointment-based service businesses':['Twilio','Booking platform','CRM','Email & SMS','Automintly dashboard'],
+      'Field & dispatch operations':['Field service platform','Maps & routing','SMS','Job costing','Automintly dashboard'],
+      'Professional & advisory firms':['CRM or practice management','E-signature','Document tools','Calendar','Automintly dashboard'],
+      'Retail, e-commerce & multi-location':['Storefront & POS','Inventory','Fulfillment','Customer support','Automintly dashboard']
+    };
+    var cards = document.querySelectorAll('.service-card');
+    cards.forEach(function(card, index){
+      var title = card.querySelector('h3');
+      var idx = card.querySelector('.idx');
+      if(idx) idx.textContent = String(index + 1).padStart(2, '0');
+      if(!title) return;
+      var tools = toolsByService[title.textContent.trim()] || ['Your existing business software','Official integrations & APIs','Automintly dashboard'];
+      var box = document.createElement('div');
+      box.className = 'tool-stack';
+      box.innerHTML = '<div class="tool-stack-title">Typical tools &amp; access</div><p>We configure this around the software you already use. You receive a private Automintly view for activity, outcomes, exceptions, and system health.</p><div class="tool-chips">' + tools.map(function(tool){ return '<span class="tool-chip">' + tool + '</span>'; }).join('') + '</div>';
+      var details = card.querySelector('.how');
+      var howBody = details && details.querySelector('.how-body');
+      if(howBody) howBody.appendChild(box); else card.appendChild(box);
+    });
+  })();
+
   (function(){
     var form = document.getElementById('contact-form');
     var status = document.getElementById('form-status');
@@ -1264,9 +1398,9 @@
       }).then(function(res){
         if(res.type !== 'opaque' && !res.ok) throw new Error('Request failed');
         status.className = 'form-status ok';
-        status.textContent = 'Thanks — we\'ll be in touch within one business day.';
+        status.textContent = res.type === 'opaque' ? 'Your request was sent, but this browser cannot confirm receipt. For a confirmed follow-up, email automintly@gmail.com.' : 'Thanks — we\'ll be in touch within one business day.';
         if(window.AutomintlyConversions){
-          window.AutomintlyConversions.track('estimate_form_success', { page: window.location.pathname });
+          window.AutomintlyConversions.track(res.type === 'opaque' ? 'estimate_form_submitted_unverified' : 'estimate_form_success', { page: window.location.pathname });
         }
         form.reset();
       }).catch(function(){
