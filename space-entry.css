@@ -215,6 +215,12 @@
   69% { opacity: .9; }
   72%, 100% { opacity: 0; transform: rotate(13deg) translate3d(145vw,0,0); }
 }
+@keyframes space-shooting-star-desktop {
+  0%, 64% { opacity: 0; transform: translate3d(0,0,0) rotate(8deg); }
+  65% { opacity: 1; }
+  69% { opacity: .9; }
+  72%, 100% { opacity: 0; transform: translate3d(145vw,7vh,0) rotate(8deg); }
+}
 @media (min-width: 769px) {
   .space-desktop-content {
     display: flex;
@@ -226,14 +232,50 @@
     font-size: clamp(34px, 2.1vw, 44px);
     text-shadow: none;
   }
+  .space-shooting-star {
+    top: 10%;
+    filter: none;
+    contain: paint;
+    will-change: transform, opacity;
+    animation-name: space-shooting-star-desktop;
+  }
+  .space-desktop-actions {
+    position: absolute;
+    top: 65.1%;
+    left: 50%;
+    z-index: 4;
+    gap: 10px;
+    margin: 0;
+    transform: translateX(-50%);
+    pointer-events: auto;
+  }
+  .space-desktop-actions .space-action,
+  .space-desktop-actions .space-action:hover {
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 13px;
+    text-shadow: none;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .space-desktop-actions .space-action-primary {
+    min-width: clamp(150px, 10.5vw, 190px);
+  }
+  .space-desktop-actions .space-action-secondary {
+    min-width: clamp(140px, 9.5vw, 175px);
+    background: rgba(3, 7, 13, .96);
+  }
+  .space-desktop-actions .space-action span {
+    margin-left: 12px;
+    font-size: 16px;
+  }
   .space-welcome-video { object-fit: cover; }
   .space-video-frame > .space-video-hotspot {
-    display: block;
+    display: none;
     border-color: transparent;
     background: transparent;
     box-shadow: none;
   }
-  .space-video-frame > .space-video-explore { display: flex; }
   .space-video-frame > .space-video-hotspot .space-video-label { opacity: 0; }
   .space-video-build {
     left: 41.7%;
