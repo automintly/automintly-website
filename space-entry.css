@@ -225,9 +225,80 @@
   .space-brand {
     font-size: clamp(34px, 2.1vw, 44px);
   }
-  .space-desktop-copy { display: none; }
+  .space-desktop-copy {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    margin: 0;
+    pointer-events: none;
+  }
+  .space-desktop-copy .space-headline { display: none; }
+  .space-desktop-copy .space-eyebrow,
+  .space-desktop-copy .space-subhead {
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+    width: max-content;
+    max-width: calc(100% - 40px);
+    margin: 0;
+    transform: translateX(-50%);
+    color: #fff;
+    text-shadow: 0 2px 5px #020308, 0 0 10px #020308;
+  }
+  .space-desktop-copy .space-eyebrow {
+    top: 46.4%;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(2, 3, 8, .72);
+    box-shadow: 0 0 12px 8px rgba(2, 3, 8, .55);
+    font-size: clamp(10px, .75vw, 15px);
+    letter-spacing: .26em;
+  }
+  .space-desktop-copy .space-subhead {
+    top: 61.7%;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: rgba(2, 3, 8, .68);
+    box-shadow: 0 0 12px 8px rgba(2, 3, 8, .52);
+    font-size: clamp(12px, 1vw, 16px);
+    font-weight: 600;
+  }
+  .space-desktop-copy .space-actions {
+    position: absolute;
+    top: 65.2%;
+    left: 50%;
+    z-index: 3;
+    margin: 0;
+    transform: translateX(-50%);
+    pointer-events: auto;
+  }
+  .space-desktop-copy .space-actions::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -8px -12px;
+    border-radius: 999px;
+    background: rgba(2, 3, 8, .7);
+    box-shadow: 0 0 18px 12px rgba(2, 3, 8, .5);
+  }
+  .space-desktop-copy .space-action {
+    position: relative;
+    min-height: clamp(40px, 3.2vw, 52px);
+    padding: 0 clamp(18px, 1.8vw, 30px);
+    font-size: clamp(12px, 1vw, 16px);
+  }
+  .space-desktop-copy .space-action-primary {
+    min-width: clamp(190px, 15vw, 290px);
+  }
+  .space-desktop-copy .space-action-secondary {
+    min-width: clamp(170px, 13vw, 250px);
+  }
+  .space-desktop-copy .space-action span {
+    margin-left: clamp(12px, 1.2vw, 18px);
+  }
   .space-welcome-video { object-fit: cover; }
-  .space-video-frame > .space-video-hotspot { display: block; }
+  .space-video-frame > .space-video-hotspot { display: none; }
   .space-video-frame > .space-video-hotspot .space-video-label { opacity: 0; }
   .space-video-build {
     left: 41.7%;
