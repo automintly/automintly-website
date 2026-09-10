@@ -5,6 +5,9 @@
   height: 100svh;
   overflow: hidden;
   background: #020308;
+  background-image: url("assets/automintly-orbital-poster-desktop.jpg?v=3");
+  background-position: center;
+  background-size: cover;
   color: #fff;
 }
 .space-welcome::after {
@@ -16,7 +19,35 @@
   pointer-events: none;
 }
 .space-welcome[hidden] { display: none; }
+.space-shooting-star {
+  position: absolute;
+  z-index: 4;
+  top: 16%;
+  left: -18%;
+  width: clamp(100px, 13vw, 190px);
+  height: 2px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(190,226,255,.42) 38%, #fff);
+  filter: drop-shadow(0 0 6px rgba(177,224,255,.9));
+  transform: rotate(13deg) translate3d(0,0,0);
+  transform-origin: right center;
+  animation: space-shooting-star 18s linear 3s infinite;
+}
+.space-shooting-star::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px 2px rgba(190,229,255,.95);
+}
 .space-welcome-backdrop {
+  display: none;
   position: absolute;
   z-index: 0;
   inset: -28px;
@@ -31,24 +62,102 @@
   z-index: 2;
   top: 50%;
   left: 50%;
-  width: min(100vw, calc(100svh * 0.5625));
-  height: min(100svh, calc(100vw * 1.77778));
+  width: 100%;
+  height: 100%;
   transform: translate(-50%, -50%);
   overflow: hidden;
-  container-type: inline-size;
   background: #020308;
-  box-shadow: 0 0 80px rgba(0,0,0,.6);
 }
 .space-welcome-video {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
+.space-desktop-content {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(26px, 4vw, 68px) clamp(26px, 6vw, 112px) clamp(42px, 7vh, 82px);
+  background: linear-gradient(180deg, rgba(1,3,8,.3), transparent 32%, rgba(1,3,8,.72));
+  pointer-events: none;
+}
+.space-brand {
+  width: fit-content;
+  color: #fff;
+  font-size: clamp(30px, 2.5vw, 52px);
+  font-weight: 850;
+  letter-spacing: -.06em;
+  line-height: 1;
+  text-decoration: none;
+  text-shadow: 0 3px 18px rgba(0,0,0,.72);
+  pointer-events: auto;
+}
+.space-brand span { color: #8fefcf; }
+.space-desktop-copy {
+  width: min(900px, 78vw);
+  margin-inline: auto;
+  text-align: center;
+  text-shadow: 0 3px 22px rgba(0,0,0,.78);
+}
+.space-eyebrow {
+  margin: 0 0 clamp(10px, 1.5vh, 18px);
+  color: #fff;
+  font-size: clamp(12px, .82vw, 16px);
+  font-weight: 800;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+}
+.space-headline {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(48px, 5.4vw, 102px);
+  font-weight: 520;
+  letter-spacing: -.055em;
+  line-height: .94;
+}
+.space-subhead {
+  margin: clamp(14px, 2vh, 24px) 0 0;
+  color: rgba(255,255,255,.92);
+  font-size: clamp(16px, 1.25vw, 24px);
+  font-weight: 500;
+}
+.space-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: clamp(22px, 3vh, 34px);
+}
+.space-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 0 30px;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 10px 34px rgba(0,0,0,.4);
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+  pointer-events: auto;
+}
+.space-action span { margin-left: 18px; font-size: 20px; }
+.space-action:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.48); }
+.space-action-primary { border-color: #8fefcf; background: #8fefcf; color: #06221a; }
+.space-action-primary:hover { background: #b2f8e0; }
+.space-action-secondary { background: rgba(3,7,13,.78); backdrop-filter: blur(10px); }
+.space-action-secondary:hover { background: rgba(15,22,29,.95); color: #fff; }
 .space-video-hotspot {
   position: absolute;
   z-index: 2;
-  display: block;
+  display: none;
   border-radius: 999px;
   cursor: pointer;
   transition: box-shadow .18s ease, background-color .18s ease;
@@ -87,6 +196,7 @@
   white-space: nowrap;
   text-shadow: 0 1px 3px #000;
 }
+.space-video-frame > .space-video-hotspot { display: none; }
 .space-sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -99,9 +209,19 @@
   border: 0 !important;
 }
 #site:focus { outline: none; }
-@media (max-width: 600px) {
-  .space-welcome { min-height: 560px; }
+@keyframes space-shooting-star {
+  0%, 64% { opacity: 0; transform: rotate(13deg) translate3d(0,0,0); }
+  65% { opacity: 1; }
+  69% { opacity: .9; }
+  72%, 100% { opacity: 0; transform: rotate(13deg) translate3d(145vw,0,0); }
+}
+@media (max-width: 768px) {
+  .space-welcome {
+    min-height: 560px;
+    background-image: url("assets/automintly-orbital-poster.jpg?v=3");
+  }
   .space-welcome-backdrop {
+    display: block;
     filter: blur(14px) brightness(.82) saturate(.92);
   }
   .space-video-frame {
@@ -111,6 +231,19 @@
     transform: translate(-50%, -50%);
     box-shadow: none;
   }
+  .space-desktop-content { display: none; }
+  .space-video-frame > .space-video-hotspot { display: block; }
+  .space-video-frame > .space-video-explore { display: flex; }
+  .space-video-build {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(143,239,207,.9);
+    background: #8fefcf;
+    color: #06221a;
+    box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  }
+  .space-video-label { font-size: 2.05cqw; }
   .space-welcome-video { object-fit: contain; }
   .space-video-build,
   .space-video-explore {
@@ -119,5 +252,6 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .space-shooting-star { display: none; }
   .space-video-hotspot { transition: none; }
 }
