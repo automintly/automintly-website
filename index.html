@@ -400,21 +400,22 @@
 <body class="charcoal-theme charcoal-home">
 
 <section class="space-welcome" aria-labelledby="space-welcome-title">
-  <img class="space-welcome-art" src="assets/space-welcome.png" alt="" fetchpriority="high" width="1672" height="941">
-  <div class="space-stars space-stars-near" aria-hidden="true"></div>
-  <div class="space-stars space-stars-far" aria-hidden="true"></div>
-  <div class="shooting-stars" aria-hidden="true"><span></span><span></span></div>
-  <div class="space-welcome-brand" aria-label="Automintly">auto<span>mintly</span></div>
-  <div class="space-welcome-copy">
-    <p class="space-welcome-eyebrow">AUTOMATION. BEYOND THE ORDINARY.</p>
-    <h2 id="space-welcome-title">Less busywork.<br>More possibility.</h2>
-    <p class="space-welcome-description">AI automation built around your business.</p>
-    <div class="space-welcome-actions">
-      <a class="space-build" href="build-your-automation.html">Build Your Automation <span aria-hidden="true">→</span></a>
-      <a class="space-enter space-enter-secondary" href="#site">Explore the website</a>
-    </div>
+  <h1 id="space-welcome-title" class="space-sr-only">Automintly — Less busywork. More possibility.</h1>
+  <video class="space-welcome-backdrop" autoplay muted loop playsinline preload="metadata" poster="assets/automintly-orbital-poster.jpg?v=2" aria-hidden="true">
+    <source src="assets/automintly-orbital-landing-1080.mp4?v=2" type="video/mp4">
+  </video>
+  <div class="space-video-frame">
+    <video class="space-welcome-video" autoplay muted loop playsinline preload="metadata" poster="assets/automintly-orbital-poster.jpg?v=2" aria-hidden="true">
+      <source media="(max-width: 900px)" src="assets/automintly-orbital-landing-1080.mp4?v=2" type="video/mp4">
+      <source src="assets/automintly-orbital-landing-4k.mp4?v=2" type="video/mp4">
+    </video>
+    <a class="space-video-hotspot space-video-build" href="build-your-automation.html">
+      <span class="space-sr-only">Build Your Automation</span>
+    </a>
+    <a class="space-video-hotspot space-video-explore space-enter" href="#site">
+      <span class="space-video-label">Explore the website</span>
+    </a>
   </div>
-  <p class="space-welcome-footnote">Your next chapter starts here.</p>
 </section>
 <div id="site" tabindex="-1">
 
