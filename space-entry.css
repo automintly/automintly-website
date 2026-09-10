@@ -3,8 +3,8 @@
 .space-welcome-art { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; z-index:0; }
 .space-welcome::after { content: ""; position: absolute; inset: 0px; z-index: 2; pointer-events:none; background: linear-gradient(rgba(2, 5, 10, 0.03) 25%, rgba(2, 5, 10, 0.1) 47%, rgba(2, 5, 10, 0.22) 70%, rgba(2, 5, 10, 0.44)); }
 .space-stars { position:absolute; inset:-8% -8% auto; height:68%; z-index:2; pointer-events:none; opacity:.62; mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); -webkit-mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); }
-.space-stars-near { background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(176,222,255,.75) 0 1.2px,transparent 1.7px); background-size:179px 179px,263px 263px; background-position:13px 19px,91px 57px; animation:stars-near-drift 130s ease-in-out infinite alternate; }
-.space-stars-far { opacity:.42; background-image:radial-gradient(circle,rgba(255,255,255,.72) 0 .7px,transparent 1.2px),radial-gradient(circle,rgba(155,236,211,.62) 0 .8px,transparent 1.3px); background-size:113px 113px,211px 211px; background-position:37px 11px,17px 89px; animation:stars-far-drift 180s ease-in-out infinite alternate; }
+.space-stars-near { background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(176,222,255,.75) 0 1.2px,transparent 1.7px); background-size:179px 179px,263px 263px; background-position:13px 19px,91px 57px; }
+.space-stars-far { opacity:.42; background-image:radial-gradient(circle,rgba(255,255,255,.72) 0 .7px,transparent 1.2px),radial-gradient(circle,rgba(155,236,211,.62) 0 .8px,transparent 1.3px); background-size:113px 113px,211px 211px; background-position:37px 11px,17px 89px; }
 .shooting-stars { position:absolute; inset:0 0 auto; height:58%; z-index:2; pointer-events:none; overflow:hidden; }
 .shooting-stars span { position:absolute; left:-220px; top:17%; width:180px; height:1px; border-radius:999px; opacity:0; background:linear-gradient(90deg,transparent,rgba(205,232,255,.3) 34%,rgba(255,255,255,.98)); filter:drop-shadow(0 0 5px rgba(171,225,255,.85)); transform-origin:right center; animation:shooting-star 27s linear 4s infinite; }
 .shooting-stars span::after { content:""; position:absolute; width:3px; height:3px; right:-1px; top:-1px; border-radius:50%; background:#fff; box-shadow:0 0 10px 2px rgba(185,232,255,.9); }
@@ -28,8 +28,6 @@
   86% { opacity:.85; }
   88%,100% { opacity:0; transform:rotate(16deg) translate3d(145vw,0,0); }
 }
-@keyframes stars-near-drift { from { transform:translate3d(-.2%,0,0); } to { transform:translate3d(.28%,.12%,0); } }
-@keyframes stars-far-drift { from { transform:translate3d(.15%,-.08%,0); } to { transform:translate3d(-.2%,.1%,0); } }
 @media (max-width: 600px) {
   .space-welcome { height: 100svh; min-height: 620px; }
   .space-welcome-brand { font-size: 24px; top: 22px; left: 24px; }

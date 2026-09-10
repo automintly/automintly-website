@@ -3,20 +3,7 @@
   'use strict';
   const welcome=document.querySelector('.space-welcome');
   const site=document.getElementById('site');
-  const backgroundVideo=document.querySelector('.space-welcome-art');
-  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   if(!welcome||!site)return;
-  function syncBackgroundMotion(){
-    if(!(backgroundVideo instanceof HTMLVideoElement))return;
-    if(reducedMotion.matches){
-      backgroundVideo.pause();
-      backgroundVideo.currentTime=0;
-      return;
-    }
-    backgroundVideo.play().catch(()=>{});
-  }
-  syncBackgroundMotion();
-  reducedMotion.addEventListener?.('change',syncBackgroundMotion);
   function sync(){const entered=Boolean(location.hash);welcome.hidden=entered;document.body.classList.toggle('site-entered',entered);}
   sync();
   welcome.querySelector('.space-enter').addEventListener('click',event=>{
