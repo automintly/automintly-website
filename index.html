@@ -393,8 +393,24 @@
 
 <script src="conversion-tracking-config.js"></script>
 <script defer src="conversion-tracking.js"></script>
+<link rel="stylesheet" href="space-entry.css">
+<link rel="stylesheet" href="charcoal-theme.css">
+<script defer src="space-entry.js"></script>
 </head>
-<body>
+<body class="charcoal-theme charcoal-home">
+
+<section class="space-welcome" aria-labelledby="space-welcome-title">
+  <img class="space-welcome-art" src="assets/space-welcome.png" alt="" fetchpriority="high" width="1672" height="941">
+  <div class="space-welcome-brand" aria-label="Automintly">auto<span>mintly</span></div>
+  <div class="space-welcome-copy">
+    <p class="space-welcome-eyebrow">AUTOMATION. BEYOND THE ORDINARY.</p>
+    <h2 id="space-welcome-title">Less busywork.<br>More possibility.</h2>
+    <p class="space-welcome-description">AI automation built around your business.</p>
+    <a class="space-enter" href="#site">Enter Automintly <span aria-hidden="true">→</span></a>
+  </div>
+  <p class="space-welcome-footnote">Your next chapter starts here.</p>
+</section>
+<div id="site" tabindex="-1">
 
 <header>
   <div class="nav">
@@ -1358,7 +1374,30 @@
       var details = card.querySelector('.how');
       var howBody = details && details.querySelector('.how-body');
       if(howBody) howBody.appendChild(box); else card.appendChild(box);
+
+      var serviceDetails = document.createElement('details');
+      serviceDetails.className = 'service-details';
+      var serviceSummary = document.createElement('summary');
+      serviceSummary.innerHTML = '<span>View service details</span><span class="service-summary-icon" aria-hidden="true">+</span>';
+      serviceSummary.setAttribute('aria-label', 'View details for ' + title.textContent.trim());
+      var serviceBody = document.createElement('div');
+      serviceBody.className = 'service-details-body';
+      Array.from(card.children).forEach(function(child){
+        if(child !== idx && child !== title && child !== serviceDetails) serviceBody.appendChild(child);
+      });
+      serviceDetails.appendChild(serviceSummary);
+      serviceDetails.appendChild(serviceBody);
+      card.appendChild(serviceDetails);
     });
+
+    document.addEventListener('toggle', function(event){
+      var opened = event.target;
+      if(!opened.matches || !opened.matches('.service-details') || !opened.open) return;
+      cards.forEach(function(card){
+        var other = card.querySelector(':scope > .service-details');
+        if(other && other !== opened) other.open = false;
+      });
+    }, true);
   })();
 
   (function(){
@@ -1417,5 +1456,6 @@
   })();
 </script>
 
+</div>
 </body>
 </html>
