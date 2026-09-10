@@ -5,7 +5,7 @@
   height: 100svh;
   overflow: hidden;
   background: #020308;
-  background-image: url("assets/automintly-orbital-extended-desktop-poster.jpg?v=7");
+  background-image: url("assets/automintly-orbital-poster.jpg?v=8");
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -217,18 +217,19 @@
 }
 @media (min-width: 769px) {
   .space-desktop-content { display: none; }
+  .space-welcome-video { object-fit: fill; }
   .space-video-frame > .space-video-hotspot { display: block; }
   .space-video-frame > .space-video-hotspot .space-video-label { opacity: 0; }
   .space-video-build {
-    left: 42.16%;
+    left: 25.25%;
     top: 61.25%;
-    width: 8.49%;
+    width: 26.8%;
     height: 3.7%;
   }
   .space-video-explore {
-    left: 51.09%;
+    left: 53.45%;
     top: 61.25%;
-    width: 6.59%;
+    width: 20.8%;
     height: 3.7%;
     border-color: transparent;
     background: transparent;
