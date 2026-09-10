@@ -400,21 +400,9 @@
 <body class="charcoal-theme charcoal-home">
 
 <section class="space-welcome" aria-labelledby="space-welcome-title">
-  <img class="space-welcome-art" src="assets/space-welcome.png" alt="" fetchpriority="high" width="1672" height="941">
-  <svg class="space-motion-defs" aria-hidden="true" focusable="false">
-    <defs>
-      <filter id="cloud-flow-filter" x="-12%" y="-15%" width="124%" height="130%" color-interpolation-filters="sRGB">
-        <feTurbulence type="fractalNoise" baseFrequency="0.0015 0.005" numOctaves="2" seed="8" result="cloudNoise">
-          <animate attributeName="baseFrequency" values="0.0015 0.005;0.0045 0.009;0.0025 0.0035;0.0015 0.005" dur="14s" repeatCount="indefinite" />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="cloudNoise" scale="8" xChannelSelector="R" yChannelSelector="B">
-          <animate attributeName="scale" values="8;38;18;46;8" dur="14s" repeatCount="indefinite" />
-        </feDisplacementMap>
-      </filter>
-    </defs>
-  </svg>
-  <div class="space-cloud-drift" aria-hidden="true"></div>
-  <div class="space-sun-motion" aria-hidden="true"></div>
+  <video class="space-welcome-art" autoplay muted loop playsinline preload="auto" poster="assets/space-welcome.png" aria-hidden="true">
+    <source src="assets/space-clouds.mp4" type="video/mp4">
+  </video>
   <div class="space-stars space-stars-near" aria-hidden="true"></div>
   <div class="space-stars space-stars-far" aria-hidden="true"></div>
   <div class="shooting-stars" aria-hidden="true"><span></span><span></span></div>

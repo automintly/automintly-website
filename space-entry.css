@@ -1,9 +1,6 @@
 .space-welcome { position: relative; isolation: isolate; min-height: 660px; height: 100svh; background: rgb(3, 5, 10); color: rgb(255, 255, 255); overflow: clip; text-align: center; }
 .space-welcome[hidden] { display: none; }
-.space-welcome-art { --scene-scale: 1.055; position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: 0; animation: space-scene-drift 24s ease-in-out infinite alternate; will-change: transform; }
-.space-motion-defs { position:absolute; width:0; height:0; overflow:hidden; pointer-events:none; }
-.space-cloud-drift { position:absolute; inset:0; z-index:1; pointer-events:none; background:url("assets/space-welcome.png") center center / cover no-repeat; opacity:1; mask-image:linear-gradient(to bottom,transparent 0 58%,rgba(0,0,0,.82) 64%,#000 69%); -webkit-mask-image:linear-gradient(to bottom,transparent 0 58%,rgba(0,0,0,.82) 64%,#000 69%); filter:url(#cloud-flow-filter); animation:space-cloud-drift 13s ease-in-out infinite alternate; transform-origin:50% 78%; will-change:transform; }
-.space-sun-motion { position:absolute; inset:-14%; z-index:2; pointer-events:none; opacity:.72; background:radial-gradient(ellipse 24% 12% at 13% 67%,rgba(255,249,224,.98) 0%,rgba(255,186,99,.62) 17%,rgba(255,125,44,.2) 45%,transparent 76%); mix-blend-mode:screen; animation:space-sun-sweep 12s ease-in-out infinite alternate; will-change:transform,opacity,filter; }
+.space-welcome-art { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; z-index:0; }
 .space-welcome::after { content: ""; position: absolute; inset: 0px; z-index: 2; pointer-events:none; background: linear-gradient(rgba(2, 5, 10, 0.03) 25%, rgba(2, 5, 10, 0.1) 47%, rgba(2, 5, 10, 0.22) 70%, rgba(2, 5, 10, 0.44)); }
 .space-stars { position:absolute; inset:-8% -8% auto; height:68%; z-index:2; pointer-events:none; opacity:.62; mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); -webkit-mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); will-change:transform,opacity,background-position; }
 .space-stars-near { background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(176,222,255,.75) 0 1.2px,transparent 1.7px); background-size:179px 179px,263px 263px; background-position:13px 19px,91px 57px; animation:space-stars-near 48s linear infinite,space-twinkle 6s ease-in-out infinite alternate; }
@@ -24,21 +21,6 @@
 .space-enter span { font-size: 21px; line-height: 1; }
 .space-welcome-footnote { position: absolute; z-index:3; bottom: 22px; left: 20px; right: 20px; font-size: 11px; letter-spacing: 0.12em; color: rgb(227, 231, 237); }
 #site:focus { outline: none; }
-@keyframes space-scene-drift {
-  0% { transform:scale(var(--scene-scale)) translate3d(-2.15%,-.8%,0) rotate(-.42deg); }
-  50% { transform:scale(calc(var(--scene-scale) + .04)) translate3d(.25%,1.2%,0) rotate(.18deg); }
-  100% { transform:scale(calc(var(--scene-scale) + .018)) translate3d(2.2%,-.3%,0) rotate(.48deg); }
-}
-@keyframes space-cloud-drift {
-  0% { transform:translate3d(-1.35%,.9%,0) scale3d(1.06,1.04,1) skewX(-.35deg); }
-  50% { transform:translate3d(.75%,-1.05%,0) scale3d(1.12,.95,1) skewX(.42deg); }
-  100% { transform:translate3d(1.6%,.3%,0) scale3d(1.075,1.1,1) skewX(-.25deg); }
-}
-@keyframes space-sun-sweep {
-  0% { transform:translate3d(-1.5%,.6%,0) scale(.92); opacity:.48; filter:saturate(.9); }
-  55% { transform:translate3d(2.2%,-.45%,0) scale(1.08); opacity:.86; filter:saturate(1.2); }
-  100% { transform:translate3d(4.5%,.2%,0) scale(1.01); opacity:.62; filter:saturate(1.05); }
-}
 @keyframes space-stars-near {
   from { transform:translate3d(-1.2%,-.5%,0); background-position:13px 19px,91px 57px; }
   to { transform:translate3d(1.2%,.75%,0); background-position:102px 74px,19px 132px; }
@@ -63,13 +45,11 @@
   .space-welcome-eyebrow { font-size: 8px; letter-spacing: 0.2em; }
   .space-welcome-description { font-size: 13px; margin: 18px 0px 23px; }
   .space-enter { padding: 14px 23px; }
-  .space-welcome-art { --scene-scale:1.09; object-position: 50% center; }
+  .space-welcome-art { object-position:50% center; }
   .space-stars { inset:-5% -18% auto; }
   .shooting-stars span { width:120px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .space-welcome-art,.space-cloud-drift,.space-sun-motion,.space-stars { animation:none; }
-  .space-welcome-art { transform:scale(var(--scene-scale)); }
-  .space-cloud-drift,.space-sun-motion { display:none; }
+  .space-stars { animation:none; }
   .shooting-stars { display:none; }
 }
