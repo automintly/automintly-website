@@ -1,11 +1,13 @@
 .space-welcome { position: relative; isolation: isolate; min-height: 660px; height: 100svh; background: rgb(3, 5, 10); color: rgb(255, 255, 255); overflow: clip; text-align: center; }
 .space-welcome[hidden] { display: none; }
-.space-welcome-art { --scene-scale: 1.035; position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: 0; animation: space-scene-drift 34s ease-in-out infinite alternate; will-change: transform; }
+.space-welcome-art { --scene-scale: 1.055; position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: 0; animation: space-scene-drift 24s ease-in-out infinite alternate; will-change: transform; }
+.space-cloud-drift { position:absolute; inset:-2%; z-index:1; pointer-events:none; background:url("assets/space-welcome.png") center center / cover no-repeat; opacity:.28; mix-blend-mode:screen; mask-image:linear-gradient(to bottom,transparent 0 62%,rgba(0,0,0,.18) 68%,#000 79%); -webkit-mask-image:linear-gradient(to bottom,transparent 0 62%,rgba(0,0,0,.18) 68%,#000 79%); animation:space-cloud-drift 18s ease-in-out infinite alternate; will-change:transform,opacity; }
+.space-sun-motion { position:absolute; inset:0; z-index:2; pointer-events:none; opacity:.72; background:radial-gradient(ellipse 19% 9% at 0% 67%,rgba(255,246,210,.95) 0%,rgba(255,182,92,.58) 18%,rgba(255,126,45,.18) 47%,transparent 76%),linear-gradient(90deg,rgba(255,168,74,.16),transparent 36%); mix-blend-mode:screen; animation:space-sun-sweep 13s ease-in-out infinite alternate; will-change:transform,opacity,filter; }
 .space-welcome::after { content: ""; position: absolute; inset: 0px; z-index: 2; pointer-events:none; background: linear-gradient(rgba(2, 5, 10, 0.03) 25%, rgba(2, 5, 10, 0.1) 47%, rgba(2, 5, 10, 0.22) 70%, rgba(2, 5, 10, 0.44)); }
-.space-stars { position:absolute; inset:-8% -8% auto; height:68%; z-index:1; pointer-events:none; opacity:.62; mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); -webkit-mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); will-change:transform,opacity,background-position; }
+.space-stars { position:absolute; inset:-8% -8% auto; height:68%; z-index:2; pointer-events:none; opacity:.62; mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); -webkit-mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); will-change:transform,opacity,background-position; }
 .space-stars-near { background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(176,222,255,.75) 0 1.2px,transparent 1.7px); background-size:179px 179px,263px 263px; background-position:13px 19px,91px 57px; animation:space-stars-near 48s linear infinite,space-twinkle 6s ease-in-out infinite alternate; }
 .space-stars-far { opacity:.42; background-image:radial-gradient(circle,rgba(255,255,255,.72) 0 .7px,transparent 1.2px),radial-gradient(circle,rgba(155,236,211,.62) 0 .8px,transparent 1.3px); background-size:113px 113px,211px 211px; background-position:37px 11px,17px 89px; animation:space-stars-far 72s linear infinite reverse,space-twinkle 9s ease-in-out 1.5s infinite alternate; }
-.shooting-stars { position:absolute; inset:0 0 auto; height:58%; z-index:1; pointer-events:none; overflow:hidden; }
+.shooting-stars { position:absolute; inset:0 0 auto; height:58%; z-index:2; pointer-events:none; overflow:hidden; }
 .shooting-stars span { position:absolute; left:-220px; top:17%; width:180px; height:1px; border-radius:999px; opacity:0; background:linear-gradient(90deg,transparent,rgba(205,232,255,.3) 34%,rgba(255,255,255,.98)); filter:drop-shadow(0 0 5px rgba(171,225,255,.85)); transform-origin:right center; animation:shooting-star 27s linear 4s infinite; }
 .shooting-stars span::after { content:""; position:absolute; width:3px; height:3px; right:-1px; top:-1px; border-radius:50%; background:#fff; box-shadow:0 0 10px 2px rgba(185,232,255,.9); }
 .shooting-stars span:nth-child(2) { top:32%; width:130px; opacity:0; animation-duration:35s; animation-delay:17s; }
@@ -22,9 +24,19 @@
 .space-welcome-footnote { position: absolute; z-index:3; bottom: 22px; left: 20px; right: 20px; font-size: 11px; letter-spacing: 0.12em; color: rgb(227, 231, 237); }
 #site:focus { outline: none; }
 @keyframes space-scene-drift {
-  0% { transform:scale(var(--scene-scale)) translate3d(-.35%,-.15%,0); }
-  50% { transform:scale(calc(var(--scene-scale) + .008)) translate3d(.15%,.35%,0); }
-  100% { transform:scale(var(--scene-scale)) translate3d(.4%,-.05%,0); }
+  0% { transform:scale(var(--scene-scale)) translate3d(-1.35%,-.55%,0) rotate(-.2deg); }
+  50% { transform:scale(calc(var(--scene-scale) + .025)) translate3d(.2%,.9%,0) rotate(.12deg); }
+  100% { transform:scale(calc(var(--scene-scale) + .008)) translate3d(1.4%,-.15%,0) rotate(.28deg); }
+}
+@keyframes space-cloud-drift {
+  0% { transform:translate3d(-2.4%,.25%,0) scale(1.035); opacity:.2; }
+  50% { transform:translate3d(.3%,-.7%,0) scale(1.055); opacity:.34; }
+  100% { transform:translate3d(2.8%,.35%,0) scale(1.025); opacity:.24; }
+}
+@keyframes space-sun-sweep {
+  0% { transform:translate3d(-1.5%,.6%,0) scale(.92); opacity:.48; filter:saturate(.9); }
+  55% { transform:translate3d(2.2%,-.45%,0) scale(1.08); opacity:.86; filter:saturate(1.2); }
+  100% { transform:translate3d(4.5%,.2%,0) scale(1.01); opacity:.62; filter:saturate(1.05); }
 }
 @keyframes space-stars-near {
   from { transform:translate3d(-1.2%,-.5%,0); background-position:13px 19px,91px 57px; }
@@ -50,12 +62,13 @@
   .space-welcome-eyebrow { font-size: 8px; letter-spacing: 0.2em; }
   .space-welcome-description { font-size: 13px; margin: 18px 0px 23px; }
   .space-enter { padding: 14px 23px; }
-  .space-welcome-art { --scene-scale:1.07; object-position: 50% center; }
+  .space-welcome-art { --scene-scale:1.09; object-position: 50% center; }
   .space-stars { inset:-5% -18% auto; }
   .shooting-stars span { width:120px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .space-welcome-art,.space-stars { animation:none; }
+  .space-welcome-art,.space-cloud-drift,.space-sun-motion,.space-stars { animation:none; }
   .space-welcome-art { transform:scale(var(--scene-scale)); }
+  .space-cloud-drift,.space-sun-motion { display:none; }
   .shooting-stars { display:none; }
 }
