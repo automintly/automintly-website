@@ -216,21 +216,30 @@
   72%, 100% { opacity: 0; transform: rotate(13deg) translate3d(145vw,0,0); }
 }
 @media (min-width: 769px) {
-  .space-desktop-content { display: none; }
-  .space-welcome-video { object-fit: fill; }
+  .space-desktop-content {
+    display: flex;
+    justify-content: flex-start;
+    padding: clamp(26px, 2.1vw, 42px);
+    background: none;
+  }
+  .space-brand {
+    font-size: clamp(34px, 2.1vw, 44px);
+  }
+  .space-desktop-copy { display: none; }
+  .space-welcome-video { object-fit: cover; }
   .space-video-frame > .space-video-hotspot { display: block; }
   .space-video-frame > .space-video-hotspot .space-video-label { opacity: 0; }
   .space-video-build {
-    left: 25.25%;
-    top: 61.25%;
-    width: 26.8%;
-    height: 3.7%;
+    left: 41.7%;
+    top: 64.2%;
+    width: 8.8%;
+    height: 4.6%;
   }
   .space-video-explore {
-    left: 53.45%;
-    top: 61.25%;
-    width: 20.8%;
-    height: 3.7%;
+    left: 50.8%;
+    top: 64.2%;
+    width: 7.2%;
+    height: 4.6%;
     border-color: transparent;
     background: transparent;
     box-shadow: none;
