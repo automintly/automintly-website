@@ -1,10 +1,17 @@
 .space-welcome { position: relative; isolation: isolate; min-height: 660px; height: 100svh; background: rgb(3, 5, 10); color: rgb(255, 255, 255); overflow: clip; text-align: center; }
 .space-welcome[hidden] { display: none; }
-.space-welcome-art { position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: -2; }
-.space-welcome::after { content: ""; position: absolute; inset: 0px; z-index: -1; background: linear-gradient(rgba(2, 5, 10, 0.03) 25%, rgba(2, 5, 10, 0.1) 47%, rgba(2, 5, 10, 0.22) 70%, rgba(2, 5, 10, 0.44)); }
-.space-welcome-brand { position: absolute; top: 30px; left: 4vw; font-size: 27px; font-weight: 800; letter-spacing: -1px; color: rgb(255, 255, 255); }
+.space-welcome-art { --scene-scale: 1.035; position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: 0; animation: space-scene-drift 34s ease-in-out infinite alternate; will-change: transform; }
+.space-welcome::after { content: ""; position: absolute; inset: 0px; z-index: 2; pointer-events:none; background: linear-gradient(rgba(2, 5, 10, 0.03) 25%, rgba(2, 5, 10, 0.1) 47%, rgba(2, 5, 10, 0.22) 70%, rgba(2, 5, 10, 0.44)); }
+.space-stars { position:absolute; inset:-8% -8% auto; height:68%; z-index:1; pointer-events:none; opacity:.62; mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); -webkit-mask-image:linear-gradient(to bottom,#000 0 74%,transparent 100%); will-change:transform,opacity,background-position; }
+.space-stars-near { background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(176,222,255,.75) 0 1.2px,transparent 1.7px); background-size:179px 179px,263px 263px; background-position:13px 19px,91px 57px; animation:space-stars-near 48s linear infinite,space-twinkle 6s ease-in-out infinite alternate; }
+.space-stars-far { opacity:.42; background-image:radial-gradient(circle,rgba(255,255,255,.72) 0 .7px,transparent 1.2px),radial-gradient(circle,rgba(155,236,211,.62) 0 .8px,transparent 1.3px); background-size:113px 113px,211px 211px; background-position:37px 11px,17px 89px; animation:space-stars-far 72s linear infinite reverse,space-twinkle 9s ease-in-out 1.5s infinite alternate; }
+.shooting-stars { position:absolute; inset:0 0 auto; height:58%; z-index:1; pointer-events:none; overflow:hidden; }
+.shooting-stars span { position:absolute; left:-220px; top:17%; width:180px; height:1px; border-radius:999px; opacity:0; background:linear-gradient(90deg,transparent,rgba(205,232,255,.3) 34%,rgba(255,255,255,.98)); filter:drop-shadow(0 0 5px rgba(171,225,255,.85)); transform-origin:right center; animation:shooting-star 27s linear 4s infinite; }
+.shooting-stars span::after { content:""; position:absolute; width:3px; height:3px; right:-1px; top:-1px; border-radius:50%; background:#fff; box-shadow:0 0 10px 2px rgba(185,232,255,.9); }
+.shooting-stars span:nth-child(2) { top:32%; width:130px; opacity:0; animation-duration:35s; animation-delay:17s; }
+.space-welcome-brand { position: absolute; z-index:3; top: 30px; left: 4vw; font-size: 27px; font-weight: 800; letter-spacing: -1px; color: rgb(255, 255, 255); }
 .space-welcome-brand span { color: rgb(134, 237, 197); }
-.space-welcome-copy { position: absolute; left: 24px; right: 24px; top: 42%; text-shadow: rgba(0, 0, 0, 0.6) 0px 3px 24px; }
+.space-welcome-copy { position: absolute; z-index:3; left: 24px; right: 24px; top: 42%; text-shadow: rgba(0, 0, 0, 0.6) 0px 3px 24px; }
 .space-welcome-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.26em; color: rgb(228, 232, 239); margin: 0px 0px 18px; }
 .space-welcome h2 { font-size: clamp(42px, 6.5vw, 88px); line-height: 1.04; letter-spacing: -0.055em; font-weight: 500; color: rgb(255, 255, 255); margin: 0px; }
 .space-welcome-description { font-size: 16px; color: rgb(229, 234, 240); margin: 21px 0px 26px; }
@@ -12,8 +19,29 @@
 .space-enter:hover { background: rgb(197, 255, 233); color: rgb(8, 43, 34); }
 .space-enter:focus-visible { outline: rgb(255, 255, 255) solid 3px; outline-offset: 6px; }
 .space-enter span { font-size: 21px; line-height: 1; }
-.space-welcome-footnote { position: absolute; bottom: 22px; left: 20px; right: 20px; font-size: 11px; letter-spacing: 0.12em; color: rgb(227, 231, 237); }
+.space-welcome-footnote { position: absolute; z-index:3; bottom: 22px; left: 20px; right: 20px; font-size: 11px; letter-spacing: 0.12em; color: rgb(227, 231, 237); }
 #site:focus { outline: none; }
+@keyframes space-scene-drift {
+  0% { transform:scale(var(--scene-scale)) translate3d(-.35%,-.15%,0); }
+  50% { transform:scale(calc(var(--scene-scale) + .008)) translate3d(.15%,.35%,0); }
+  100% { transform:scale(var(--scene-scale)) translate3d(.4%,-.05%,0); }
+}
+@keyframes space-stars-near {
+  from { transform:translate3d(-1.2%,-.5%,0); background-position:13px 19px,91px 57px; }
+  to { transform:translate3d(1.2%,.75%,0); background-position:102px 74px,19px 132px; }
+}
+@keyframes space-stars-far {
+  from { transform:translate3d(.8%,-.4%,0); background-position:37px 11px,17px 89px; }
+  to { transform:translate3d(-.8%,.55%,0); background-position:4px 66px,82px 23px; }
+}
+@keyframes space-twinkle { from { opacity:.38; } to { opacity:.7; } }
+@keyframes shooting-star {
+  0%,78% { opacity:0; transform:rotate(16deg) translate3d(0,0,0); }
+  79% { opacity:0; }
+  80% { opacity:.95; }
+  86% { opacity:.85; }
+  88%,100% { opacity:0; transform:rotate(16deg) translate3d(145vw,0,0); }
+}
 @media (max-width: 600px) {
   .space-welcome { height: 100svh; min-height: 620px; }
   .space-welcome-brand { font-size: 24px; top: 22px; left: 24px; }
@@ -22,5 +50,12 @@
   .space-welcome-eyebrow { font-size: 8px; letter-spacing: 0.2em; }
   .space-welcome-description { font-size: 13px; margin: 18px 0px 23px; }
   .space-enter { padding: 14px 23px; }
-  .space-welcome-art { object-position: 50% center; }
+  .space-welcome-art { --scene-scale:1.07; object-position: 50% center; }
+  .space-stars { inset:-5% -18% auto; }
+  .shooting-stars span { width:120px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .space-welcome-art,.space-stars { animation:none; }
+  .space-welcome-art { transform:scale(var(--scene-scale)); }
+  .shooting-stars { display:none; }
 }
