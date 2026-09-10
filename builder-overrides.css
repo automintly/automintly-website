@@ -1,0 +1,10 @@
+.builder-panel,
+.cart {
+  min-width: 0;
+}
+
+@media (max-width: 650px) {
+  .steps {
+    max-width: 100%;
+  }
+}

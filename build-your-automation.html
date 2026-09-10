@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Build Your Automation | Automintly</title>
+  <meta name="description" content="Describe your business, get tailored automation recommendations, and see an itemized setup price and monthly dashboard plan.">
+  <link rel="canonical" href="https://automintly.com/build-your-automation.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="builder.css">
+  <link rel="stylesheet" href="builder-overrides.css">
+</head>
+<body>
+  <header class="builder-header">
+    <a class="brand" href="index.html">auto<span>mintly</span></a>
+    <nav aria-label="Builder navigation">
+      <a href="index.html">Explore website</a>
+      <a href="index.html#cta">Need help?</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="builder-hero">
+      <p class="eyebrow">BUILD YOUR AUTOMATION</p>
+      <h1>Tell us what your business does.<br><span>We’ll find the right automations.</span></h1>
+      <p>Answer a few simple questions. You’ll get clear recommendations, an itemized setup price, and the monthly dashboard plan that fits your scope.</p>
+      <div class="promise-row" aria-label="What the builder provides">
+        <span>No consultation required</span><span>Clear recommendations</span><span>Itemized pricing</span>
+      </div>
+    </section>
+
+    <div class="builder-layout">
+      <section class="builder-panel" aria-labelledby="builder-title">
+        <div class="steps" aria-label="Builder progress">
+          <span class="active" data-step-indicator="1">1. Your business</span>
+          <span data-step-indicator="2">2. Recommendations</span>
+          <span data-step-indicator="3">3. Price &amp; setup</span>
+        </div>
+
+        <div id="step-one">
+          <div class="section-heading">
+            <p class="eyebrow">STEP 1 OF 3</p>
+            <h2 id="builder-title">What do you want your business to handle automatically?</h2>
+            <p>Plain English is perfect. Tell us what you sell, how customers reach you, and what work keeps getting missed or repeated.</p>
+          </div>
+
+          <form id="business-form">
+            <div class="form-grid two">
+              <label>Business name
+                <input name="businessName" required maxlength="80" autocomplete="organization" placeholder="Example: Westside Heating & Air">
+              </label>
+              <label>Industry
+                <select name="industry" required>
+                  <option value="">Choose your industry</option>
+                  <option>Home services</option><option>Dental &amp; medical</option><option>Salons &amp; spas</option>
+                  <option>Auto</option><option>Professional services</option><option>Real estate</option>
+                  <option>Retail &amp; e-commerce</option><option>Creators &amp; media</option><option>Manufacturing</option><option>Other</option>
+                </select>
+              </label>
+            </div>
+
+            <label>Describe your business and what you want automated
+              <textarea name="description" required maxlength="2000" rows="6" placeholder="We are an HVAC company. We miss calls while technicians are working, spend too much time following up on estimates, and want customers to book appointments without waiting for us."></textarea>
+              <span class="helper">Include anything that wastes time, loses leads, creates mistakes, or slows down customers.</span>
+            </label>
+
+            <fieldset>
+              <legend>What results matter most?</legend>
+              <p class="helper">Choose as many as you want.</p>
+              <div class="goal-grid">
+                <label><input type="checkbox" name="goals" value="calls"><span>Answer and recover calls</span></label>
+                <label><input type="checkbox" name="goals" value="leads"><span>Capture and follow up with leads</span></label>
+                <label><input type="checkbox" name="goals" value="booking"><span>Book and fill appointments</span></label>
+                <label><input type="checkbox" name="goals" value="support"><span>Answer customer questions</span></label>
+                <label><input type="checkbox" name="goals" value="operations"><span>Reduce repetitive office work</span></label>
+                <label><input type="checkbox" name="goals" value="money"><span>Collect or recover money</span></label>
+                <label><input type="checkbox" name="goals" value="reporting"><span>Improve reporting and visibility</span></label>
+                <label><input type="checkbox" name="goals" value="testing"><span>Test and control automations</span></label>
+              </div>
+            </fieldset>
+
+            <div class="form-grid two">
+              <label>About how many customer calls, messages, or jobs do you handle weekly?
+                <select name="volume" required><option value="">Choose a range</option><option>Under 25</option><option>25–100</option><option>More than 100</option><option>Not sure</option></select>
+              </label>
+              <label>Tools you already use <span class="optional">Optional</span>
+                <input name="tools" maxlength="500" placeholder="Twilio, Google Calendar, Jobber, HubSpot…">
+              </label>
+            </div>
+            <label>Business website <span class="optional">Optional</span>
+              <input name="website" type="url" maxlength="500" placeholder="https://yourbusiness.com">
+              <span class="helper">This helps prepare the later knowledge-base and setup steps. The public builder does not scan or change your website.</span>
+            </label>
+
+            <p id="form-error" class="error" role="alert" hidden></p>
+            <button class="primary large" type="submit">Show My Recommendations <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
+
+        <div id="step-two" hidden>
+          <div class="section-heading">
+            <p class="eyebrow">STEP 2 OF 3</p>
+            <h2>Your recommended automations</h2>
+            <p id="recommendation-summary"></p>
+          </div>
+          <div id="recommendation-list" class="recommendation-list"></div>
+          <details class="all-products">
+            <summary>See and price all automations</summary>
+            <div id="catalog-list" class="recommendation-list compact"></div>
+          </details>
+          <div class="step-actions"><button class="secondary" type="button" data-back="1">← Edit answers</button><button class="primary" type="button" id="review-plan">Review Price &amp; Setup →</button></div>
+        </div>
+
+        <div id="step-three" hidden>
+          <div class="section-heading">
+            <p class="eyebrow">STEP 3 OF 3</p>
+            <h2>Your tailored Automintly plan</h2>
+            <p>Your one-time setup total is based on the automations you chose. Your monthly dashboard fee is based on their combined scope.</p>
+          </div>
+          <div id="final-plan"></div>
+          <div class="setup-guide">
+            <h3>What happens after checkout</h3>
+            <ol>
+              <li><strong>Your dashboard is created.</strong><span>You receive a private Automintly workspace for the selected automations.</span></li>
+              <li><strong>The setup guide opens.</strong><span>It walks you through your business details, rules, messages, FAQs, and operating hours.</span></li>
+              <li><strong>You connect your own tools.</strong><span>You authorize the phone, messaging, CRM, calendar, or other provider accounts the automations need.</span></li>
+              <li><strong>Every automation is tested.</strong><span>You review practice results before anything can be activated.</span></li>
+              <li><strong>You stay in control.</strong><span>Use the dashboard to view activity, pause, edit, retest, and track value.</span></li>
+            </ol>
+          </div>
+          <div class="checkout-notice">
+            <strong>Your builder and pricing are ready.</strong>
+            <p>Secure online payment and automatic customer-account creation are the next connection being completed. Until that connection is live, no payment information is collected on this page.</p>
+            <a class="primary" id="email-plan" href="mailto:automintly@gmail.com">Send My Plan to Automintly</a>
+          </div>
+          <div class="step-actions"><button class="secondary" type="button" data-back="2">← Change automations</button></div>
+        </div>
+      </section>
+
+      <aside class="cart" aria-labelledby="cart-title">
+        <div class="cart-top"><p class="eyebrow">YOUR PLAN</p><span id="cart-count">0 selected</span></div>
+        <h2 id="cart-title">Price as you build</h2>
+        <div id="cart-items" class="cart-items"><p class="empty">Add an automation to see your tailored price.</p></div>
+        <div class="cart-totals">
+          <div><span>One-time setup</span><strong id="setup-total">$0</strong></div>
+          <div><span id="dashboard-tier">Dashboard plan</span><strong id="monthly-total">$0/mo</strong></div>
+        </div>
+        <p class="fineprint">Profit Meter, Optimize, setup guides, activity logs, and health monitoring are included with dashboard access. Third-party provider and usage charges are separate and paid by the customer.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer><a class="brand" href="index.html">auto<span>mintly</span></a><p>Build only what your business actually needs.</p></footer>
+  <script src="builder.js"></script>
+</body>
+</html>

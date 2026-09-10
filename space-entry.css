@@ -15,9 +15,12 @@
 .space-welcome-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.26em; color: rgb(228, 232, 239); margin: 0px 0px 18px; }
 .space-welcome h2 { font-size: clamp(42px, 6.5vw, 88px); line-height: 1.04; letter-spacing: -0.055em; font-weight: 500; color: rgb(255, 255, 255); margin: 0px; }
 .space-welcome-description { font-size: 16px; color: rgb(229, 234, 240); margin: 21px 0px 26px; }
-.space-enter { display: inline-flex; align-items: center; gap: 36px; background: rgb(148, 239, 208); color: rgb(8, 43, 34); text-decoration: none; text-shadow: none; border: 1px solid rgb(184, 255, 230); border-radius: 40px; padding: 16px 27px; font-size: 14px; font-weight: 700; box-shadow: rgba(0, 0, 0, 0.267) 0px 4px 30px; }
-.space-enter:hover { background: rgb(197, 255, 233); color: rgb(8, 43, 34); }
-.space-enter:focus-visible { outline: rgb(255, 255, 255) solid 3px; outline-offset: 6px; }
+.space-welcome-actions { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+.space-build,.space-enter { display: inline-flex; align-items: center; gap: 26px; background: rgb(148, 239, 208); color: rgb(8, 43, 34); text-decoration: none; text-shadow: none; border: 1px solid rgb(184, 255, 230); border-radius: 40px; padding: 16px 27px; font-size: 14px; font-weight: 700; box-shadow: rgba(0, 0, 0, 0.267) 0px 4px 30px; }
+.space-build:hover,.space-enter:hover { background: rgb(197, 255, 233); color: rgb(8, 43, 34); }
+.space-build:focus-visible,.space-enter:focus-visible { outline: rgb(255, 255, 255) solid 3px; outline-offset: 6px; }
+.space-enter-secondary { background:rgba(4,9,15,.58); color:#fff; border-color:rgba(255,255,255,.42); box-shadow:none; backdrop-filter:blur(8px); }
+.space-enter-secondary:hover { background:rgba(255,255,255,.14); color:#fff; }
 .space-enter span { font-size: 21px; line-height: 1; }
 .space-welcome-footnote { position: absolute; z-index:3; bottom: 22px; left: 20px; right: 20px; font-size: 11px; letter-spacing: 0.12em; color: rgb(227, 231, 237); }
 #site:focus { outline: none; }
@@ -35,7 +38,7 @@
   .space-welcome h2 { font-size: clamp(40px, 10.8vw, 64px); }
   .space-welcome-eyebrow { font-size: 8px; letter-spacing: 0.2em; }
   .space-welcome-description { font-size: 13px; margin: 18px 0px 23px; }
-  .space-enter { padding: 14px 23px; }
+  .space-build,.space-enter { padding: 14px 21px; }
   .space-welcome-art { object-position:50% center; }
   .space-stars { inset:-5% -18% auto; }
   .shooting-stars span { width:120px; }
