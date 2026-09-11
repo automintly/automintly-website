@@ -311,6 +311,8 @@
     box-shadow: none;
     transform: translateY(-50%);
   }
+  /* Disable only the desktop CSS fallback while its WAAPI track owns motion. */
+  .space-welcome[data-meteor-renderer="compositor"] .space-shooting-star { animation: none; }
   .space-desktop-actions {
     position: absolute;
     top: calc(50% + var(--scene-height) * .174);

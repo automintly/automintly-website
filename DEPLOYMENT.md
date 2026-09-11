@@ -1,6 +1,24 @@
 # Automintly landing release — September 10, 2026
 
-## Current release: restore previous video clouds and motion
+## Approved release: PC-only v22
+
+The user explicitly requested publication of this prepared update. Only the PC
+shooting-star refinement is included; no paid generation or new cloud video.
+
+The user explicitly locked mobile: preserve the accepted v21 video, layout,
+typography, buttons and original shooting star. The new `shooting-star.js` is
+desktop-only (769px and wider), with densely sampled transform/opacity tracks
+and moderated projected acceleration for the near-camera flyby. It completely
+cancels its animation when switching to mobile, leaving the original CSS star
+in charge. Entry JavaScript, all non-meteor CSS, and source media are unchanged.
+
+61 regression tests and the five-page validator pass. Desktop/mobile browser
+checks confirm the source and breakpoint isolation. Actual FPS is not measured.
+This does **not** fix the cloud video's visible end transition. A new loop-ready
+source is still needed; no rejected cloud effect is installed. Commit, push and
+live verification evidence are recorded in the parent deployment status file.
+
+## Retained v21 restoration: previous video clouds and motion
 
 The user rejected the rebuilt v20 clouds and requested the previous clouds and
 motion back, keeping the shooting star. The main homepage now uses the exact
