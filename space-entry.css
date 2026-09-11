@@ -216,11 +216,28 @@
   72%, 100% { opacity: 0; transform: rotate(13deg) translate3d(145vw,0,0); }
 }
 @keyframes space-shooting-star-desktop {
-  0%, 64% { opacity: 0; transform: translate3d(92cqw,74cqh,0) rotate(var(--meteor-angle, -155.3deg)) scale(.18); }
-  64.2% { opacity: .4; }
-  65% { opacity: 1; }
-  69% { opacity: .9; }
-  72%, 100% { opacity: 0; transform: translate3d(-18cqw,-16cqh,0) rotate(var(--meteor-angle, -155.3deg)) scale(1.4); }
+  /* A fixed-size object advances at constant speed through depth z=24-23*t.
+     Position uses p=t/z; scale=.3*24/z. Dense near-camera samples preserve
+     the straight projected path as its apparent speed and size rise sharply.
+     The head stays fully lit until it has passed beyond the top-left edge. */
+  0% { opacity: 0; transform: translate3d(84cqw,66cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(.3); }
+  2.25% { opacity: 1; transform: translate3d(83.15328cqw,65.40146cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(.350365); }
+  4.5% { opacity: 1; transform: translate3d(81.96491cqw,64.5614cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(.421053); }
+  6.75% { opacity: 1; transform: translate3d(80.17582cqw,63.2967cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(.527473); }
+  9% { opacity: 1; transform: translate3d(77.17647cqw,61.17647cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(.705882); }
+  10.5% { opacity: 1; transform: translate3d(73.72152cqw,58.73418cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(.911392); }
+  12% { opacity: 1; transform: translate3d(67.42857cqw,54.28571cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(1.285714); }
+  12.75% { opacity: 1; transform: translate3d(61.8427cqw,50.33708cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(1.617978); }
+  13.5% { opacity: 1; transform: translate3d(52.36364cqw,43.63636cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(2.181818); }
+  13.875% { opacity: 1; transform: translate3d(44.62385cqw,38.16514cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(2.642202); }
+  14.25% { opacity: 1; transform: translate3d(32.74419cqw,29.76744cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(3.348837); }
+  14.475% { opacity: 1; transform: translate3d(21.98338cqw,22.16066cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(3.988920); }
+  14.625% { opacity: 1; transform: translate3d(12.19048cqw,15.23810cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(4.571429); }
+  14.7% { opacity: 1; transform: translate3d(6.13699cqw,10.95890cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(4.931507); }
+  14.775% { opacity: 1; transform: translate3d(-.95167cqw,5.94796cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(5.353160); }
+  14.85% { opacity: 1; transform: translate3d(-9.36585cqw,0cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(5.853659); }
+  14.925% { opacity: .6; transform: translate3d(-19.51570cqw,-7.17489cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(6.457399); }
+  15%, 100% { opacity: 0; transform: translate3d(-32cqw,-16cqh,0) rotate(var(--meteor-angle, -158.32deg)) scale(7.2); }
 }
 @media (min-width: 769px) {
   .space-welcome { container-type: size; }
@@ -261,12 +278,38 @@
     text-shadow: none;
   }
   .space-shooting-star {
-    top: -1px;
+    z-index: 2;
+    top: -.3px;
     left: auto;
     right: 100%;
     filter: none;
+    width: clamp(50px, 6vw, 100px);
+    height: .6px;
+    background: linear-gradient(90deg, transparent, rgba(169,216,255,.24) 35%, rgba(219,242,255,.85) 88%, #fff);
     will-change: transform, opacity;
     animation-name: space-shooting-star-desktop;
+    animation-delay: 4s;
+  }
+  .space-shooting-star::before {
+    content: "";
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(236,248,255,.8), rgba(157,210,255,.28) 28%, rgba(127,194,255,.08) 48%, transparent 70%);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .space-shooting-star::after {
+    right: -5px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #fff 16%, #eaf7ff 34%, rgba(172,224,255,.8) 57%, transparent 74%);
+    box-shadow: none;
+    transform: translateY(-50%);
   }
   .space-desktop-actions {
     position: absolute;
@@ -337,7 +380,8 @@
 @media (max-width: 768px) {
   .space-welcome {
     min-height: 560px;
-    background-image: url("assets/automintly-orbital-poster.jpg?v=3");
+    container-type: size;
+    background-image: url("assets/automintly-mobile-type-v17c-poster.jpg");
   }
   .space-welcome-backdrop {
     display: block;
@@ -350,25 +394,98 @@
     transform: translate(-50%, -50%);
     box-shadow: none;
   }
-  .space-desktop-content { display: none; }
-  .space-video-frame > .space-video-hotspot { display: block; }
-  .space-video-frame > .space-video-explore { display: flex; }
-  .space-video-build {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(143,239,207,.9);
-    background: #8fefcf;
-    color: #06221a;
-    box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  /* The video has no baked logo, headline, eyebrow, subtitle or buttons. One native
+     interface owns both the lettering and each button's hit area/border. */
+  .space-desktop-content {
+    --portrait-width: min(100cqw, 56.25cqh);
+    --portrait-height: min(177.777778cqw, 100cqh);
+    display: block;
+    padding: 0;
+    background: none;
   }
-  .space-video-label { font-size: 2.05cqw; }
+  .space-brand {
+    position: absolute;
+    top: calc(50% - var(--portrait-height) / 2 + var(--portrait-width) * .045);
+    left: max(20px, calc(50% - var(--portrait-width) * .432));
+    font-size: clamp(14px, 3.7cqw, 20px);
+    text-decoration: none;
+    text-shadow: none;
+  }
+  .space-desktop-copy {
+    position: absolute;
+    top: calc(50% - var(--portrait-height) * .095);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 16px;
+    text-shadow: none;
+  }
+  .space-eyebrow {
+    margin: 0 0 calc(var(--portrait-height) * .023);
+    font-size: clamp(7.5px, 2.45cqw, 14px);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: .18em;
+    text-shadow: none;
+  }
+  .space-headline {
+    display: block;
+    margin: 0;
+    font-size: clamp(28px, 10.4cqw, 68px);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -.055em;
+    text-shadow: none;
+  }
+  .space-desktop-actions {
+    position: absolute;
+    top: calc(50% + var(--portrait-height) * .114);
+    left: 50%;
+    width: min(290px, 64%);
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    gap: 8px;
+    transform: translateX(-50%);
+  }
+  .space-desktop-actions .space-action,
+  .space-desktop-actions .space-action:hover {
+    min-width: 0;
+    position: relative;
+    min-height: 26px;
+    padding: 6px 4px;
+    border-width: 1px;
+    font-size: clamp(7.5px, 2.15cqw, 11px);
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    text-shadow: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    transform: none;
+    white-space: nowrap;
+  }
+  .space-desktop-actions .space-action span {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 8px;
+  }
+  .space-desktop-actions .space-action::before {
+    content: "";
+    position: absolute;
+    inset: -10px 0;
+    border-radius: inherit;
+  }
+  .space-desktop-actions .space-action-secondary {
+    border-color: #fff;
+    background: #080d13;
+  }
+  .space-desktop-actions .space-action:focus-visible,
+  .space-brand:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
   .space-welcome-video { object-fit: contain; }
-  .space-video-build,
-  .space-video-explore {
-    top: calc(50% + 20cqw);
-    height: 6.58cqw;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .space-shooting-star { display: none; }

@@ -1,0 +1,21 @@
+/* Approved v20 desktop scene. Mobile retains its existing portrait video/UI. */
+.space-welcome[data-cloud-desktop] .cloud-sky,
+.space-welcome[data-cloud-desktop] .cloud-surface { display: none; }
+@media (min-width: 769px) {
+  .space-welcome[data-cloud-desktop] { background-image: none; }
+  .space-welcome[data-cloud-desktop]::after { display: none; }
+  .space-welcome[data-cloud-desktop] .space-welcome-video,
+  .space-welcome[data-cloud-desktop] .space-welcome-backdrop { display: none; }
+  .space-welcome[data-cloud-desktop] .cloud-sky,
+  .space-welcome[data-cloud-desktop] .cloud-surface {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .space-welcome[data-cloud-desktop] .cloud-sky { object-fit: cover; }
+  .space-welcome[data-cloud-desktop] .cloud-surface { opacity: 0; }
+  .space-welcome[data-cloud-desktop][data-cloud-state="ready"] .cloud-surface { opacity: 1; }
+}
