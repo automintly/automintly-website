@@ -394,27 +394,21 @@
 <script src="conversion-tracking-config.js"></script>
 <script defer src="conversion-tracking.js"></script>
 <link rel="stylesheet" href="space-entry.css?v=17c-clean">
-<link rel="stylesheet" href="space-clouds.css?v=20">
 <link rel="stylesheet" href="charcoal-theme.css">
-<script defer src="space-entry.js?v=20"></script>
-<script defer src="cloud-volume-preview.js?v=20-production"></script>
+<script defer src="space-entry.js?v=21-restore-video"></script>
 </head>
 <body class="charcoal-theme charcoal-home">
 
-<section class="space-welcome cloud-preview" data-cloud-desktop="true" aria-labelledby="space-welcome-title">
+<section class="space-welcome" aria-labelledby="space-welcome-title">
   <h1 id="space-welcome-title" class="space-sr-only">Automintly — Less busywork. More possibility.</h1>
   <video class="space-welcome-backdrop" muted loop playsinline preload="none" poster="assets/automintly-mobile-type-v17c-poster.jpg" aria-hidden="true">
     <source media="(max-width: 768px)" src="assets/automintly-mobile-type-v17c.mp4" type="video/mp4">
   </video>
   <div class="space-video-frame">
-    <video class="space-welcome-video" muted loop playsinline preload="none" poster="assets/automintly-mobile-type-v17c-poster.jpg" aria-hidden="true">
+    <video class="space-welcome-video" muted loop playsinline preload="metadata" aria-hidden="true">
       <source media="(max-width: 768px)" src="assets/automintly-mobile-type-v17c.mp4" type="video/mp4">
+      <source src="assets/automintly-orbital-forward-desktop-4k-v17.mp4" type="video/mp4">
     </video>
-    <picture>
-      <source media="(min-width: 769px)" srcset="assets/cloud-loop-sky-v18.jpg">
-      <img class="cloud-sky" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true">
-    </picture>
-    <canvas class="cloud-surface" aria-hidden="true"></canvas>
     <span class="space-shooting-star" aria-hidden="true"></span>
     <div class="space-desktop-content">
       <a class="space-brand" href="#site" aria-label="Automintly home">auto<span>mintly</span></a>

@@ -1,5 +1,26 @@
 # Automintly landing release — September 10, 2026
 
+## Current release: restore previous video clouds and motion
+
+The user rejected the rebuilt v20 clouds and requested the previous clouds and
+motion back, keeping the shooting star. The main homepage now uses the exact
+pre-v20 `automintly-orbital-forward-desktop-4k-v17.mp4` again: 3840x2160,
+24 fps, 10 seconds, 52,747,685 bytes; SHA256
+`f9a383780830ebfa336557e4b92032d3ced12d61fe4503773f2c856bba8fd8c8`.
+
+No media reprocessing, new cloud treatment, reverse playback, or new loop
+technique was applied. This restores the previous video's motion and existing
+end transition, not a new seamless-loop implementation. The procedural cloud
+renderer, still-image layer, and cloud-only CSS are no longer loaded by the
+homepage. Their source files remain recoverable but inactive.
+
+Shared CSS, the current near-miss shooting star, mobile v17c video/poster,
+native typography/buttons, and the rest of the charcoal website are unchanged.
+The desktop video plays muted/inline/looping; the hidden mobile backdrop stays
+paused on desktop. Entering the site pauses both videos.
+
+## Previous release: v20 (superseded)
+
 The user approved publishing the v20 4K volumetric-cloud preview to the main
 desktop landing page. Existing Git-connected production route: this repository's
 `main` branch; no hosting migration or paid generation.
