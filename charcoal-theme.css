@@ -215,6 +215,51 @@ body.charcoal-theme .offer-card--proof .proof-step span { color:#bdd0c7; }
 body.charcoal-theme .offer-card--proof .creative-gate span { color:#bdd0c7; }
 body.charcoal-theme .offer-card--proof .proof-metrics span { background:#21483c; color:#dff8ed; }
 
+/* Focused offers: keep the charcoal/mint theme and preserve readable contrast. */
+body.charcoal-theme .money-systems {
+  background:var(--bg-2);
+  border-color:var(--line);
+}
+body.charcoal-theme .money-systems-head h2,
+body.charcoal-theme .money-system-card h3 { color:#f3fff9; }
+body.charcoal-theme .money-systems-head p,
+body.charcoal-theme .money-system-card > p,
+body.charcoal-theme .money-system-note { color:#b8c8c0; }
+body.charcoal-theme .money-system-card {
+  background:var(--surface);
+  border-color:#46534f;
+}
+body.charcoal-theme .money-system-card .offer-label,
+body.charcoal-theme .offer-facts dt { color:#86f5c4; }
+body.charcoal-theme .offer-facts div,
+body.charcoal-theme .offer-price { border-color:#46534f; }
+body.charcoal-theme .offer-facts dd { color:#dce8e2; }
+body.charcoal-theme .offer-price strong { color:#a6facc; }
+body.charcoal-theme .offer-price span { color:#aebdb6; }
+body.charcoal-theme .offer-price .btn-outline {
+  background:#171c1a;
+  border-color:#75e8b0;
+  color:#effff7;
+}
+body.charcoal-theme .offer-price .btn-outline:hover,
+body.charcoal-theme .offer-price .btn-outline:focus-visible {
+  background:#75e8b0;
+  color:#09291d;
+}
+
+/* Included dashboard band: remove the remaining blue cast. */
+body.charcoal-theme .included { background:#101513; }
+body.charcoal-theme .included .tagline { color:#86f5c4; }
+body.charcoal-theme .included h2 { color:#f3fff9; }
+body.charcoal-theme .included p { color:#c2d2ca; }
+body.charcoal-theme .included .inc-item {
+  background:#1b2924;
+  border:1px solid #405249;
+  color:#86f5c4;
+}
+body.charcoal-theme .included .inc-item h3 { color:#f3fff9; }
+body.charcoal-theme .included .inc-item p { color:#b8c8c0; }
+
 @media (min-width:1150px) {
   body.charcoal-theme.site-entered:not(.charcoal-home) { padding-left:228px; }
   body.charcoal-theme.site-entered.charcoal-home #site { padding-left:228px; }

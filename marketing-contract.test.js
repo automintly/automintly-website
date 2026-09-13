@@ -15,6 +15,7 @@ const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html
 const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
 const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+const charcoalTheme = fs.readFileSync(path.join(root, 'charcoal-theme.css'), 'utf8');
 
 function arrayConstant(name) {
   const match = builder.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n  \\]);`));
@@ -35,18 +36,28 @@ function offerCard(title) {
 const products = arrayConstant('products');
 const bundles = arrayConstant('outcomeBundles');
 
-test('marketing catalog keeps 29 distinct individually priced products', () => {
-  assert.equal(products.length, 29);
+test('marketing catalog keeps 30 distinct individually priced products', () => {
+  assert.equal(products.length, 30);
   assert.equal(new Set(products.map(product => product.id)).size, products.length);
   assert.ok(products.every(product => Number.isSafeInteger(product.price) && product.price > 0));
   assert.ok(products.every(product => Number.isSafeInteger(product.points) && product.points > 0));
   assert.deepEqual(
-    Object.fromEntries(products.filter(product => ['spend-guard', 'old-lead-reactivation'].includes(product.id)).map(product => [product.id, [product.name, product.price, product.points]])),
+    Object.fromEntries(products.filter(product => ['spend-guard', 'old-lead-reactivation', 'advanced-market-research'].includes(product.id)).map(product => [product.id, [product.name, product.price, product.points]])),
     {
+      'advanced-market-research': ['Advanced Market Research', 2495, 3],
       'old-lead-reactivation': ['Dormant Customer Reactivation', 995, 2],
       'spend-guard': ['Automintly Spend Guard', 1995, 3]
     }
   );
+});
+
+test('advanced market research is visible and selectable from the public site', () => {
+  assert.match(homepage, /<h3>Advanced market research automation<\/h3>/);
+  assert.match(homepage, /build-your-automation\.html\?add=advanced-market-research/);
+  assert.match(builder, /id:'advanced-market-research'/);
+  assert.match(builder, /name:'Advanced Market Research'/);
+  assert.match(builder, /price:2495,points:3/);
+  assert.match(homepage, /Recommendations remain drafts until your assigned reviewer approves them\./);
 });
 
 test('Quote-to-Cash remains an itemized four-module system with honest totals', () => {
@@ -122,4 +133,34 @@ test('website trust measurement hooks remain privacy-minimal and disabled', () =
   assert.match(trustCheckHtml, /conversion-tracking-config\.js/);
   assert.match(trustCheckHtml, /website_trust_check_complete/);
   assert.match(trustCleanupHtml, /conversion-tracking-config\.js/);
+});
+
+test('shared charcoal theme keeps text readable on every themed page', () => {
+  const themedPages = [
+    'index.html',
+    'industries.html',
+    'recovery.html',
+    'roi-calculator.html',
+    'privacy.html',
+    'n8n-workflow-active-but-not-running.html'
+  ];
+
+  for (const file of themedPages) {
+    const html = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.match(html, /charcoal-theme\.css\?v=green-contrast-v4["']/, `${file} must load the current shared theme`);
+    assert.match(html, /<body class="[^"]*charcoal-theme[^"]*">/, `${file} must activate the shared theme`);
+  }
+
+  assert.match(charcoalTheme, /body\.charcoal-theme \{[\s\S]*--bg:#17191b;[\s\S]*--text:#dfebe5;[\s\S]*--muted:#a7b6af;/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.money-systems \{[\s\S]*?background:var\(--bg-2\);/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.money-systems-head p,[\s\S]*?\.money-system-note \{ color:#b8c8c0; \}/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.offer-facts dd \{ color:#dce8e2; \}/);
+});
+
+test('included dashboard band uses the green Automintly palette', () => {
+  assert.match(charcoalTheme, /body\.charcoal-theme \.included \{ background:#101513; \}/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.included \.tagline \{ color:#86f5c4; \}/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.included h2 \{ color:#f3fff9; \}/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.included p \{ color:#c2d2ca; \}/);
+  assert.match(charcoalTheme, /body\.charcoal-theme \.included \.inc-item \{[\s\S]*?background:#1b2924;[\s\S]*?border:1px solid #405249;[\s\S]*?color:#86f5c4;/);
 });
