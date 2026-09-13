@@ -10,6 +10,7 @@ const root = __dirname;
 const builder = fs.readFileSync(path.join(root, 'builder.js'), 'utf8');
 const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'), 'utf8');
 const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const contractingHtml = fs.readFileSync(path.join(root, 'contracting.html'), 'utf8');
 const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
 const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
 const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch.html'), 'utf8');
@@ -58,12 +59,16 @@ test('government opportunity support is selective and keeps submission and fee b
   const contractingBannerPosition = homepage.indexOf('<a class="contracting-banner"');
   const mainPosition = homepage.indexOf('<main id="top">');
   const heroPosition = homepage.indexOf('<section class="hero"');
+  const problemPosition = homepage.indexOf('<section class="problem"');
   const recoveryPosition = homepage.indexOf('<section class="recovery"');
+  const servicesPosition = homepage.indexOf('<section class="services"');
   assert.ok(industryTabsPosition >= 0 && mainPosition > industryTabsPosition);
-  assert.ok(heroPosition > mainPosition && contractingBannerPosition > heroPosition);
-  assert.ok(recoveryPosition > contractingBannerPosition);
+  assert.ok(heroPosition > mainPosition && problemPosition > heroPosition);
+  assert.ok(contractingBannerPosition > problemPosition && recoveryPosition > contractingBannerPosition);
+  assert.ok(servicesPosition > recoveryPosition);
+  assert.match(homepage, /<a class="contracting-banner" href="contracting\.html"/);
   assert.match(homepage, /<h3>Government opportunity search &amp; bid support<\/h3>/);
-  assert.match(homepage, /build-your-automation\.html\?add=government-opportunity-finder/);
+  assert.match(homepage, /<a class="service-link" href="contracting\.html">Explore Contracting/);
   assert.match(homepage, /does not submit a bid or contact an agency automatically/i);
   assert.match(homepage, /do not guarantee awards/i);
   assert.match(homepage, /No upfront search fee/);
@@ -74,6 +79,18 @@ test('government opportunity support is selective and keeps submission and fee b
   assert.match(builder, /NAICS, SAM registration, set-aside eligibility/);
   assert.match(builder, /includedAddon:true/);
   assert.match(builder, /Contracting adds no setup charge or dashboard scope points/);
+});
+
+test('Contracting has a dedicated, evidence-bounded service page', () => {
+  assert.match(contractingHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/contracting\.html">/);
+  assert.match(contractingHtml, /Government contracts are out there\. Let’s find the ones that fit your business\./);
+  assert.match(contractingHtml, /\$0 upfront/);
+  assert.match(contractingHtml, /build-your-automation\.html\?add=government-opportunity-finder/);
+  assert.match(contractingHtml, /does not promise awards, automatically submit bids, contact agencies on your behalf/i);
+  assert.match(contractingHtml, /Any award-based success fee is considered only where legally permitted and agreed in writing before bid support begins/i);
+  assert.match(contractingHtml, /https:\/\/sam\.gov\/entity-registration/);
+  assert.match(contractingHtml, /https:\/\/www\.acquisition\.gov\/far\/subpart-3\.4/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/contracting\.html/);
 });
 
 test('advanced market research is visible and selectable from the public site', () => {
