@@ -102,6 +102,8 @@
       .foot { flex-direction: column; }
     }
   </style>
+  <script src="conversion-tracking-config.js"></script>
+  <script defer src="conversion-tracking.js"></script>
 </head>
 <body>
   <div class="utility"><div class="wrap"><a href="mailto:automintly@gmail.com">automintly@gmail.com</a></div></div>
@@ -178,7 +180,7 @@
           <p id="result-copy"></p>
           <ul id="priority-list"></ul>
           <div class="actions">
-            <a class="button" href="https://automintly.com/website-trust-cleanup.html?utm_source=automintly&utm_medium=owned_tool&utm_campaign=website_trust_check&utm_content=result_cta">See the $149 cleanup scope</a>
+            <a class="button" id="trust-offer-cta" href="https://automintly.com/website-trust-cleanup.html?utm_source=automintly&utm_medium=owned_tool&utm_campaign=website_trust_check&utm_content=result_cta">See the $149 cleanup scope</a>
             <a class="button secondary" href="mailto:automintly@gmail.com?subject=Website%20Trust%20Check&body=Hi%20Ty%2C%0A%0AI%20completed%20the%20Website%20Trust%20Check%20and%20would%20like%20to%20discuss%20the%20priority%20issues.%0A%0AWebsite%3A%20">Email Automintly</a>
           </div>
         </div>
@@ -197,6 +199,13 @@
       const progressLabel = document.getElementById('progress-label');
       const progressFill = document.getElementById('progress-fill');
       const fieldsets = [...form.querySelectorAll('fieldset')];
+      let started = false;
+
+      function track(name, properties) {
+        if (window.AutomintlyConversions) {
+          window.AutomintlyConversions.track(name, properties || {});
+        }
+      }
 
       function selections() {
         return fieldsets.map((field, index) => {
@@ -211,11 +220,18 @@
         progressFill.style.width = `${answered * 12.5}%`;
       }
 
-      form.addEventListener('change', updateProgress);
+      form.addEventListener('change', () => {
+        updateProgress();
+        if (!started) {
+          started = true;
+          track('website_trust_check_start', { page: window.location.pathname });
+        }
+      });
       form.addEventListener('reset', () => {
         requestAnimationFrame(() => {
           updateProgress();
           result.classList.remove('visible');
+          started = false;
         });
       });
 
@@ -230,6 +246,7 @@
         }
 
         const issues = answers.filter(answer => answer.value === 'issue');
+        const resultBand = issues.length <= 1 ? 'clear' : issues.length <= 3 ? 'focused' : 'priority';
         document.getElementById('score').textContent = `${issues.length} of 8 areas need review`;
         const title = document.getElementById('result-title');
         const copy = document.getElementById('result-copy');
@@ -253,9 +270,19 @@
         });
         result.classList.add('visible');
         result.focus();
+        track('website_trust_check_complete', {
+          page: window.location.pathname,
+          result_band: resultBand
+        });
+      });
+
+      document.getElementById('trust-offer-cta').addEventListener('click', () => {
+        track('website_trust_offer_click', {
+          page: window.location.pathname,
+          placement: 'result'
+        });
       });
     })();
   </script>
 </body>
 </html>
-

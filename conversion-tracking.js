@@ -8,18 +8,23 @@
     estimate_cta_click: true,
     estimate_form_start: true,
     estimate_form_submit: true,
+    estimate_form_submitted_unverified: true,
     estimate_form_success: true,
     estimate_form_error: true,
     industries_page_view: true,
     industry_selected: true,
     booking_call_click: true,
-    flowmotic_link_click: true
+    flowmotic_link_click: true,
+    website_trust_check_start: true,
+    website_trust_check_complete: true,
+    website_trust_offer_click: true,
+    website_trust_scope_email_click: true
   };
 
   function cleanProperties(properties) {
     var input = properties || {};
     var output = {};
-    ["page", "placement", "industry", "destination"].forEach(function (key) {
+    ["page", "placement", "industry", "destination", "result_band"].forEach(function (key) {
       if (typeof input[key] === "string" && input[key].length <= 80) {
         output[key] = input[key];
       }
@@ -96,6 +101,11 @@
       track("flowmotic_link_click", {
         page: window.location.pathname,
         destination: "flowmotic"
+      });
+    } else if (/website-trust-cleanup\.html$/.test(window.location.pathname) && /^mailto:automintly@gmail\.com/i.test(href)) {
+      track("website_trust_scope_email_click", {
+        page: window.location.pathname,
+        placement: link.closest("footer") ? "footer" : "page"
       });
     }
   });

@@ -12,6 +12,8 @@ const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'
 const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
 const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
+const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
+const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 
 function arrayConstant(name) {
@@ -105,4 +107,19 @@ test('website trust self-check stays private in-browser and routes to the exact 
   assert.doesNotMatch(trustCheckHtml, /noindex/);
   assert.match(homepage, /href="website-trust-check\.html"/);
   assert.match(sitemapXml, /https:\/\/automintly\.com\/website-trust-check\.html/);
+});
+
+test('website trust measurement hooks remain privacy-minimal and disabled', () => {
+  assert.match(trackingConfig, /enabled:\s*false/);
+  assert.match(trackingConfig, /provider:\s*"none"/);
+  assert.match(trackingScript, /website_trust_check_start/);
+  assert.match(trackingScript, /website_trust_check_complete/);
+  assert.match(trackingScript, /website_trust_offer_click/);
+  assert.match(trackingScript, /website_trust_scope_email_click/);
+  assert.match(trackingScript, /estimate_form_submitted_unverified/);
+  assert.match(trackingScript, /"result_band"/);
+  assert.match(trackingScript, /\["page", "placement", "industry", "destination", "result_band"\]/);
+  assert.match(trustCheckHtml, /conversion-tracking-config\.js/);
+  assert.match(trustCheckHtml, /website_trust_check_complete/);
+  assert.match(trustCleanupHtml, /conversion-tracking-config\.js/);
 });
