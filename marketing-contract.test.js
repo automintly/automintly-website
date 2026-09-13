@@ -56,8 +56,11 @@ test('government opportunity support is selective and keeps submission and fee b
   const industryTabsPosition = homepage.indexOf('<nav class="indbar"');
   const contractingBannerPosition = homepage.indexOf('<a class="contracting-banner"');
   const mainPosition = homepage.indexOf('<main id="top">');
-  assert.ok(industryTabsPosition >= 0 && contractingBannerPosition > industryTabsPosition);
-  assert.ok(mainPosition > contractingBannerPosition);
+  const heroPosition = homepage.indexOf('<section class="hero"');
+  const recoveryPosition = homepage.indexOf('<section class="recovery"');
+  assert.ok(industryTabsPosition >= 0 && mainPosition > industryTabsPosition);
+  assert.ok(heroPosition > mainPosition && contractingBannerPosition > heroPosition);
+  assert.ok(recoveryPosition > contractingBannerPosition);
   assert.match(homepage, /<h3>Government opportunity search &amp; bid support<\/h3>/);
   assert.match(homepage, /build-your-automation\.html\?add=government-opportunity-finder/);
   assert.match(homepage, /does not submit a bid or contact an agency automatically/i);
