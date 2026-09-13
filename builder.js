@@ -70,6 +70,12 @@
   const byId = id => products.find(product => product.id === id);
   const addonById = id => addons.find(addon => addon.id === id);
 
+  const requested = new URLSearchParams(window.location.search);
+  const requestedProductIds = requested.getAll('add').filter(id => byId(id));
+  const requestedBundle = outcomeBundles.find(bundle => bundle.id === requested.get('bundle'));
+  requestedProductIds.forEach(id => selected.add(id));
+  requestedBundle?.products.forEach(id => selected.add(id));
+
   function addonTotals() {
     const chosen = [...selectedAddons].map(addonById);
     return {
@@ -212,5 +218,13 @@
     setStep(3);
   });
 
+  const preselected = [...selected].map(byId);
+  if (preselected.length) {
+    const note = document.querySelector('#preselected-note');
+    note.hidden = false;
+    note.textContent = requestedBundle
+      ? `${requestedBundle.name} is already in your plan as ${preselected.length} itemized automations. Complete these questions to confirm whether the full system fits.`
+      : `${preselected.map(product=>product.name).join(', ')} is already in your plan. Complete these questions so we can confirm the fit and recommend anything else you may need.`;
+  }
   renderCart();
 })();
