@@ -36,16 +36,16 @@ function offerCard(title) {
 const products = arrayConstant('products');
 const bundles = arrayConstant('outcomeBundles');
 
-test('marketing catalog keeps 31 distinct individually priced products', () => {
+test('marketing catalog keeps 30 paid products plus one included Contracting add-on', () => {
   assert.equal(products.length, 31);
   assert.equal(new Set(products.map(product => product.id)).size, products.length);
-  assert.ok(products.every(product => Number.isSafeInteger(product.price) && product.price > 0));
-  assert.ok(products.every(product => Number.isSafeInteger(product.points) && product.points > 0));
+  assert.ok(products.every(product => Number.isSafeInteger(product.price) && product.price >= 0));
+  assert.ok(products.every(product => Number.isSafeInteger(product.points) && product.points >= 0));
   assert.deepEqual(
     Object.fromEntries(products.filter(product => ['spend-guard', 'old-lead-reactivation', 'advanced-market-research', 'government-opportunity-finder'].includes(product.id)).map(product => [product.id, [product.name, product.price, product.points]])),
     {
       'advanced-market-research': ['Advanced Market Research', 2495, 3],
-      'government-opportunity-finder': ['Government Opportunity Finder & Bid Support', 2995, 4],
+      'government-opportunity-finder': ['Government Opportunity Finder & Bid Support', 0, 0],
       'old-lead-reactivation': ['Dormant Customer Reactivation', 995, 2],
       'spend-guard': ['Automintly Spend Guard', 1995, 3]
     }
@@ -57,10 +57,14 @@ test('government opportunity support is selective and keeps submission and fee b
   assert.match(homepage, /build-your-automation\.html\?add=government-opportunity-finder/);
   assert.match(homepage, /does not submit a bid or contact an agency automatically/i);
   assert.match(homepage, /do not guarantee awards/i);
-  assert.match(homepage, /percentage of verified contract profit may be considered only after independent legal and procurement review and a signed agreement/i);
-  assert.match(builderHtml, /Find government contract opportunities/);
+  assert.match(homepage, /No upfront search fee/);
+  assert.match(homepage, /pay no Contracting add-on fee unless a qualifying contract is awarded/i);
+  assert.match(homepage, /success fee is offered only where legally permitted and agreed in writing before bid support begins/i);
+  assert.match(builderHtml, /name="goals" value="government"><span>Contracting<\/span>/);
   assert.match(builder, /product\.id === 'government-opportunity-finder' && !matched\.length/);
   assert.match(builder, /NAICS, SAM registration, set-aside eligibility/);
+  assert.match(builder, /includedAddon:true/);
+  assert.match(builder, /Contracting adds no setup charge or dashboard scope points/);
 });
 
 test('advanced market research is visible and selectable from the public site', () => {
