@@ -11,6 +11,7 @@ const builder = fs.readFileSync(path.join(root, 'builder.js'), 'utf8');
 const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'), 'utf8');
 const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
+const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 
 function arrayConstant(name) {
@@ -90,4 +91,18 @@ test('website trust cleanup has an honest fixed-scope conversion path', () => {
   assert.doesNotMatch(trustCleanupHtml, /noindex/);
   assert.match(homepage, /href="website-trust-cleanup\.html"/);
   assert.match(sitemapXml, /https:\/\/automintly\.com\/website-trust-cleanup\.html/);
+});
+
+test('website trust self-check stays private in-browser and routes to the exact offer', () => {
+  assert.match(trustCheckHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/website-trust-check\.html">/);
+  assert.match(trustCheckHtml, /60-Second Website Trust Check/);
+  assert.match(trustCheckHtml, /Runs only in your browser\. Nothing is submitted\./);
+  assert.match(trustCheckHtml, /name="q8"/);
+  assert.match(trustCheckHtml, /website_trust_check/);
+  assert.match(trustCheckHtml, /website-trust-cleanup\.html\?utm_source=automintly/);
+  assert.doesNotMatch(trustCheckHtml, /<form[^>]+action=/i);
+  assert.doesNotMatch(trustCheckHtml, /\bfree\b/i);
+  assert.doesNotMatch(trustCheckHtml, /noindex/);
+  assert.match(homepage, /href="website-trust-check\.html"/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/website-trust-check\.html/);
 });
