@@ -36,19 +36,31 @@ function offerCard(title) {
 const products = arrayConstant('products');
 const bundles = arrayConstant('outcomeBundles');
 
-test('marketing catalog keeps 30 distinct individually priced products', () => {
-  assert.equal(products.length, 30);
+test('marketing catalog keeps 31 distinct individually priced products', () => {
+  assert.equal(products.length, 31);
   assert.equal(new Set(products.map(product => product.id)).size, products.length);
   assert.ok(products.every(product => Number.isSafeInteger(product.price) && product.price > 0));
   assert.ok(products.every(product => Number.isSafeInteger(product.points) && product.points > 0));
   assert.deepEqual(
-    Object.fromEntries(products.filter(product => ['spend-guard', 'old-lead-reactivation', 'advanced-market-research'].includes(product.id)).map(product => [product.id, [product.name, product.price, product.points]])),
+    Object.fromEntries(products.filter(product => ['spend-guard', 'old-lead-reactivation', 'advanced-market-research', 'government-opportunity-finder'].includes(product.id)).map(product => [product.id, [product.name, product.price, product.points]])),
     {
       'advanced-market-research': ['Advanced Market Research', 2495, 3],
+      'government-opportunity-finder': ['Government Opportunity Finder & Bid Support', 2995, 4],
       'old-lead-reactivation': ['Dormant Customer Reactivation', 995, 2],
       'spend-guard': ['Automintly Spend Guard', 1995, 3]
     }
   );
+});
+
+test('government opportunity support is selective and keeps submission and fee boundaries visible', () => {
+  assert.match(homepage, /<h3>Government opportunity search &amp; bid support<\/h3>/);
+  assert.match(homepage, /build-your-automation\.html\?add=government-opportunity-finder/);
+  assert.match(homepage, /does not submit a bid or contact an agency automatically/i);
+  assert.match(homepage, /do not guarantee awards/i);
+  assert.match(homepage, /percentage of verified contract profit may be considered only after independent legal and procurement review and a signed agreement/i);
+  assert.match(builderHtml, /Find government contract opportunities/);
+  assert.match(builder, /product\.id === 'government-opportunity-finder' && !matched\.length/);
+  assert.match(builder, /NAICS, SAM registration, set-aside eligibility/);
 });
 
 test('advanced market research is visible and selectable from the public site', () => {

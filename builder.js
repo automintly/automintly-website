@@ -31,7 +31,8 @@
     {id:'lead-intel',name:'LeadIntel',category:'Sales',description:'Scores authorized prospect research against your ideal-customer profile for review.',price:1695,points:3,goals:['leads'],keywords:['prospect research','lead enrichment','lead intelligence','find prospects'],tools:'Authorized research source and CRM'},
     {id:'renew-guard',name:'RenewGuard',category:'Customer success',description:'Flags upcoming renewals with inactivity, unresolved issues, or missing ownership.',price:1495,points:2,goals:['money','support','reporting'],keywords:['renewal','retention','churn risk','customer success'],tools:'CRM, billing source, support source'},
     {id:'spend-guard',name:'Automintly Spend Guard',category:'Finance',description:'Checks incoming supplier invoices against approved rates, active locations, seat limits, and cancellation dates before payment review.',price:1995,points:3,goals:['money','operations','reporting'],keywords:['supplier invoice','vendor invoice','contract rate','overbilling','seat count','cancelled vendor','spend guard','prevent overcharge'],tools:'Invoice source, contracts, accounting system'},
-    {id:'advanced-market-research',name:'Advanced Market Research',category:'Analytics',description:'Turns authorized market, competitor, pricing, and customer-signal evidence into a traceable opportunity brief for human review.',price:2495,points:3,goals:['reporting','money','leads','operations'],keywords:['market research','competitor research','competitive analysis','customer demand','pricing research','market trend','market opportunity'],tools:'Approved public sources, customer feedback, internal performance data, or licensed data'}
+    {id:'advanced-market-research',name:'Advanced Market Research',category:'Analytics',description:'Turns authorized market, competitor, pricing, and customer-signal evidence into a traceable opportunity brief for human review.',price:2495,points:3,goals:['reporting','money','leads','operations'],keywords:['market research','competitor research','competitive analysis','customer demand','pricing research','market trend','market opportunity'],tools:'Approved public sources, customer feedback, internal performance data, or licensed data'},
+    {id:'government-opportunity-finder',name:'Government Opportunity Finder & Bid Support',category:'Growth',description:'Screens official government opportunities against your verified capabilities, registration, and eligibility, then prepares a human-reviewed bid-support packet.',price:2995,points:4,goals:['government'],keywords:['construction','janitorial','facility maintenance','hvac','plumbing','electrical','logistics','transportation','software','cybersecurity','consulting','staffing','training','medical supplies','healthcare','food service','manufacturing','printing','security services','engineering','architecture','accounting','research services','equipment supplier'],tools:'SAM.gov opportunities, capability records, SAM registration, and solicitation documents'}
   ];
 
   const outcomeBundles = [
@@ -128,11 +129,15 @@
     return products.map(product => {
       let score = product.goals.filter(goal=>goals.has(goal)).length * 5;
       const matched = product.keywords.filter(keyword=>description.includes(keyword));
+      if (product.id === 'government-opportunity-finder' && !matched.length) {
+        return {product,score:0,reason:''};
+      }
       score += matched.length * 4;
       if (defaults.has(product.id)) score += 2;
       const reasons = [];
       if (matched.length) reasons.push(`Your description mentions ${matched.slice(0,2).join(' and ')}.`);
       if (product.goals.some(goal=>goals.has(goal))) reasons.push('It supports one of the results you selected.');
+      if (product.id === 'government-opportunity-finder') reasons.push('NAICS, SAM registration, set-aside eligibility, and the solicitation still require review before any bid work.');
       if (defaults.has(product.id)) reasons.push(`It is commonly useful for ${data.industry.toLowerCase()} businesses.`);
       return {product,score,reason:reasons.join(' ')};
     }).filter(item=>item.score>0).sort((a,b)=>b.score-a.score || a.product.price-b.product.price);
