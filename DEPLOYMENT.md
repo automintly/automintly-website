@@ -1,8 +1,8 @@
 # Automintly landing release — September 10, 2026
 
-## Local desktop loop candidate: v23 (not published)
+## Published desktop forward-loop v23
 
-The desktop-only source now points locally to
+The live desktop-only source now points to
 `automintly-orbital-forward-desktop-4k-seamless-v23.mp4`. It preserves the
 accepted 3840×2160/24 fps source and uses forward playback only. The final 1.5
 seconds blend into the first 1.5 seconds, and the resulting 8.5-second cycle is
@@ -14,19 +14,20 @@ The first/last 960×540 analysis frames were visually matched, and direct decode
 video comparison measured SSIM 0.974514; the remaining difference is the
 intended one-frame forward advance rather than a jump to an unrelated frame. A
 media-level verifier also proves the 3840×2160/24 fps/204-frame encoding and
-guards against reverse or ping-pong playback. This is a local preview only. It
-has not been committed, pushed or published; fresh publication authorization is
-still required.
+guards against reverse or ping-pong playback. The user explicitly authorized
+publication on September 12, 2026. Release commit `de8dad2` was pushed to the
+existing `main` branch and the connected host deployed it successfully.
 
 Local browser review is complete. At 1920×1080 the primary video selected v23,
 reported its native 3840×2160 dimensions, covered the complete viewport and
 remained ready, playing and unified across two observed 8.5-second wraps. At
 390×844 both foreground and backdrop continued to select the accepted v17c
-portrait source; the mobile video and poster Git object hashes still exactly
-match `HEAD`. The focused release checks pass: 21 entry tests, 12 shooting-star
-tests, five media/seam tests, and the five-page validator (16 script blocks and
-92 local links). The only remaining landing-release gate is fresh authorization
-to commit and publish, followed by live HTTP/media/browser verification.
+portrait source. The focused release checks pass: 21 entry tests, 12
+shooting-star tests, five media/seam tests, and the five-page validator (16
+script blocks and 92 local links). Live verification returned HTTP 200 for the
+homepage and the new MP4; the homepage references both desktop v23 and unchanged
+mobile v17c, and the live MP4 reports the expected 38,775,077-byte content
+length.
 
 ## Approved release: PC-only v22
 
