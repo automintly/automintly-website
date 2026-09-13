@@ -1,0 +1,7 @@
+{
+  "name": "automintly-marketing",
+  "private": true,
+  "scripts": {
+    "test": "node --test marketing-contract.test.js"
+  }
+}

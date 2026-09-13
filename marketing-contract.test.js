@@ -1,0 +1,80 @@
+'use strict';
+
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+
+const root = __dirname;
+const builder = fs.readFileSync(path.join(root, 'builder.js'), 'utf8');
+const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'), 'utf8');
+const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+
+function arrayConstant(name) {
+  const match = builder.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n  \\]);`));
+  assert.ok(match, `${name} must remain a readable array constant`);
+  return vm.runInNewContext(match[1], Object.create(null));
+}
+
+function offerCard(title) {
+  const heading = `<h3>${title}</h3>`;
+  const position = homepage.indexOf(heading);
+  assert.notEqual(position, -1, `${title} offer is missing`);
+  const start = homepage.lastIndexOf('<article class="money-system-card">', position);
+  const end = homepage.indexOf('</article>', position);
+  assert.ok(start >= 0 && end > position, `${title} offer card is malformed`);
+  return homepage.slice(start, end + '</article>'.length);
+}
+
+const products = arrayConstant('products');
+const bundles = arrayConstant('outcomeBundles');
+
+test('marketing catalog keeps 29 distinct individually priced products', () => {
+  assert.equal(products.length, 29);
+  assert.equal(new Set(products.map(product => product.id)).size, products.length);
+  assert.ok(products.every(product => Number.isSafeInteger(product.price) && product.price > 0));
+  assert.ok(products.every(product => Number.isSafeInteger(product.points) && product.points > 0));
+  assert.deepEqual(
+    Object.fromEntries(products.filter(product => ['spend-guard', 'old-lead-reactivation'].includes(product.id)).map(product => [product.id, [product.name, product.price, product.points]])),
+    {
+      'old-lead-reactivation': ['Dormant Customer Reactivation', 995, 2],
+      'spend-guard': ['Automintly Spend Guard', 1995, 3]
+    }
+  );
+});
+
+test('Quote-to-Cash remains an itemized four-module system with honest totals', () => {
+  const bundle = bundles.find(item => item.id === 'quote-to-cash-accelerator');
+  assert.ok(bundle);
+  assert.deepEqual(Array.from(bundle.products), ['lead-follow-up', 'crm-automation', 'quote-flow', 'cashchaser']);
+  const included = bundle.products.map(id => products.find(product => product.id === id));
+  assert.ok(included.every(Boolean));
+  assert.equal(included.reduce((sum, product) => sum + product.price, 0), 5880);
+  assert.equal(included.reduce((sum, product) => sum + product.points, 0), 9);
+  assert.match(builder, /Each automation is itemized and can be removed separately/);
+});
+
+test('focused landing offers carry only reviewed IDs into the builder', () => {
+  const spend = offerCard('Automintly Spend Guard');
+  assert.match(spend, /\$1,995/);
+  assert.match(spend, /build-your-automation\.html\?add=spend-guard/);
+
+  const quote = offerCard('Quote-to-Cash Accelerator');
+  assert.match(quote, /\$5,880/);
+  assert.match(quote, /build-your-automation\.html\?bundle=quote-to-cash-accelerator/);
+
+  const dormant = offerCard('Dormant Customer Reactivation');
+  assert.match(dormant, /\$995/);
+  assert.match(dormant, /build-your-automation\.html\?add=old-lead-reactivation/);
+
+  assert.match(builder, /getAll\('add'\)\.filter\(id => byId\(id\)\)/);
+  assert.match(builder, /outcomeBundles\.find\(bundle => bundle\.id === requested\.get\('bundle'\)\)/);
+});
+
+test('dashboard access and external costs remain separate from setup', () => {
+  assert.match(builderHtml, /dashboard fee is based on their combined scope/i);
+  assert.match(builderHtml, /Third-party provider and usage charges are separate and paid by the customer/i);
+  assert.match(builderHtml, /no payment information is collected on this page/i);
+  assert.match(builderHtml, /Automation Reliability Care are included with dashboard access/i);
+});
