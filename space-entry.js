@@ -14,11 +14,11 @@
   })):[];
   function selectVideoSource(){
     const selected=videoSources.find(({query})=>!query||query.matches);
-    if(selected&&primary.src!==selected.source.src){
+    if(selected&&primary.currentSrc!==selected.source.src&&primary.src!==selected.source.src){
       primary.src=selected.source.src;
       primary.load();
     }
-    if(!desktop.matches&&selected&&backdrop&&backdrop.src!==selected.source.src){
+    if(!desktop.matches&&selected&&backdrop&&backdrop.currentSrc!==selected.source.src&&backdrop.src!==selected.source.src){
       backdrop.src=selected.source.src;
       backdrop.load();
     }
