@@ -3,8 +3,87 @@
   min-width: 0;
 }
 
+.optional-item strong::after {
+  content: " optional";
+  color: #8c9994;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.plan-addons {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.plan-addons h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.plan-addons > p:not(.eyebrow) {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.addon-list {
+  display: grid;
+  gap: 10px;
+}
+
+.addon-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #46514f;
+  border-radius: 12px;
+  background: #171b1c;
+  cursor: pointer;
+}
+
+.addon-card:has(input:checked) {
+  border-color: var(--mint);
+  background: rgba(143,232,199,.08);
+}
+
+.addon-card input {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  accent-color: var(--mint);
+}
+
+.addon-card strong,
+.addon-card small {
+  display: block;
+}
+
+.addon-card small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.addon-card b {
+  color: var(--mint-2);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
 @media (max-width: 650px) {
   .steps {
     max-width: 100%;
+  }
+
+  .addon-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .addon-card b {
+    grid-column: 2;
   }
 }

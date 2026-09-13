@@ -22,7 +22,26 @@
     {id:'cashchaser',name:'CashChaser',category:'Finance',description:'Identifies overdue balances and prepares polite payment reminders for approval.',price:1295,points:2,goals:['money'],keywords:['unpaid','late invoice','receivable','collect payment'],tools:'Invoice source and messaging'},
     {id:'slotyield',name:'SlotYield',category:'Scheduling',description:'Matches eligible waiting customers to future openings and prepares an offer.',price:1395,points:2,goals:['booking','money'],keywords:['empty slot','unused capacity','waitlist','cancellation'],tools:'Calendar, CRM, messaging'},
     {id:'agent-spend-governor',name:'AgentSpend Governor',category:'Controls',description:'Checks proposed AI work against a monthly budget and per-task spending cap.',price:995,points:1,goals:['testing','reporting'],keywords:['ai cost','agent spend','budget','usage cost'],tools:'AI usage source'},
-    {id:'agent-rehearsal-lab',name:'Agent Rehearsal Lab',category:'Controls',description:'Tests saved automation settings with isolated examples before deployment.',price:1295,points:2,goals:['testing'],keywords:['test automation','rehearsal','before deployment','quality assurance'],tools:'Automintly test environment'}
+    {id:'agent-rehearsal-lab',name:'Agent Rehearsal Lab',category:'Controls',description:'Tests saved automation settings with isolated examples before deployment.',price:1295,points:2,goals:['testing'],keywords:['test automation','rehearsal','before deployment','quality assurance'],tools:'Automintly test environment'},
+    {id:'quote-flow',name:'QuoteFlow',category:'Sales',description:'Turns approved price-book items into accurate quote drafts for review before sending.',price:1495,points:2,goals:['leads','money'],keywords:['quote','estimate','proposal','pricing'],tools:'CRM, approved price book, document tool'},
+    {id:'onboard-flow',name:'OnboardFlow',category:'Operations',description:'Builds a controlled client onboarding plan and flags missing or stalled steps.',price:1795,points:2,goals:['operations','support'],keywords:['client onboarding','onboard','kickoff','new client'],tools:'CRM, project management, document source'},
+    {id:'document-flow',name:'DocumentFlow',category:'Operations',description:'Extracts approved fields from authorized documents and routes uncertain records to review.',price:1495,points:2,goals:['operations','reporting'],keywords:['document extraction','ocr','pdf','invoice data'],tools:'Document source, OCR, CRM or accounting'},
+    {id:'inbox-pilot',name:'InboxPilot',category:'Customer service',description:'Classifies inbox items, prepares approved replies, and routes sensitive requests to people.',price:1295,points:2,goals:['support','operations'],keywords:['inbox','email triage','ticket triage','support email'],tools:'Email, help desk, CRM'},
+    {id:'meeting-flow',name:'MeetingFlow',category:'Operations',description:'Turns authorized meeting notes into a concise CRM brief, decisions, and task drafts.',price:995,points:1,goals:['operations'],keywords:['meeting notes','action items','meeting tasks','follow up meeting'],tools:'Meeting source, CRM, project management'},
+    {id:'lead-intel',name:'LeadIntel',category:'Sales',description:'Scores authorized prospect research against your ideal-customer profile for review.',price:1695,points:3,goals:['leads'],keywords:['prospect research','lead enrichment','lead intelligence','find prospects'],tools:'Authorized research source and CRM'},
+    {id:'renew-guard',name:'RenewGuard',category:'Customer success',description:'Flags upcoming renewals with inactivity, unresolved issues, or missing ownership.',price:1495,points:2,goals:['money','support','reporting'],keywords:['renewal','retention','churn risk','customer success'],tools:'CRM, billing source, support source'}
+  ];
+
+  const addons = [
+    {id:'opportunity-audit',name:'Automation Opportunity Audit',billing:'one-time',price:795,description:'Workflow review and prioritized automation plan. This fee may be credited toward an approved setup proposal.'},
+    {id:'data-cleanup',name:'Data Cleanup Standard',billing:'one-time',price:995,description:'Prepare one bounded source dataset for setup.'},
+    {id:'custom-connector',name:'Custom Integration Connector',billing:'one-time',price:1495,description:'Design and validation for one custom connection. Provider usage is separate.'},
+    {id:'white-glove-launch',name:'White-Glove Launch & Training',billing:'one-time',price:750,description:'Guided launch, operator training, and documented handoff.'},
+    {id:'managed-optimization',name:'Managed Optimization',billing:'monthly',price:500,description:'Monthly performance review and one bounded tuning cycle.'},
+    {id:'managed-optimization-plus',name:'Managed Optimization Plus',billing:'monthly',price:1250,description:'Higher-touch review, tuning, and expansion planning.'},
+    {id:'evidence-compliance',name:'Evidence & Compliance Pack',billing:'monthly',price:300,description:'Expanded evidence retention, audit exports, and control reviews; not legal certification.'},
+    {id:'priority-support',name:'Priority Support',billing:'monthly',price:250,description:'Priority support queue during the agreed service window.'},
+    {id:'extra-location',name:'Multi-Location Pack',billing:'monthly',price:149,description:'Support for one additional approved business location.'}
   ];
 
   const industryDefaults = {
@@ -30,19 +49,30 @@
     'Dental & medical':['ai-receptionist','appointment-reminders','customer-support-agent'],
     'Salons & spas':['appointment-booking','appointment-reminders','slotyield'],
     'Auto':['missed-call-text-back','lead-follow-up','review-generation'],
-    'Professional services':['lead-qualification','appointment-booking','crm-automation'],
-    'Real estate':['lead-follow-up','lead-qualification','old-lead-reactivation'],
-    'Retail & e-commerce':['customer-support-agent','review-generation','reporting-automation'],
+    'Professional services':['lead-qualification','quote-flow','meeting-flow','onboard-flow'],
+    'Real estate':['lead-intel','lead-follow-up','quote-flow','old-lead-reactivation'],
+    'Retail & e-commerce':['inbox-pilot','customer-support-agent','renew-guard','reporting-automation'],
     'Creators & media':['lead-follow-up','crm-automation','reporting-automation'],
-    'Manufacturing':['business-exception-radar','vendorleak-recovery','reporting-automation'],
-    'Other':['processclone-audit','business-exception-radar','reporting-automation']
+    'Manufacturing':['business-exception-radar','document-flow','vendorleak-recovery','renew-guard'],
+    'Other':['processclone-audit','business-exception-radar','document-flow','reporting-automation']
   };
 
   const selected = new Set();
+  const selectedAddons = new Set();
   let profile = null;
   const money = value => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value);
   const escapeHtml = value => String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const byId = id => products.find(product => product.id === id);
+  const addonById = id => addons.find(addon => addon.id === id);
+
+  function addonTotals() {
+    const chosen = [...selectedAddons].map(addonById);
+    return {
+      chosen,
+      oneTime: chosen.filter(addon=>addon.billing==='one-time').reduce((total,addon)=>total+addon.price,0),
+      monthly: chosen.filter(addon=>addon.billing==='monthly').reduce((total,addon)=>total+addon.price,0)
+    };
+  }
 
   function dashboardPlan() {
     const points = [...selected].reduce((total,id)=>total+byId(id).points,0);
@@ -57,11 +87,26 @@
     const chosen = [...selected].map(byId);
     const setup = chosen.reduce((total,product)=>total+product.price,0);
     const dashboard = dashboardPlan();
-    document.querySelector('#cart-count').textContent = `${chosen.length} selected`;
-    document.querySelector('#cart-items').innerHTML = chosen.length ? chosen.map(product=>`<div class="cart-item"><strong>${escapeHtml(product.name)}</strong><span>${money(product.price)}</span></div>`).join('') : '<p class="empty">Add an automation to see your tailored price.</p>';
+    const optional = addonTotals();
+    document.querySelector('#cart-count').textContent = `${chosen.length} automation${chosen.length===1?'':'s'}`;
+    const productRows = chosen.map(product=>`<div class="cart-item"><strong>${escapeHtml(product.name)}</strong><span>${money(product.price)}</span></div>`);
+    const addonRows = optional.chosen.map(addon=>`<div class="cart-item optional-item"><strong>${escapeHtml(addon.name)}</strong><span>${money(addon.price)}${addon.billing==='monthly'?'/mo':''}</span></div>`);
+    document.querySelector('#cart-items').innerHTML = productRows.length || addonRows.length ? [...productRows,...addonRows].join('') : '<p class="empty">Add an automation to see your tailored price.</p>';
     document.querySelector('#setup-total').textContent = money(setup);
     document.querySelector('#dashboard-tier').textContent = dashboard.name;
     document.querySelector('#monthly-total').textContent = `${money(dashboard.price)}/mo`;
+    document.querySelector('#addons-total').textContent = money(optional.oneTime);
+    document.querySelector('#addons-monthly').textContent = `${money(optional.monthly)}/mo`;
+  }
+
+  function renderFinalPlan() {
+    const chosen = [...selected].map(byId), optional = addonTotals();
+    const setup = chosen.reduce((total,product)=>total+product.price,0), dashboard = dashboardPlan();
+    document.querySelector('#final-plan').innerHTML = `<div class="plan-breakdown">${chosen.map(product=>`<div class="plan-row"><span>${escapeHtml(product.name)} setup</span><strong>${money(product.price)}</strong></div>`).join('')}</div><div class="plan-total"><div><span>Automation setup total</span><strong>${money(setup)}</strong></div><div><span>${escapeHtml(dashboard.name)}</span><strong>${money(dashboard.price)}/month</strong></div>${optional.oneTime?`<div><span>Optional one-time services</span><strong>${money(optional.oneTime)}</strong></div>`:''}${optional.monthly?`<div><span>Optional monthly services</span><strong>${money(optional.monthly)}/month</strong></div>`:''}</div><p class="fineprint">Dashboard access is a separate required monthly fee based on automation scope. Optional services are separate selections. Required phone, messaging, AI, CRM, calendar, hosting, and other third-party charges are paid separately by the customer.</p>`;
+    document.querySelector('#addon-list').innerHTML = addons.map(addon=>`<label class="addon-card"><input type="checkbox" data-addon="${addon.id}" ${selectedAddons.has(addon.id)?'checked':''}><span><strong>${escapeHtml(addon.name)}</strong><small>${escapeHtml(addon.description)}</small></span><b>${money(addon.price)}${addon.billing==='monthly'?'/mo':' once'}</b></label>`).join('');
+    const addonLines = optional.chosen.length ? ['', 'Optional services:', ...optional.chosen.map(addon=>`- ${addon.name}: ${money(addon.price)}${addon.billing==='monthly'?'/month':' one-time'}`), `Optional one-time total: ${money(optional.oneTime)}`, `Optional monthly total: ${money(optional.monthly)}/month`] : [];
+    const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${money(product.price)} setup`),'',`Automation setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,...addonLines,'','Third-party provider and usage charges are separate. No payment is authorized by this email.',`Business description: ${profile.description}`].join('\n');
+    document.querySelector('#email-plan').href = `mailto:automintly@gmail.com?subject=${encodeURIComponent(`Automation plan for ${profile.businessName}`)}&body=${encodeURIComponent(body)}`;
   }
 
   function scoreProducts(data) {
@@ -125,6 +170,12 @@
       renderCart();
       return;
     }
+    const addonInput = event.target.closest('[data-addon]');
+    if (addonInput) {
+      addonInput.checked ? selectedAddons.add(addonInput.dataset.addon) : selectedAddons.delete(addonInput.dataset.addon);
+      renderCart(); renderFinalPlan();
+      return;
+    }
     const back = event.target.closest('[data-back]');
     if (back) setStep(Number(back.dataset.back));
   });
@@ -134,12 +185,7 @@
       document.querySelector('#recommendation-summary').textContent = 'Add at least one automation before reviewing your plan.';
       return;
     }
-    const chosen = [...selected].map(byId);
-    const setup = chosen.reduce((total,product)=>total+product.price,0);
-    const dashboard = dashboardPlan();
-    document.querySelector('#final-plan').innerHTML = `<div class="plan-breakdown">${chosen.map(product=>`<div class="plan-row"><span>${escapeHtml(product.name)} setup</span><strong>${money(product.price)}</strong></div>`).join('')}</div><div class="plan-total"><div><span>One-time setup total</span><strong>${money(setup)}</strong></div><div><span>${escapeHtml(dashboard.name)}</span><strong>${money(dashboard.price)}/month</strong></div></div><p class="fineprint">Profit Meter, Optimize, setup guides, activity logs, and health monitoring are included. Required phone, messaging, AI, CRM, calendar, hosting, and other third-party charges are paid separately by the customer.</p>`;
-    const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${money(product.price)} setup`),'',`One-time setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,'',`Business description: ${profile.description}`].join('\n');
-    document.querySelector('#email-plan').href = `mailto:automintly@gmail.com?subject=${encodeURIComponent(`Automation plan for ${profile.businessName}`)}&body=${encodeURIComponent(body)}`;
+    renderFinalPlan();
     setStep(3);
   });
 
