@@ -9,7 +9,7 @@
     {id:'appointment-booking',name:'Appointment Booking',category:'Scheduling',description:'Checks working hours and availability before preparing or completing a booking.',price:1495,points:2,goals:['booking','calls'],keywords:['book appointment','scheduling','calendar','availability'],tools:'Calendar, CRM, messaging'},
     {id:'appointment-reminders',name:'Appointment Reminders',category:'Scheduling',description:'Sends scheduled reminders and cancels them automatically when an appointment changes.',price:795,points:1,goals:['booking'],keywords:['reminder','no show','reschedule','appointment'],tools:'Calendar and messaging'},
     {id:'review-generation',name:'Review Generation',category:'Growth',description:'Requests an honest review after completed work and tracks each request.',price:695,points:1,goals:['leads'],keywords:['review','reputation','google rating'],tools:'CRM or job system, messaging'},
-    {id:'old-lead-reactivation',name:'Old Lead Reactivation',category:'Sales',description:'Finds eligible stale leads and prepares personal follow-up while respecting opt-outs.',price:1195,points:2,goals:['leads'],keywords:['old lead','stale lead','reactivate','past customer'],tools:'CRM and messaging'},
+    {id:'old-lead-reactivation',name:'Dormant Customer Reactivation',category:'Sales',description:'Finds eligible inactive customers and prepares personal win-back follow-up while respecting replies and opt-outs.',price:995,points:2,goals:['leads','money'],keywords:['old lead','stale lead','reactivate','past customer','inactive customer','dormant customer','win back','win-back'],tools:'CRM and messaging'},
     {id:'crm-automation',name:'CRM Automation',category:'Operations',description:'Cleans contact data and prepares assignments, notes, stages, and follow-up tasks.',price:1795,points:3,goals:['leads','operations'],keywords:['crm','data entry','duplicate contact','pipeline'],tools:'CRM'},
     {id:'customer-support-agent',name:'Customer Support Agent',category:'Customer service',description:'Answers from approved business knowledge and prepares tickets when a person is needed.',price:1995,points:3,goals:['support'],keywords:['customer question','customer support','faq','help desk','chat'],tools:'Website or support channel, help desk'},
     {id:'reporting-automation',name:'Reporting Automation',category:'Analytics',description:'Builds repeatable reports from connected records and flags meaningful changes.',price:1495,points:2,goals:['reporting','operations'],keywords:['report','analytics','kpi','spreadsheet','dashboard'],tools:'Approved data source'},
@@ -29,7 +29,12 @@
     {id:'inbox-pilot',name:'InboxPilot',category:'Customer service',description:'Classifies inbox items, prepares approved replies, and routes sensitive requests to people.',price:1295,points:2,goals:['support','operations'],keywords:['inbox','email triage','ticket triage','support email'],tools:'Email, help desk, CRM'},
     {id:'meeting-flow',name:'MeetingFlow',category:'Operations',description:'Turns authorized meeting notes into a concise CRM brief, decisions, and task drafts.',price:995,points:1,goals:['operations'],keywords:['meeting notes','action items','meeting tasks','follow up meeting'],tools:'Meeting source, CRM, project management'},
     {id:'lead-intel',name:'LeadIntel',category:'Sales',description:'Scores authorized prospect research against your ideal-customer profile for review.',price:1695,points:3,goals:['leads'],keywords:['prospect research','lead enrichment','lead intelligence','find prospects'],tools:'Authorized research source and CRM'},
-    {id:'renew-guard',name:'RenewGuard',category:'Customer success',description:'Flags upcoming renewals with inactivity, unresolved issues, or missing ownership.',price:1495,points:2,goals:['money','support','reporting'],keywords:['renewal','retention','churn risk','customer success'],tools:'CRM, billing source, support source'}
+    {id:'renew-guard',name:'RenewGuard',category:'Customer success',description:'Flags upcoming renewals with inactivity, unresolved issues, or missing ownership.',price:1495,points:2,goals:['money','support','reporting'],keywords:['renewal','retention','churn risk','customer success'],tools:'CRM, billing source, support source'},
+    {id:'spend-guard',name:'Automintly Spend Guard',category:'Finance',description:'Checks incoming supplier invoices against approved rates, active locations, seat limits, and cancellation dates before payment review.',price:1995,points:3,goals:['money','operations','reporting'],keywords:['supplier invoice','vendor invoice','contract rate','overbilling','seat count','cancelled vendor','spend guard','prevent overcharge'],tools:'Invoice source, contracts, accounting system'}
+  ];
+
+  const outcomeBundles = [
+    {id:'quote-to-cash-accelerator',name:'Quote-to-Cash Accelerator',description:'Connect inquiry follow-up, CRM handoff, approved quote drafts, and receivables follow-up so work moves toward payment without hidden package pricing.',products:['lead-follow-up','crm-automation','quote-flow','cashchaser']}
   ];
 
   const addons = [
@@ -134,6 +139,14 @@
     </article>`;
   }
 
+  function renderBundles() {
+    document.querySelector('#outcome-bundles').innerHTML = outcomeBundles.map(bundle => {
+      const included = bundle.products.map(byId), complete = bundle.products.every(id => selected.has(id));
+      const total = included.reduce((sum, product) => sum + product.price, 0);
+      return `<article class="outcome-bundle"><div><span class="tag">CONNECTED OUTCOME</span><h3>${escapeHtml(bundle.name)}</h3><p>${escapeHtml(bundle.description)}</p><p class="bundle-modules">${included.map(product=>escapeHtml(product.name)).join(' + ')}</p><small>Each automation is itemized and can be removed separately.</small></div><div class="bundle-side"><strong>${money(total)}</strong><span>combined setup</span><button type="button" class="${complete?'secondary added':'primary'}" data-bundle="${bundle.id}">${complete?'All added ✓':'Add all modules'}</button></div></article>`;
+    }).join('');
+  }
+
   function setStep(step) {
     ['one','two','three'].forEach((name,index)=>document.querySelector(`#step-${name}`).hidden=index+1!==step);
     document.querySelectorAll('[data-step-indicator]').forEach(indicator=>indicator.classList.toggle('active',Number(indicator.dataset.stepIndicator)===step));
@@ -158,6 +171,7 @@
     document.querySelector('#recommendation-list').innerHTML = recommendations.map(item=>productCard(item.product,item.reason,true)).join('');
     const recommendedIds = new Set(recommendations.map(item=>item.product.id));
     document.querySelector('#catalog-list').innerHTML = products.filter(product=>!recommendedIds.has(product.id)).map(product=>productCard(product)).join('');
+    renderBundles();
     setStep(2);
   });
 
@@ -168,6 +182,15 @@
       selected.has(id) ? selected.delete(id) : selected.add(id);
       document.querySelectorAll(`[data-product="${id}"]`).forEach(button=>{button.textContent=selected.has(id)?'Added ✓':'Add to plan';button.className=selected.has(id)?'secondary added':'primary';});
       renderCart();
+      renderBundles();
+      return;
+    }
+    const bundleButton = event.target.closest('[data-bundle]');
+    if (bundleButton) {
+      const bundle = outcomeBundles.find(item=>item.id===bundleButton.dataset.bundle);
+      bundle.products.forEach(id=>selected.add(id));
+      document.querySelectorAll('[data-product]').forEach(button=>{const added=selected.has(button.dataset.product);button.textContent=added?'Added ✓':'Add to plan';button.className=added?'secondary added':'primary';});
+      renderCart(); renderBundles();
       return;
     }
     const addonInput = event.target.closest('[data-addon]');
