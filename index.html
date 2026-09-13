@@ -232,6 +232,51 @@
   .group-head h3{ font-size:20px; }
   .group-head p{ color:var(--muted); font-size:14px; margin-top:6px; }
 
+  /* ---------- UGC & proof-driven ads ---------- */
+  .growth-studio{ padding:80px 0; border-bottom:1px solid var(--line); background:#fff; }
+  .growth-studio-head{ display:grid; grid-template-columns:.8fr 1.2fr; gap:48px; align-items:end; }
+  .growth-studio .eyebrow{ color:var(--blue-600); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+  .growth-studio h2{ margin-top:10px; max-width:18ch; font-size:34px; line-height:1.12; }
+  .growth-studio-head > p{ color:var(--muted); font-size:15.5px; max-width:62ch; }
+  .offer-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:42px; }
+  .offer-card{ display:flex; flex-direction:column; min-width:0; padding:30px; border:1px solid var(--line); border-radius:10px; background:var(--bg-2); }
+  .offer-card--proof{ color:#fff; background:var(--navy-900); border-color:var(--navy-900); }
+  .offer-kicker{ color:var(--blue-600); font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+  .offer-card--proof .offer-kicker{ color:#8DE8CE; }
+  .offer-card h3{ margin-top:10px; font-size:24px; line-height:1.2; }
+  .offer-card > p{ margin-top:12px; color:var(--muted); font-size:14.5px; }
+  .offer-card--proof > p{ color:#B9C8DC; }
+  .offer-options{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:24px 0 0; padding:0; list-style:none; }
+  .offer-options li{ position:relative; min-height:52px; padding:12px 12px 12px 30px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--navy-900); font-size:13px; font-weight:600; }
+  .offer-options li::before{ content:""; position:absolute; left:13px; top:18px; width:7px; height:7px; border-radius:50%; background:var(--blue-600); }
+  .offer-card--proof .offer-options li{ background:#0F2E56; border-color:#29486F; color:#fff; }
+  .offer-card--proof .offer-options li::before{ background:#8DE8CE; }
+  .proof-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:24px; }
+  .proof-step{ position:relative; padding:12px 9px; border:1px solid #29486F; border-radius:7px; background:#0F2E56; text-align:center; }
+  .proof-step strong{ display:block; color:#fff; font-size:12.5px; }
+  .proof-step span{ display:block; margin-top:3px; color:#8FA3BE; font-size:10.5px; }
+  .proof-metrics{ display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+  .proof-metrics span{ padding:5px 8px; border-radius:4px; background:#183B66; color:#DCE7F6; font-size:11px; font-weight:600; }
+  .creative-gate{ margin-top:20px; padding:13px 14px; border:1px solid #29486F; border-radius:7px; background:#0F2E56; }
+  .creative-gate strong, .creative-gate span{ display:block; }
+  .creative-gate strong{ color:#fff; font-size:12.5px; }
+  .creative-gate span{ margin-top:4px; color:#B9C8DC; font-size:11.5px; line-height:1.5; }
+  .offer-note{ margin-top:14px !important; font-size:12px !important; line-height:1.5; }
+  .offer-card .offer-cta{ align-self:flex-start; margin-top:auto; padding-top:24px; color:var(--blue-600); font-size:14px; font-weight:700; text-decoration:none; }
+  .offer-card--proof .offer-cta{ color:#8DE8CE; }
+  .offer-card .offer-cta:hover{ text-decoration:underline; text-underline-offset:3px; }
+  @media (max-width:900px){
+    .growth-studio-head{ grid-template-columns:1fr; gap:18px; }
+    .offer-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .growth-studio{ padding:64px 0; }
+    .growth-studio h2{ font-size:30px; }
+    .offer-card{ padding:23px; }
+    .offer-options{ grid-template-columns:1fr; }
+    .proof-flow{ grid-template-columns:1fr 1fr; }
+  }
+
   /* ---------- Guarantees ---------- */
   .guarantees{ padding:80px 0; border-bottom:1px solid var(--line); }
   .guarantees h2{ font-size:32px; }
@@ -394,7 +439,7 @@
 <script src="conversion-tracking-config.js"></script>
 <script defer src="conversion-tracking.js"></script>
 <link rel="stylesheet" href="space-entry.css?v=22-desktop-only">
-<link rel="stylesheet" href="charcoal-theme.css">
+<link rel="stylesheet" href="charcoal-theme.css?v=ugc-proof-v3">
 <script defer src="space-entry.js?v=24-media-load"></script>
 <script defer src="shooting-star.js?v=22-desktop-only"></script>
 </head>
@@ -432,6 +477,7 @@
     <ul class="navlinks">
       <li><a href="industries.html">Industries</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#ugc">UGC &amp; Ads</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="roi-calculator.html">ROI Calculator</a></li>
       <li><a href="#guarantees">Guarantees</a></li>
@@ -1069,6 +1115,60 @@
     </div>
   </section>
 
+  <!-- UGC & PROOF-DRIVEN ADS -->
+  <section class="growth-studio" id="ugc" aria-labelledby="growth-studio-title">
+    <div class="wrap">
+      <div class="growth-studio-head">
+        <div>
+          <div class="eyebrow">Content &amp; acquisition studio</div>
+          <h2 id="growth-studio-title">Creative people want to watch. Proof you can act on.</h2>
+        </div>
+        <p>Automintly can scope the content, produce channel-ready creative, connect the campaign to your lead and sales path, and make the result visible in your dashboard. You can request content only, ads only, or the complete measured system.</p>
+      </div>
+
+      <div class="offer-grid">
+        <article class="offer-card">
+          <div class="offer-kicker">Automintly UGC Studio</div>
+          <h3>Request the UGC format your offer actually needs.</h3>
+          <p>Tell us what you sell, who it is for, and where the content will run. We will help choose the right concept, format, deliverables, and usage scope before production begins.</p>
+          <ul class="offer-options" aria-label="Available UGC formats">
+            <li>Product demos &amp; tutorials</li>
+            <li>Unboxings &amp; first impressions</li>
+            <li>Testimonials &amp; problem-solution stories</li>
+            <li>Website &amp; app walkthroughs</li>
+            <li>Try-ons &amp; lifestyle clips</li>
+            <li>Hooks, cutdowns &amp; ad variations</li>
+          </ul>
+          <a class="offer-cta" href="#cta" data-inquiry-interest="UGC content creation">Inquire about UGC content &rarr;</a>
+        </article>
+
+        <article class="offer-card offer-card--proof" id="proofloop-ads">
+          <div class="offer-kicker">Automintly ProofLoop Ads</div>
+          <h3>We do not stop at running ads. We build the creative and show what converted.</h3>
+          <p>Each campaign starts with multiple channel-native creative angles, a defined conversion event, and a measurement plan. Winning messages get expanded; weak ones get retired using evidence rather than guesswork.</p>
+          <div class="creative-gate"><strong>Creative quality gate before spend</strong><span>Hook clarity · offer fit · believable proof · mobile legibility · channel-native format · tracking readiness</span></div>
+          <ul class="offer-options" aria-label="ProofLoop advertising capabilities">
+            <li>UGC, product and offer-led creative production</li>
+            <li>Structured hook, angle and format testing</li>
+            <li>Lead-source and confirmed-sale attribution</li>
+            <li>Visual conversion and return scorecards</li>
+          </ul>
+          <div class="proof-flow" aria-label="Conversion proof flow">
+            <div class="proof-step"><strong>Ad</strong><span>creative &amp; spend</span></div>
+            <div class="proof-step"><strong>Lead</strong><span>source captured</span></div>
+            <div class="proof-step"><strong>Sale</strong><span>outcome confirmed</span></div>
+            <div class="proof-step"><strong>Proof</strong><span>revenue attributed</span></div>
+          </div>
+          <div class="proof-metrics" aria-label="Client scorecard metrics">
+            <span>Spend</span><span>Leads</span><span>Conversion rate</span><span>Cost per sale</span><span>Attributed revenue</span><span>ROAS</span>
+          </div>
+          <p class="offer-note">Attribution is limited to connected sources and confirmed events. Unmatched sales remain unattributed instead of being presented as ad-driven results.</p>
+          <a class="offer-cta" href="#cta" data-inquiry-interest="ProofLoop ads and creative">Inquire about measured ads &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- INCLUDED WITH EVERYTHING -->
   <section class="included" id="dashboard">
     <div class="wrap included-inner">
@@ -1293,9 +1393,15 @@
               <option>Sales &amp; CRM workflows</option>
               <option>Back-office / document processing</option>
               <option>Reporting &amp; dashboards</option>
+              <option>UGC content creation</option>
+              <option>ProofLoop ads and creative</option>
               <option>Fixing automations we already have</option>
               <option>Not sure yet</option>
             </select>
+          </div>
+          <div class="field" id="f-project-type-field" hidden>
+            <label for="f-project-type">What kind of content or campaign?</label>
+            <select id="f-project-type" name="project_type" disabled></select>
           </div>
           <div class="field">
             <label for="f-time">Best time for a 20-minute call</label>
@@ -1418,6 +1524,55 @@
     var status = document.getElementById('form-status');
     if(!form) return;
 
+    var interest = document.getElementById('f-interest');
+    var projectTypeField = document.getElementById('f-project-type-field');
+    var projectType = document.getElementById('f-project-type');
+    var projectTypes = {
+      'UGC content creation': [
+        'Not sure — recommend the best format',
+        'Product demo or tutorial',
+        'Unboxing or first impression',
+        'Testimonial or problem-solution story',
+        'Website or app walkthrough',
+        'Try-on or lifestyle clip',
+        'Hooks, cutdowns or ad variations'
+      ],
+      'ProofLoop ads and creative': [
+        'Complete creative and measured ad system',
+        'Ad creative production only',
+        'Campaign management and conversion tracking',
+        'Conversion tracking and dashboard only',
+        'Not sure — recommend the right scope'
+      ]
+    };
+
+    function updateProjectTypes(){
+      var options = projectTypes[interest.value];
+      projectType.innerHTML = '';
+      if(!options){
+        projectType.disabled = true;
+        projectTypeField.hidden = true;
+        return;
+      }
+      options.forEach(function(label){
+        var option = document.createElement('option');
+        option.textContent = label;
+        projectType.appendChild(option);
+      });
+      projectType.disabled = false;
+      projectTypeField.hidden = false;
+    }
+
+    interest.addEventListener('change', updateProjectTypes);
+    document.querySelectorAll('[data-inquiry-interest]').forEach(function(link){
+      link.addEventListener('click', function(){
+        interest.value = link.getAttribute('data-inquiry-interest');
+        updateProjectTypes();
+        window.setTimeout(function(){ projectType.focus(); }, 350);
+      });
+    });
+    updateProjectTypes();
+
     form.addEventListener('submit', function(e){
       e.preventDefault();
       status.className = 'form-status';
@@ -1455,6 +1610,7 @@
           window.AutomintlyConversions.track(res.type === 'opaque' ? 'estimate_form_submitted_unverified' : 'estimate_form_success', { page: window.location.pathname });
         }
         form.reset();
+        updateProjectTypes();
       }).catch(function(){
         status.className = 'form-status err';
         status.textContent = 'Something went wrong. Please try again in a moment.';

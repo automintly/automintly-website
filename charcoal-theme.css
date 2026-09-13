@@ -177,6 +177,44 @@ body.charcoal-theme .cta,
 body.charcoal-theme footer { background:#101516; border-color:var(--line); }
 body.charcoal-theme footer .logo { color:#fff; }
 
+body.charcoal-theme .growth-studio { background:var(--bg); border-color:var(--line); }
+body.charcoal-theme .growth-studio .eyebrow {
+  display:inline-flex;
+  width:auto;
+  padding:6px 9px;
+  border-radius:5px;
+  background:var(--blue-tint);
+  color:var(--blue-500);
+}
+body.charcoal-theme .offer-card {
+  background:var(--surface);
+  border-color:var(--line);
+  color:var(--text);
+}
+body.charcoal-theme .offer-card > p { color:var(--muted); }
+body.charcoal-theme .offer-card .offer-options li {
+  background:var(--bg-2);
+  border-color:var(--line);
+  color:var(--text);
+}
+body.charcoal-theme .offer-card--proof {
+  background:#102822;
+  border-color:#35634f;
+}
+body.charcoal-theme .offer-card--proof h3 { color:#f3fff9; }
+body.charcoal-theme .offer-card--proof > p { color:#bdd0c7; }
+body.charcoal-theme .offer-card--proof .offer-options li,
+body.charcoal-theme .offer-card--proof .proof-step,
+body.charcoal-theme .offer-card--proof .creative-gate {
+  background:#17362e;
+  border-color:#35634f;
+  color:#f3fff9;
+}
+body.charcoal-theme .offer-card--proof .proof-step strong { color:#f3fff9; }
+body.charcoal-theme .offer-card--proof .proof-step span { color:#bdd0c7; }
+body.charcoal-theme .offer-card--proof .creative-gate span { color:#bdd0c7; }
+body.charcoal-theme .offer-card--proof .proof-metrics span { background:#21483c; color:#dff8ed; }
+
 @media (min-width:1150px) {
   body.charcoal-theme.site-entered:not(.charcoal-home) { padding-left:228px; }
   body.charcoal-theme.site-entered.charcoal-home #site { padding-left:228px; }
@@ -206,6 +244,7 @@ body.charcoal-theme footer .logo { color:#fff; }
 
 @media (max-width:1149px) {
   body.charcoal-theme header { position:sticky; top:0; }
+  body.charcoal-theme.site-entered section { scroll-margin-top:96px; }
 }
 @media (max-width:900px) {
   body.charcoal-theme .hero-inner { grid-template-columns:minmax(0,1fr); gap:36px; }
