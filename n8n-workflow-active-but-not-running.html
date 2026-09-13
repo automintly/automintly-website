@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Crect width=&apos;32&apos; height=&apos;32&apos; rx=&apos;6&apos; fill=&apos;%2317191b&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;5&apos; fill=&apos;%2375e8b0&apos;/%3E%3C/svg%3E">
+<title>n8n Workflow Active but Not Running? A Practical Diagnostic Guide | Automintly</title>
+<meta name="description" content="Use this practical checklist to find why an active n8n workflow is not running, appears successful without completing the job, or keeps creating bad data.">
+<link rel="canonical" href="https://automintly.com/n8n-workflow-active-but-not-running.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://automintly.com/n8n-workflow-active-but-not-running.html">
+<meta property="og:site_name" content="Automintly">
+<meta property="og:title" content="n8n Workflow Active but Not Running?">
+<meta property="og:description" content="A practical diagnostic sequence for triggers, executions, data mapping, downstream results, and failure handling.">
+<meta property="og:image" content="https://automintly.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "n8n Workflow Active but Not Running? A Practical Diagnostic Guide",
+  "description": "A practical diagnostic sequence for active n8n workflows that fail to trigger, fail during execution, or report success without producing the intended business result.",
+  "author": { "@type": "Organization", "name": "Automintly" },
+  "publisher": { "@type": "Organization", "name": "Automintly", "url": "https://automintly.com" },
+  "datePublished": "2026-09-12",
+  "dateModified": "2026-09-12",
+  "mainEntityOfPage": "https://automintly.com/n8n-workflow-active-but-not-running.html"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="charcoal-theme.css">
+<script src="conversion-tracking-config.js"></script>
+<script defer src="conversion-tracking.js"></script>
+<style>
+  :root{--bg:#17191b;--bg-2:#1c1f21;--surface:#24292b;--line:#3a4343;--text:#dfebe5;--muted:#a7b6af;--mint:#75e8b0;--mint-2:#a6facc;--sans:'Inter',system-ui,sans-serif}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 30px}.logo{font-size:23px;font-weight:800;letter-spacing:-.8px;text-decoration:none;color:#eef7f3}.logo span{color:var(--mint)}
+  header{position:sticky;top:0;z-index:20;background:rgba(23,25,27,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav{max-width:1120px;margin:0 auto;min-height:74px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:24px}.navlinks{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}.navlinks a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:600}.navlinks a:hover,.navlinks a:focus{color:var(--mint)}.navcta,.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:12px 18px;background:var(--mint);color:#09291d;text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(circle at 78% 10%,rgba(117,232,176,.13),transparent 34%),var(--bg-2);border-bottom:1px solid var(--line)}.hero-inner{padding:78px 0 66px;max-width:830px}.eyebrow{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:var(--mint);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.055em;margin:22px 0 18px;color:#eef7f3}.hero p{max-width:690px;font-size:18px;color:var(--muted);margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:54px;padding:64px 0 78px}.article h2{font-size:31px;line-height:1.2;letter-spacing:-.035em;color:#eef7f3;margin:54px 0 14px}.article h2:first-child{margin-top:0}.article h3{font-size:19px;color:#eef7f3;margin:28px 0 8px}.article p,.article li{color:var(--muted)}.article strong{color:var(--text)}.article a{color:var(--mint)}.checklist{counter-reset:check;display:grid;gap:15px;margin:26px 0}.check{counter-increment:check;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px 22px 68px;position:relative}.check:before{content:counter(check);position:absolute;left:22px;top:21px;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#284538;color:var(--mint-2);font-weight:800}.check h3{margin:0 0 7px}.check p{margin:0}.signal{border-left:3px solid var(--mint);background:var(--bg-2);padding:19px 22px;margin:26px 0;color:var(--text)}
+  aside{align-self:start;position:sticky;top:98px}.side-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}.side-card h2{font-size:22px;line-height:1.25;letter-spacing:-.03em;color:#eef7f3;margin:0}.side-card p{font-size:14px;color:var(--muted);margin:12px 0 20px}.side-card .btn{width:100%;text-align:center}.side-note{font-size:12px;color:var(--muted);margin:13px 0 0!important}.sources{border-top:1px solid var(--line);margin-top:48px;padding-top:28px}.sources h2{font-size:21px;margin:0 0 10px}.sources ul{padding-left:20px}
+  .final-cta{background:#101516;border-top:1px solid var(--line);padding:64px 0}.final-cta .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px}.final-cta h2{font-size:34px;line-height:1.15;letter-spacing:-.04em;color:#eef7f3;margin:0}.final-cta p{color:var(--muted);margin:9px 0 0;max-width:620px}footer{background:#101516;border-top:1px solid var(--line);padding:30px 0}.foot{display:flex;justify-content:space-between;align-items:center;gap:18px;color:var(--muted);font-size:13px}.foot a{color:var(--muted)}
+  @media(max-width:850px){.navlinks{display:none}.layout{grid-template-columns:1fr}.layout aside{position:static}.final-cta .wrap{align-items:flex-start;flex-direction:column}}@media(max-width:600px){.wrap,.nav{padding-left:20px;padding-right:20px}.hero-inner{padding:58px 0 50px}.hero h1{font-size:43px}.navcta{padding:10px 13px}.check{padding-left:58px}.check:before{left:16px}.foot{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body class="charcoal-theme site-entered">
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" class="logo">auto<span>mintly</span></a>
+    <ul class="navlinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="industries.html">Industries</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="index.html#packages">Pricing</a></li>
+    </ul>
+    <a href="build-your-automation.html" class="navcta">Build Your Automation</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="eyebrow">Workflow reliability guide</span>
+        <h1>n8n workflow active but not running?</h1>
+        <p>Start with the trigger, then follow one real execution all the way to the business result. This sequence separates a workflow that never started from one that ran, reported success, and still failed the job.</p>
+        <div class="hero-actions">
+          <a class="btn" href="https://broken-workflow-triage.tymilroy.chatgpt.site/?utm_source=automintly&amp;utm_medium=guide&amp;utm_campaign=n8n_active_not_running">Diagnose the failure</a>
+          <a class="btn secondary" href="#checklist">Use the checklist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <article class="article">
+      <h2>First decide which failure you have</h2>
+      <p><strong>No execution exists:</strong> the trigger did not reach n8n, the wrong URL was called, the workflow was not published, or the trigger's conditions were not met.</p>
+      <p><strong>An execution failed:</strong> n8n started the run and recorded an error. The execution details should identify the node and input that failed.</p>
+      <p><strong>The execution says success but the job is incomplete:</strong> the automation finished from n8n's point of view, but the intended outcome—such as a CRM record, invoice, notification, or updated row—did not happen correctly. This requires checking the downstream result, not just the green execution status.</p>
+
+      <div class="signal">A green run is evidence that the configured path completed. It is not, by itself, proof that the business outcome is correct.</div>
+
+      <h2 id="checklist">Seven checks, in order</h2>
+      <div class="checklist">
+        <section class="check">
+          <h3>Confirm the exact trigger</h3>
+          <p>Write down what should start the workflow: a production webhook request, a schedule, a form submission, a new record, or another event. Reproduce that exact event once. Do not start by changing downstream nodes.</p>
+        </section>
+        <section class="check">
+          <h3>Use the production webhook URL</h3>
+          <p>n8n provides separate test and production webhook URLs. The test URL listens during testing. The production URL is registered when the workflow is published. If the external app still calls the test URL, an active-looking workflow can receive nothing in normal operation.</p>
+        </section>
+        <section class="check">
+          <h3>Find the run in Executions</h3>
+          <p>Open the Executions view and filter by workflow, status, and start time. If no execution appears after the reproduced event, stay on the trigger side. If one appears, open it and follow the data node by node.</p>
+        </section>
+        <section class="check">
+          <h3>Inspect the first wrong value</h3>
+          <p>Compare each node's input with its output. Stop at the first missing, empty, malformed, or unexpected value. Later nodes often fail only because an earlier mapping changed.</p>
+        </section>
+        <section class="check">
+          <h3>Verify credentials and permissions</h3>
+          <p>A token may still exist while no longer having access to the workspace, folder, table, object, or action the workflow needs. Re-check the connection and the target resource without exposing the credential itself.</p>
+        </section>
+        <section class="check">
+          <h3>Check the real downstream result</h3>
+          <p>Look at the destination system. Confirm the exact record, message, invoice, file, or status change that should have been created. Check for duplicates and partially written data, not only for complete absence.</p>
+        </section>
+        <section class="check">
+          <h3>Retest with saved execution data</h3>
+          <p>After the smallest safe fix, retry the failed execution with the currently saved workflow when appropriate. Test the normal path, a missing-field case, and a duplicate or retry case before calling the repair complete.</p>
+        </section>
+      </div>
+
+      <h2>What not to change first</h2>
+      <p>Do not rebuild the entire workflow because one node failed. Do not rotate every credential without evidence. Do not switch platforms before reproducing the problem. Large changes destroy the evidence that tells you where the failure began and can create new failure paths.</p>
+
+      <h2>What a maintainable repair includes</h2>
+      <ul>
+        <li>A reproducible description of the original failure.</li>
+        <li>The smallest change that corrects that failure.</li>
+        <li>A test of the expected path and at least one failure or retry path.</li>
+        <li>A check in the destination system, not only in n8n.</li>
+        <li>A short handoff explaining what changed and how to verify it later.</li>
+      </ul>
+
+      <section class="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Technical sources</h2>
+        <ul>
+          <li><a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/">n8n Webhook documentation</a> for test versus production URLs and published workflow behavior.</li>
+          <li><a href="https://docs.n8n.io/workflows/executions/all-executions/">n8n Executions documentation</a> for filtering, inspecting, and retrying executions.</li>
+        </ul>
+      </section>
+    </article>
+
+    <aside>
+      <div class="side-card">
+        <h2>Still not sure where it broke?</h2>
+        <p>Answer a short set of questions and get the most likely failure layer plus the next evidence to check.</p>
+        <a class="btn" href="https://broken-workflow-triage.tymilroy.chatgpt.site/?utm_source=automintly&amp;utm_medium=guide_sidebar&amp;utm_campaign=n8n_active_not_running">Open workflow triage</a>
+        <p class="side-note">The diagnostic does not ask for passwords, tokens, or workflow credentials.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <div>
+        <h2>Need the workflow repaired?</h2>
+        <p>Automintly can diagnose and repair one defined n8n, Make, or Zapier failure, then document the result so the next handoff is easier.</p>
+      </div>
+      <a class="btn" href="https://contra.com/s/XAUoUPlv-i-will-diagnose-and-repair-one-broken-business-automation?utm_source=automintly&amp;utm_medium=guide&amp;utm_campaign=n8n_active_not_running">View the repair scope</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="index.html" class="logo">auto<span>mintly</span></a>
+    <span>© 2026 Automintly. Technical guidance is general and should be tested in your own environment.</span>
+    <a href="privacy.html">Privacy policy</a>
+  </div>
+</footer>
+</body>
+</html>
