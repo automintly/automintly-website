@@ -10,6 +10,8 @@ const root = __dirname;
 const builder = fs.readFileSync(path.join(root, 'builder.js'), 'utf8');
 const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'), 'utf8');
 const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
+const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 
 function arrayConstant(name) {
   const match = builder.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n  \\]);`));
@@ -77,4 +79,15 @@ test('dashboard access and external costs remain separate from setup', () => {
   assert.match(builderHtml, /Third-party provider and usage charges are separate and paid by the customer/i);
   assert.match(builderHtml, /no payment information is collected on this page/i);
   assert.match(builderHtml, /Automation Reliability Care are included with dashboard access/i);
+});
+
+test('website trust cleanup has an honest fixed-scope conversion path', () => {
+  assert.match(trustCleanupHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/website-trust-cleanup\.html">/);
+  assert.match(trustCleanupHtml, /Website Trust Cleanup/);
+  assert.match(trustCleanupHtml, /\$149/);
+  assert.match(trustCleanupHtml, /Up to five agreed public-page fixes/);
+  assert.match(trustCleanupHtml, /No subscription\. Scope agreed before access\./);
+  assert.doesNotMatch(trustCleanupHtml, /noindex/);
+  assert.match(homepage, /href="website-trust-cleanup\.html"/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/website-trust-cleanup\.html/);
 });
