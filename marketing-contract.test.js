@@ -53,6 +53,11 @@ test('marketing catalog keeps 30 paid products plus one included Contracting add
 });
 
 test('government opportunity support is selective and keeps submission and fee boundaries visible', () => {
+  const industryTabsPosition = homepage.indexOf('<nav class="indbar"');
+  const contractingBannerPosition = homepage.indexOf('<a class="contracting-banner"');
+  const mainPosition = homepage.indexOf('<main id="top">');
+  assert.ok(industryTabsPosition >= 0 && contractingBannerPosition > industryTabsPosition);
+  assert.ok(mainPosition > contractingBannerPosition);
   assert.match(homepage, /<h3>Government opportunity search &amp; bid support<\/h3>/);
   assert.match(homepage, /build-your-automation\.html\?add=government-opportunity-finder/);
   assert.match(homepage, /does not submit a bid or contact an agency automatically/i);
