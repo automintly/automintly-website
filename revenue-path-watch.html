@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revenue Path Watch | Automintly</title>
+  <meta name="description" content="Automintly checks the public website path customers use to book, inquire, or buy and alerts you when an agreed page, message, link, or destination stops working as expected.">
+  <link rel="canonical" href="https://automintly.com/revenue-path-watch.html">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://automintly.com/revenue-path-watch.html">
+  <meta property="og:site_name" content="Automintly">
+  <meta property="og:title" content="Revenue Path Watch | Automintly">
+  <meta property="og:description" content="Know when the public path customers use to book, inquire, or buy stops working as expected.">
+  <meta property="og:image" content="https://automintly.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#0a2240; --navy-soft:#163a63; --green:#35a889; --green-dark:#247b68;
+      --mint:#dff8ee; --paper:#fff; --wash:#f4f7fb; --line:#d7dfe9;
+      --text:#1b2430; --muted:#5b6472; --shadow:0 24px 70px rgba(10,34,64,.12);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+    .utility{background:var(--navy);color:#d5e1ef;font-size:13px}.utility .wrap{display:flex;justify-content:space-between;gap:20px;padding:8px 0}.utility a{color:#fff;font-weight:700;text-decoration:none}
+    header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{color:var(--navy);font-size:24px;font-weight:800;letter-spacing:-.04em;text-decoration:none}.logo span{color:var(--green)}.nav-link{color:var(--navy);font-size:14px;font-weight:700;text-decoration:none}.nav-link:hover{color:var(--green-dark)}
+    .hero{overflow:hidden;background:linear-gradient(150deg,#f9fcff 0%,#edf7f4 100%);border-bottom:1px solid var(--line)}.hero-grid{min-height:650px;display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center;padding:84px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green-dark);font-size:13px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}.eyebrow::before{content:"";width:30px;height:2px;background:var(--green)}
+    h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.04em;line-height:1.08}h1{margin-top:20px;font-size:clamp(44px,6vw,76px);max-width:760px}h2{font-size:clamp(34px,4.5vw,52px)}h3{font-size:21px}.hero-copy{margin:24px 0 0;color:var(--muted);font-size:19px;max-width:640px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:32px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 23px;border-radius:10px;background:var(--green-dark);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 12px 24px rgba(36,123,104,.2)}.button:hover{background:#1d6858}.quiet-link{color:var(--navy);font-size:14px;font-weight:700;text-decoration:none}.quiet-link:hover{text-decoration:underline}
+    .price-card{position:relative;padding:34px;background:var(--navy);color:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.price-card::after{content:"";position:absolute;right:-70px;top:-70px;width:190px;height:190px;border-radius:50%;background:rgba(53,168,137,.22)}.price-label{color:#a9c8d9;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.price{margin:10px 0 2px;font-size:52px;font-weight:800;letter-spacing:-.06em;line-height:1}.price-note{color:#cbd8e6;font-size:14px}.checklist{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:15px}.checklist li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}.check{width:22px;height:22px;display:inline-grid;place-items:center;border-radius:50%;background:var(--green);color:var(--navy);font-size:12px;font-weight:900}
+    section{padding:92px 0}.section-head{max-width:760px;margin-bottom:42px}.section-head p{color:var(--muted);font-size:17px;margin:17px 0 0}.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{padding:25px;background:var(--wash);border:1px solid var(--line);border-radius:16px}.card-num{color:var(--green-dark);font-size:12px;font-weight:800;letter-spacing:.12em}.card h3{margin-top:13px}.card p{margin:11px 0 0;color:var(--muted);font-size:15px}
+    .scope{background:var(--navy);color:#fff}.scope h2,.scope h3{color:#fff}.scope .section-head p{color:#cbd8e6}.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.scope-card{padding:30px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.055)}.scope-card ul{margin:22px 0 0;padding-left:20px;color:#dbe4ee}.scope-card li+li{margin-top:10px}
+    .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.step{padding:30px 0 0;border-top:3px solid var(--mint)}.step strong{color:var(--green-dark);font-size:13px;text-transform:uppercase;letter-spacing:.1em}.step h3{margin-top:13px}.step p{color:var(--muted);margin:12px 0 0}.proof{padding:24px;border:1px solid #b8e2d5;background:var(--mint);border-radius:16px;color:var(--navy)}
+    .faq{background:var(--wash)}details{padding:21px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;color:var(--navy);font-weight:800;list-style:none}summary::-webkit-details-marker{display:none}details p{color:var(--muted);max-width:780px;margin:12px 0 0}
+    .final{padding:88px 0;background:linear-gradient(120deg,var(--mint),#f8fcff)}.final-box{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.final p{color:var(--muted);max-width:680px;margin:15px 0 0}footer{padding:36px 0;border-top:1px solid var(--line)}.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--muted);font-size:13px}.foot a{color:var(--navy);text-decoration:none;font-weight:700}
+    @media(max-width:820px){.hero-grid,.scope-grid,.final-box{grid-template-columns:1fr}.hero-grid>* ,.scope-grid>* ,.final-box>*{min-width:0}.hero-grid{gap:40px;padding:64px 0}.card-grid,.process-grid{grid-template-columns:1fr}section{padding:70px 0}.final-box .button{width:100%}}
+    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.utility .wrap{justify-content:center}.utility span{display:none}nav{min-height:68px}.nav-link{display:none}h1{font-size:38px}.hero-copy{font-size:17px}.price-card{padding:27px}.price{font-size:44px}.button{width:100%}.quiet-link{width:100%;text-align:center}.foot{align-items:flex-start;flex-direction:column}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Revenue Path Watch",
+    "provider":{"@type":"ProfessionalService","name":"Automintly","url":"https://automintly.com/"},
+    "description":"Managed monitoring for one agreed public booking, inquiry, or purchase path.",
+    "offers":[
+      {"@type":"Offer","name":"Revenue Path Watch setup","price":"99","priceCurrency":"USD"},
+      {"@type":"Offer","name":"Revenue Path Watch monthly monitoring","price":"49","priceCurrency":"USD"}
+    ]
+  }
+  </script>
+  <script src="conversion-tracking-config.js"></script>
+  <script defer src="conversion-tracking.js"></script>
+</head>
+<body>
+  <div class="utility"><div class="wrap"><span>Public customer-path monitoring</span><a href="mailto:automintly@gmail.com?subject=Revenue%20Path%20Watch">automintly@gmail.com</a></div></div>
+  <header><nav class="wrap" aria-label="Primary navigation"><a class="logo" href="https://automintly.com/">auto<span>mintly</span></a><a class="nav-link" href="https://automintly.com/">All Automintly services</a></nav></header>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Revenue Path Watch</span>
+          <h1>Know when the path to revenue breaks.</h1>
+          <p class="hero-copy">Your website can be online while the button customers need is missing, the destination has changed, or an important message has disappeared. We check one agreed public customer path every 15 minutes and notify you when its status changes.</p>
+          <div class="cta-row">
+            <a class="button" data-conversion-event="revenue_path_scope_click" data-placement="hero" href="mailto:automintly@gmail.com?subject=Revenue%20Path%20Watch%20scope&body=Hi%20Ty%2C%0A%0AI%27d%20like%20the%20exact%20monitoring%20scope.%0A%0AWebsite%3A%20">Request the exact monitoring scope</a>
+            <a class="quiet-link" href="#checks">See what is checked</a>
+          </div>
+        </div>
+        <aside class="price-card" aria-label="Price and scope summary">
+          <div class="price-label">Managed monitoring</div>
+          <div class="price">$99 + $49/mo</div>
+          <div class="price-note">Setup plus monthly monitoring. Scope agreed before invoicing.</div>
+          <ul class="checklist">
+            <li><span class="check">✓</span><span>One public customer path</span></li>
+            <li><span class="check">✓</span><span>Up to five public pages</span></li>
+            <li><span class="check">✓</span><span>Checks every 15 minutes</span></li>
+            <li><span class="check">✓</span><span>Failure and recovery notices</span></li>
+            <li><span class="check">✓</span><span>No customer records required</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="checks">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">What gets checked</span><h2>More than a basic online-or-offline ping.</h2><p>We configure checks around the public action that matters to your business.</p></div>
+        <div class="card-grid">
+          <article class="card"><span class="card-num">01</span><h3>Page availability</h3><p>The agreed public pages and final destination must respond as expected.</p></article>
+          <article class="card"><span class="card-num">02</span><h3>Required wording</h3><p>Important customer-facing text must still be visible on the monitored page.</p></article>
+          <article class="card"><span class="card-num">03</span><h3>Primary action</h3><p>The agreed booking, inquiry, or purchase link must remain present and point to the expected destination.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="scope">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">A precise scope</span><h2>The monitored path is agreed before invoicing.</h2><p>You receive the exact pages, checks, exclusions, price, and start date in writing.</p></div>
+        <div class="scope-grid">
+          <article class="scope-card"><h3>Included</h3><ul><li>One website and one primary public action</li><li>Up to five agreed public pages</li><li>Status, wording, action-link, host, path, and destination checks</li><li>One failure notice and one recovery notice per state change</li><li>A concise monthly evidence summary</li></ul></article>
+          <article class="scope-card"><h3>Not included</h3><ul><li>Logins, form submissions, bookings, or test purchases</li><li>Customer, patient, payment, or private analytics data</li><li>Security, legal, accessibility, sales, or revenue certification</li><li>Custom or authenticated workflows without a separate quote</li><li>Repeated alerts while the same failure remains unchanged</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">How it works</span><h2>Three clear steps.</h2></div>
+        <div class="process-grid">
+          <article class="step"><strong>Step 1</strong><h3>Send the website</h3><p>Tell us which public booking, inquiry, or purchase path matters most. Do not send passwords or customer data.</p></article>
+          <article class="step"><strong>Step 2</strong><h3>Approve the scope</h3><p>We write the exact checks and issue the initial $148 invoice for setup and the first month.</p></article>
+          <article class="step"><strong>Step 3</strong><h3>Receive the baseline</h3><p>After payment, we configure the monitor, verify the baseline, and send the monitoring summary.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Verified infrastructure</span><h2>The monitoring and alert path has been tested.</h2></div>
+        <p class="proof">Automintly's owner-controlled pilot runs independently in the cloud every 15 minutes. It has stored a healthy unattended baseline and delivered one controlled failure and one controlled recovery alert. This proves the monitoring and alert path, not customer demand or increased revenue.</p>
+        <details><summary>Do you need my website password?</summary><p>No. The initial service checks only the public pages listed in the approved scope.</p></details>
+        <details><summary>Will this prove that customers can complete a purchase or booking?</summary><p>No. The initial service does not submit forms, place orders, or create appointments. It checks the agreed public path and destination only.</p></details>
+        <details><summary>How does cancellation work?</summary><p>You may cancel before the next monthly invoice. Monitoring continues through the already paid service period. The final terms are included with the written scope.</p></details>
+        <details><summary>What if the website path changes?</summary><p>Monitoring may pause while the new public destination is confirmed. Work outside the original scope is quoted separately and never added automatically.</p></details>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="wrap final-box">
+        <div><h2>Protect the path customers already use.</h2><p>Send the website address and the public action that matters most. You will receive the exact monitoring scope before an invoice is issued.</p></div>
+        <a class="button" data-conversion-event="revenue_path_scope_click" data-placement="final" href="mailto:automintly@gmail.com?subject=Revenue%20Path%20Watch%20scope&body=Hi%20Ty%2C%0A%0AI%27d%20like%20the%20exact%20monitoring%20scope.%0A%0AWebsite%3A%20">Request the exact monitoring scope</a>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap foot"><a class="logo" href="https://automintly.com/">auto<span>mintly</span></a><span>© 2026 Automintly. All rights reserved.</span><a href="https://automintly.com/privacy.html">Privacy policy</a></div></footer>
+</body>
+</html>
+
+

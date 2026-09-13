@@ -18,7 +18,8 @@
     website_trust_check_start: true,
     website_trust_check_complete: true,
     website_trust_offer_click: true,
-    website_trust_scope_email_click: true
+    website_trust_scope_email_click: true,
+    revenue_path_scope_click: true
   };
 
   function cleanProperties(properties) {
@@ -86,7 +87,14 @@
     var link = event.target.closest("a");
     if (!link) return;
     var href = link.getAttribute("href") || "";
-    if (href === "#cta" || /index\.html#cta$/.test(href)) {
+    var namedEvent = link.getAttribute("data-conversion-event") || "";
+    if (allowedEvents[namedEvent]) {
+      track(namedEvent, {
+        page: window.location.pathname,
+        placement: link.getAttribute("data-placement") || "page",
+        destination: link.protocol === "mailto:" ? "email" : "link"
+      });
+    } else if (href === "#cta" || /index\.html#cta$/.test(href)) {
       track("estimate_cta_click", {
         page: window.location.pathname,
         placement: link.closest("nav") ? "navigation" : "page"

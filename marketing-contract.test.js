@@ -12,6 +12,7 @@ const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'
 const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
 const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
+const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch.html'), 'utf8');
 const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
 const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
@@ -157,6 +158,21 @@ test('website trust measurement hooks remain privacy-minimal and disabled', () =
   assert.match(trustCheckHtml, /conversion-tracking-config\.js/);
   assert.match(trustCheckHtml, /website_trust_check_complete/);
   assert.match(trustCleanupHtml, /conversion-tracking-config\.js/);
+});
+
+test('Revenue Path Watch has an honest invoice-based offer and dormant measurement hook', () => {
+  assert.match(revenuePathWatchHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/revenue-path-watch\.html">/);
+  assert.match(revenuePathWatchHtml, /Revenue Path Watch/);
+  assert.match(revenuePathWatchHtml, /\$99 \+ \$49\/mo/);
+  assert.match(revenuePathWatchHtml, /initial \$148 invoice for setup and the first month/);
+  assert.match(revenuePathWatchHtml, /data-conversion-event="revenue_path_scope_click"/);
+  assert.match(revenuePathWatchHtml, /conversion-tracking-config\.js/);
+  assert.doesNotMatch(revenuePathWatchHtml, /\bfree\b/i);
+  assert.doesNotMatch(revenuePathWatchHtml, /noindex/i);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/revenue-path-watch\.html/);
+  assert.match(trackingConfig, /enabled:\s*false/);
+  assert.match(trackingConfig, /provider:\s*"none"/);
+  assert.match(trackingScript, /revenue_path_scope_click/);
 });
 
 test('shared charcoal theme keeps text readable on every themed page', () => {
