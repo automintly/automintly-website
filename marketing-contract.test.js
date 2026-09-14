@@ -18,6 +18,7 @@ const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch
 const websiteUpgraderHtml = fs.readFileSync(path.join(root, 'website-upgrader.html'), 'utf8');
 const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
 const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
+const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const charcoalTheme = fs.readFileSync(path.join(root, 'charcoal-theme.css'), 'utf8');
 
@@ -252,4 +253,12 @@ test('included dashboard band uses the green Automintly palette', () => {
   assert.match(charcoalTheme, /body\.charcoal-theme \.included h2 \{ color:#f3fff9; \}/);
   assert.match(charcoalTheme, /body\.charcoal-theme \.included p \{ color:#c2d2ca; \}/);
   assert.match(charcoalTheme, /body\.charcoal-theme \.included \.inc-item \{[\s\S]*?background:#1b2924;[\s\S]*?border:1px solid #405249;[\s\S]*?color:#86f5c4;/);
+});
+
+test('landing videos prefer lower-bandwidth AV1 while preserving MP4 fallbacks', () => {
+  assert.match(homepage, /automintly-mobile-type-v17c-av1\.webm/);
+  assert.match(homepage, /automintly-mobile-type-v17c\.mp4/);
+  assert.match(homepage, /automintly-orbital-forward-desktop-4k-seamless-v23-av1\.webm/);
+  assert.match(homepage, /automintly-orbital-forward-desktop-4k-seamless-v23\.mp4/);
+  assert.match(spaceEntryScript, /primary\.canPlayType\(source\.type\)!==''/);
 });

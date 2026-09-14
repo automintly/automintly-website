@@ -13,7 +13,7 @@
     query:source.media?window.matchMedia(source.media):null
   })):[];
   function selectVideoSource(){
-    const selected=videoSources.find(({query})=>!query||query.matches);
+    const selected=videoSources.find(({source,query})=>(!query||query.matches)&&(!source.type||primary.canPlayType(source.type)!==''));
     if(selected&&primary.currentSrc!==selected.source.src&&primary.src!==selected.source.src){
       primary.src=selected.source.src;
       primary.load();
