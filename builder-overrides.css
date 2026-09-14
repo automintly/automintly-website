@@ -99,9 +99,7 @@
 }
 
 .outcome-systems {
-  margin-top: 28px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
+  margin-top: 18px;
 }
 
 .outcome-systems > h3 {
@@ -130,9 +128,7 @@
 .outcome-bundle .bundle-modules { margin-top: 12px; color: var(--mint-2); }
 .outcome-bundle small { display: block; margin-top: 7px; color: #899691; }
 .bundle-side { min-width: 155px; text-align: right; }
-.bundle-side strong, .bundle-side span { display: block; }
-.bundle-side strong { font-size: 20px; }
-.bundle-side span { margin: 2px 0 12px; color: var(--muted); font-size: 11px; }
+.bundle-side span { display: block; margin-top: 9px; color: var(--muted); font-size: 11px; }
 .bundle-side button { width: 100%; }
 
 @media (max-width: 650px) {

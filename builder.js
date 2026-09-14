@@ -163,8 +163,7 @@
   function renderBundles() {
     document.querySelector('#outcome-bundles').innerHTML = outcomeBundles.map(bundle => {
       const included = bundle.products.map(byId), complete = bundle.products.every(id => selected.has(id));
-      const total = included.reduce((sum, product) => sum + product.price, 0);
-      return `<article class="outcome-bundle"><div><span class="tag">CONNECTED OUTCOME</span><h3>${escapeHtml(bundle.name)}</h3><p>${escapeHtml(bundle.description)}</p><p class="bundle-modules">${included.map(product=>escapeHtml(product.name)).join(' + ')}</p><small>Each automation is itemized and can be removed separately.</small></div><div class="bundle-side"><strong>${money(total)}</strong><span>combined setup</span><button type="button" class="${complete?'secondary added':'primary'}" data-bundle="${bundle.id}">${complete?'All added ✓':'Add all modules'}</button></div></article>`;
+      return `<article class="outcome-bundle"><div><span class="tag">SERVICE BUNDLE</span><h3>${escapeHtml(bundle.name)}</h3><p>${escapeHtml(bundle.description)}</p><p class="bundle-modules">${included.map(product=>escapeHtml(product.name)).join(' + ')}</p><small>Every service stays itemized and can be removed separately.</small></div><div class="bundle-side"><button type="button" class="${complete?'secondary added':'primary'}" data-bundle="${bundle.id}">${complete?'Bundle added ✓':'Add bundle to plan'}</button><span>See the combined total in your cart.</span></div></article>`;
     }).join('');
   }
 

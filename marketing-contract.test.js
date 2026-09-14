@@ -121,24 +121,21 @@ test('Quote-to-Cash remains an itemized four-module system with honest totals', 
   assert.ok(included.every(Boolean));
   assert.equal(included.reduce((sum, product) => sum + product.price, 0), 5880);
   assert.equal(included.reduce((sum, product) => sum + product.points, 0), 9);
-  assert.match(builder, /Each automation is itemized and can be removed separately/);
+  assert.match(builder, /Every service stays itemized and can be removed separately/);
 });
 
-test('focused landing offers carry only reviewed IDs into the builder', () => {
-  const spend = offerCard('Automintly Spend Guard');
-  assert.match(spend, /\$1,995/);
-  assert.match(spend, /build-your-automation\.html\?add=spend-guard/);
-
-  const quote = offerCard('Quote-to-Cash Accelerator');
-  assert.match(quote, /\$5,880/);
-  assert.match(quote, /build-your-automation\.html\?bundle=quote-to-cash-accelerator/);
-
-  const dormant = offerCard('Dormant Customer Reactivation');
-  assert.match(dormant, /\$995/);
-  assert.match(dormant, /build-your-automation\.html\?add=old-lead-reactivation/);
-
+test('focused offers live in the shopping flow instead of a duplicate homepage pricing block', () => {
+  assert.doesNotMatch(homepage, /class="money-systems"/);
+  assert.doesNotMatch(homepage, /class="money-system-card"/);
+  assert.match(builderHtml, /<summary>See and price all automations<\/summary>/);
+  assert.match(builderHtml, /<summary>Browse service bundles<\/summary>/);
+  assert.match(builderHtml, /review every included service and the combined total in your cart/i);
+  assert.match(builder, /id:'spend-guard'/);
+  assert.match(builder, /id:'old-lead-reactivation'/);
   assert.match(builder, /getAll\('add'\)\.filter\(id => byId\(id\)\)/);
   assert.match(builder, /outcomeBundles\.find\(bundle => bundle\.id === requested\.get\('bundle'\)\)/);
+  assert.doesNotMatch(builder, /<strong>\$\{money\(total\)\}<\/strong>/);
+  assert.match(builder, /See the combined total in your cart\./);
 });
 
 test('dashboard access and external costs remain separate from setup', () => {
