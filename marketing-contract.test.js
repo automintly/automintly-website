@@ -152,28 +152,30 @@ test('website trust cleanup has an honest fixed-scope conversion path', () => {
   assert.match(sitemapXml, /https:\/\/automintly\.com\/website-trust-cleanup\.html/);
 });
 
-test('Website Upgrader offers one clearly scoped template tier from $200 to $400', () => {
-  const websiteTiers = addons.filter(addon => addon.group === 'website-upgrader');
+test('Website Studio offers six layouts across honest $200, $400, and $600 tiers', () => {
+  const websiteTiers = addons.filter(addon => addon.group === 'website-studio');
   assert.deepEqual(
     Array.from(websiteTiers, addon => [addon.id, addon.price]),
     [
-      ['website-upgrader-starter', 200],
-      ['website-upgrader-growth', 300],
-      ['website-upgrader-premium', 400]
+      ['website-studio-clean-launch', 200],
+      ['website-studio-service-snapshot', 200],
+      ['website-studio-lead-engine', 400],
+      ['website-studio-trust-builder', 400],
+      ['website-studio-brand-story', 600],
+      ['website-studio-premium-showcase', 600]
     ]
   );
-  assert.match(homepage, /<h3>Website Upgrader<\/h3>/);
-  assert.match(homepage, /Options are fixed at \$200, \$300, or \$400/);
+  assert.match(homepage, /<h3>Automintly Website Studio<\/h3>/);
+  assert.match(homepage, /fixed at \$200, \$400, or \$600/);
   assert.match(homepage, /href="website-upgrader\.html"/);
   assert.match(websiteUpgraderHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/website-upgrader\.html">/);
-  assert.match(websiteUpgraderHtml, /Choose a template\. Keep your brand\./);
-  assert.match(websiteUpgraderHtml, /build-your-automation\.html\?addon=website-upgrader-starter/);
-  assert.match(websiteUpgraderHtml, /build-your-automation\.html\?addon=website-upgrader-growth/);
-  assert.match(websiteUpgraderHtml, /build-your-automation\.html\?addon=website-upgrader-premium/);
-  assert.match(websiteUpgraderHtml, /one compatible public page/i);
+  assert.match(websiteUpgraderHtml, /Six layouts\. Three clear tiers\./);
+  websiteTiers.forEach(addon => assert.match(websiteUpgraderHtml, new RegExp(`build-your-automation\\.html\\?addon=${addon.id}`)));
+  assert.match(websiteUpgraderHtml, /one compatible one-page business website/i);
   assert.match(websiteUpgraderHtml, /does not guarantee conversions, search rankings, or accessibility certification/i);
   assert.match(builder, /requested\.getAll\('addon'\)/);
   assert.match(builder, /addon\.group/);
+  assert.match(builder, /const addonAliases/);
   assert.match(sitemapXml, /https:\/\/automintly\.com\/website-upgrader\.html/);
 });
 

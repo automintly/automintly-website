@@ -40,9 +40,12 @@
   ];
 
   const addons = [
-    {id:'website-upgrader-starter',group:'website-upgrader',name:'Website Upgrader — Starter',billing:'one-time',price:200,description:'Refresh one existing page with a clean three-section template, your approved colors, logo, copy, and mobile/desktop quality assurance.'},
-    {id:'website-upgrader-growth',group:'website-upgrader',name:'Website Upgrader — Growth',billing:'one-time',price:300,description:'Upgrade one existing page with a five-section lead-generation template, stronger calls to action, proof placement, and mobile/desktop quality assurance.'},
-    {id:'website-upgrader-premium',group:'website-upgrader',name:'Website Upgrader — Premium',billing:'one-time',price:400,description:'Upgrade one existing page with a seven-section conversion-focused template, service paths, proof, FAQ, and mobile/desktop quality assurance.'},
+    {id:'website-studio-clean-launch',group:'website-studio',name:'Website Studio — Clean Launch',billing:'one-time',price:200,description:'A clean three-section one-page website with a focused offer, services, and contact path.'},
+    {id:'website-studio-service-snapshot',group:'website-studio',name:'Website Studio — Service Snapshot',billing:'one-time',price:200,description:'A compact four-section one-page website for local services, proof, and booking or contact.'},
+    {id:'website-studio-lead-engine',group:'website-studio',name:'Website Studio — Lead Engine',billing:'one-time',price:400,description:'A five-section one-page website with stronger calls to action, proof placement, and a focused lead path.'},
+    {id:'website-studio-trust-builder',group:'website-studio',name:'Website Studio — Trust Builder',billing:'one-time',price:400,description:'A six-section one-page website built around credibility, process, testimonials, FAQs, and inquiry.'},
+    {id:'website-studio-brand-story',group:'website-studio',name:'Website Studio — Brand Story',billing:'one-time',price:600,description:'A seven-section editorial-style one-page website with richer brand storytelling, service paths, and proof.'},
+    {id:'website-studio-premium-showcase',group:'website-studio',name:'Website Studio — Premium Showcase',billing:'one-time',price:600,description:'An eight-section high-impact one-page website with advanced visual hierarchy, multiple service paths, proof, FAQs, and conversion sections.'},
     {id:'opportunity-audit',name:'Automation Opportunity Audit',billing:'one-time',price:795,description:'Workflow review and prioritized automation plan. This fee may be credited toward an approved setup proposal.'},
     {id:'data-cleanup',name:'Data Cleanup Standard',billing:'one-time',price:995,description:'Prepare one bounded source dataset for setup.'},
     {id:'custom-connector',name:'Custom Integration Connector',billing:'one-time',price:1495,description:'Design and validation for one custom connection. Provider usage is separate.'},
@@ -74,10 +77,15 @@
   const escapeHtml = value => String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const byId = id => products.find(product => product.id === id);
   const addonById = id => addons.find(addon => addon.id === id);
+  const addonAliases = {
+    'website-upgrader-starter':'website-studio-clean-launch',
+    'website-upgrader-growth':'website-studio-lead-engine',
+    'website-upgrader-premium':'website-studio-trust-builder'
+  };
 
   const requested = new URLSearchParams(window.location.search);
   const requestedProductIds = requested.getAll('add').filter(id => byId(id));
-  const requestedAddonIds = requested.getAll('addon').filter(id => addonById(id));
+  const requestedAddonIds = requested.getAll('addon').map(id => addonAliases[id] || id).filter(id => addonById(id));
   const requestedBundle = outcomeBundles.find(bundle => bundle.id === requested.get('bundle'));
   requestedProductIds.forEach(id => selected.add(id));
   requestedAddonIds.forEach(id => {
