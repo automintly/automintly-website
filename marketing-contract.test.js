@@ -56,6 +56,15 @@ test('marketing catalog keeps 30 paid products plus one included Contracting add
   );
 });
 
+test('automation rescue card offers the verified self-service kit', () => {
+  assert.match(homepage, /<div class="service-actions">/);
+  assert.match(homepage, /Use the self-service rescue kit — \$29/);
+  assert.match(
+    homepage,
+    /https:\/\/tymilroy\.gumroad\.com\/l\/workflow-rescue-kit\?utm_source=automintly&amp;utm_medium=website&amp;utm_campaign=workflow_rescue_kit&amp;utm_content=automation_rescue_card/
+  );
+});
+
 test('government opportunity support is selective and keeps submission and fee boundaries visible', () => {
   const industryTabsPosition = homepage.indexOf('<nav class="indbar"');
   const contractingBannerPosition = homepage.indexOf('<a class="contracting-banner"');
