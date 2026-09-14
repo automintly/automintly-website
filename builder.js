@@ -40,6 +40,9 @@
   ];
 
   const addons = [
+    {id:'website-upgrader-starter',group:'website-upgrader',name:'Website Upgrader — Starter',billing:'one-time',price:200,description:'Refresh one existing page with a clean three-section template, your approved colors, logo, copy, and mobile/desktop quality assurance.'},
+    {id:'website-upgrader-growth',group:'website-upgrader',name:'Website Upgrader — Growth',billing:'one-time',price:300,description:'Upgrade one existing page with a five-section lead-generation template, stronger calls to action, proof placement, and mobile/desktop quality assurance.'},
+    {id:'website-upgrader-premium',group:'website-upgrader',name:'Website Upgrader — Premium',billing:'one-time',price:400,description:'Upgrade one existing page with a seven-section conversion-focused template, service paths, proof, FAQ, and mobile/desktop quality assurance.'},
     {id:'opportunity-audit',name:'Automation Opportunity Audit',billing:'one-time',price:795,description:'Workflow review and prioritized automation plan. This fee may be credited toward an approved setup proposal.'},
     {id:'data-cleanup',name:'Data Cleanup Standard',billing:'one-time',price:995,description:'Prepare one bounded source dataset for setup.'},
     {id:'custom-connector',name:'Custom Integration Connector',billing:'one-time',price:1495,description:'Design and validation for one custom connection. Provider usage is separate.'},
@@ -74,8 +77,14 @@
 
   const requested = new URLSearchParams(window.location.search);
   const requestedProductIds = requested.getAll('add').filter(id => byId(id));
+  const requestedAddonIds = requested.getAll('addon').filter(id => addonById(id));
   const requestedBundle = outcomeBundles.find(bundle => bundle.id === requested.get('bundle'));
   requestedProductIds.forEach(id => selected.add(id));
+  requestedAddonIds.forEach(id => {
+    const addon = addonById(id);
+    if (addon.group) [...selectedAddons].filter(selectedId => addonById(selectedId)?.group === addon.group).forEach(selectedId => selectedAddons.delete(selectedId));
+    selectedAddons.add(id);
+  });
   requestedBundle?.products.forEach(id => selected.add(id));
 
   function addonTotals() {
@@ -207,7 +216,15 @@
     }
     const addonInput = event.target.closest('[data-addon]');
     if (addonInput) {
-      addonInput.checked ? selectedAddons.add(addonInput.dataset.addon) : selectedAddons.delete(addonInput.dataset.addon);
+      const addon = addonById(addonInput.dataset.addon);
+      if (addonInput.checked) {
+        if (addon.group) {
+          [...selectedAddons].filter(selectedId => addonById(selectedId)?.group === addon.group).forEach(selectedId => selectedAddons.delete(selectedId));
+        }
+        selectedAddons.add(addon.id);
+      } else {
+        selectedAddons.delete(addon.id);
+      }
       renderCart(); renderFinalPlan();
       return;
     }
@@ -225,12 +242,13 @@
   });
 
   const preselected = [...selected].map(byId);
-  if (preselected.length) {
+  if (preselected.length || selectedAddons.size) {
     const note = document.querySelector('#preselected-note');
+    const addonNames = [...selectedAddons].map(addonById).map(addon => addon.name);
     note.hidden = false;
     note.textContent = requestedBundle
       ? `${requestedBundle.name} is already in your plan as ${preselected.length} itemized automations. Complete these questions to confirm whether the full system fits.`
-      : `${preselected.map(product=>product.name).join(', ')} is already in your plan. Complete these questions so we can confirm the fit and recommend anything else you may need.`;
+      : `${[...preselected.map(product=>product.name), ...addonNames].join(', ')} is already in your plan. Complete these questions so we can confirm the fit and recommend anything else you may need.`;
   }
   renderCart();
 })();

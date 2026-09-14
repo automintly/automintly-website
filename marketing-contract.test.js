@@ -14,6 +14,7 @@ const contractingHtml = fs.readFileSync(path.join(root, 'contracting.html'), 'ut
 const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
 const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
 const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch.html'), 'utf8');
+const websiteUpgraderHtml = fs.readFileSync(path.join(root, 'website-upgrader.html'), 'utf8');
 const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
 const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
@@ -37,6 +38,7 @@ function offerCard(title) {
 
 const products = arrayConstant('products');
 const bundles = arrayConstant('outcomeBundles');
+const addons = arrayConstant('addons');
 
 test('marketing catalog keeps 30 paid products plus one included Contracting add-on', () => {
   assert.equal(products.length, 31);
@@ -148,6 +150,31 @@ test('website trust cleanup has an honest fixed-scope conversion path', () => {
   assert.match(sitemapXml, /https:\/\/automintly\.com\/website-trust-cleanup\.html/);
 });
 
+test('Website Upgrader offers one clearly scoped template tier from $200 to $400', () => {
+  const websiteTiers = addons.filter(addon => addon.group === 'website-upgrader');
+  assert.deepEqual(
+    Array.from(websiteTiers, addon => [addon.id, addon.price]),
+    [
+      ['website-upgrader-starter', 200],
+      ['website-upgrader-growth', 300],
+      ['website-upgrader-premium', 400]
+    ]
+  );
+  assert.match(homepage, /<h3>Website Upgrader<\/h3>/);
+  assert.match(homepage, /Options are fixed at \$200, \$300, or \$400/);
+  assert.match(homepage, /href="website-upgrader\.html"/);
+  assert.match(websiteUpgraderHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/website-upgrader\.html">/);
+  assert.match(websiteUpgraderHtml, /Choose a template\. Keep your brand\./);
+  assert.match(websiteUpgraderHtml, /build-your-automation\.html\?addon=website-upgrader-starter/);
+  assert.match(websiteUpgraderHtml, /build-your-automation\.html\?addon=website-upgrader-growth/);
+  assert.match(websiteUpgraderHtml, /build-your-automation\.html\?addon=website-upgrader-premium/);
+  assert.match(websiteUpgraderHtml, /one compatible public page/i);
+  assert.match(websiteUpgraderHtml, /does not guarantee conversions, search rankings, or accessibility certification/i);
+  assert.match(builder, /requested\.getAll\('addon'\)/);
+  assert.match(builder, /addon\.group/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/website-upgrader\.html/);
+});
+
 test('website trust self-check stays private in-browser and routes to the exact offer', () => {
   assert.match(trustCheckHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/website-trust-check\.html">/);
   assert.match(trustCheckHtml, /60-Second Website Trust Check/);
@@ -199,7 +226,8 @@ test('shared charcoal theme keeps text readable on every themed page', () => {
     'recovery.html',
     'roi-calculator.html',
     'privacy.html',
-    'n8n-workflow-active-but-not-running.html'
+    'n8n-workflow-active-but-not-running.html',
+    'website-upgrader.html'
   ];
 
   for (const file of themedPages) {
