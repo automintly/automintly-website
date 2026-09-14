@@ -10,6 +10,7 @@ const root = __dirname;
 const builder = fs.readFileSync(path.join(root, 'builder.js'), 'utf8');
 const builderHtml = fs.readFileSync(path.join(root, 'build-your-automation.html'), 'utf8');
 const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const industriesHtml = fs.readFileSync(path.join(root, 'industries.html'), 'utf8');
 const contractingHtml = fs.readFileSync(path.join(root, 'contracting.html'), 'utf8');
 const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.html'), 'utf8');
 const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
@@ -24,16 +25,6 @@ function arrayConstant(name) {
   const match = builder.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n  \\]);`));
   assert.ok(match, `${name} must remain a readable array constant`);
   return vm.runInNewContext(match[1], Object.create(null));
-}
-
-function offerCard(title) {
-  const heading = `<h3>${title}</h3>`;
-  const position = homepage.indexOf(heading);
-  assert.notEqual(position, -1, `${title} offer is missing`);
-  const start = homepage.lastIndexOf('<article class="money-system-card">', position);
-  const end = homepage.indexOf('</article>', position);
-  assert.ok(start >= 0 && end > position, `${title} offer card is malformed`);
-  return homepage.slice(start, end + '</article>'.length);
 }
 
 const products = arrayConstant('products');
@@ -65,9 +56,8 @@ test('automation rescue card offers the verified self-service kit', () => {
   );
 });
 
-test('government opportunity support is selective and keeps submission and fee boundaries visible', () => {
+test('Contracting has a dedicated navigation tab and an honest pre-checkout recommendation', () => {
   const industryTabsPosition = homepage.indexOf('<nav class="indbar"');
-  const contractingBannerPosition = homepage.indexOf('<a class="contracting-banner"');
   const mainPosition = homepage.indexOf('<main id="top">');
   const heroPosition = homepage.indexOf('<section class="hero"');
   const problemPosition = homepage.indexOf('<section class="problem"');
@@ -75,14 +65,16 @@ test('government opportunity support is selective and keeps submission and fee b
   const servicesPosition = homepage.indexOf('<section class="services"');
   assert.ok(industryTabsPosition >= 0 && mainPosition > industryTabsPosition);
   assert.ok(heroPosition > mainPosition && problemPosition > heroPosition);
-  assert.ok(contractingBannerPosition > problemPosition && recoveryPosition > contractingBannerPosition);
+  assert.ok(recoveryPosition > problemPosition);
   assert.ok(servicesPosition > recoveryPosition);
-  assert.match(homepage, /<a class="contracting-banner" href="contracting\.html"/);
+  assert.doesNotMatch(homepage, /class="contracting-banner"/);
+  assert.match(homepage, /<a href="contracting\.html">Contracting<\/a>/);
+  assert.match(industriesHtml, /contractingTab\.href = 'contracting\.html'/);
   assert.match(homepage, /<h3>Government opportunity search &amp; bid support<\/h3>/);
   assert.match(homepage, /<a class="service-link" href="contracting\.html">Explore Contracting/);
   assert.match(homepage, /does not submit a bid or contact an agency automatically/i);
   assert.match(homepage, /do not guarantee awards/i);
-  assert.match(homepage, /No upfront search fee/);
+  assert.match(homepage, /\$0 upfront search fee/);
   assert.match(homepage, /pay no Contracting add-on fee unless a qualifying contract is awarded/i);
   assert.match(homepage, /success fee is offered only where legally permitted and agreed in writing before bid support begins/i);
   assert.match(builderHtml, /name="goals" value="government"><span>Contracting<\/span>/);
@@ -90,6 +82,10 @@ test('government opportunity support is selective and keeps submission and fee b
   assert.match(builder, /NAICS, SAM registration, set-aside eligibility/);
   assert.match(builder, /includedAddon:true/);
   assert.match(builder, /Contracting adds no setup charge or dashboard scope points/);
+  assert.match(builderHtml, /id="contracting-recommendation"/);
+  assert.match(builder, /BEFORE YOU FINISH/);
+  assert.match(builder, /Add Contracting check · \$0 upfront/);
+  assert.match(builder, /percentage-based success fee applies only after a qualifying award, where legally permitted and agreed in writing before bid support begins/i);
 });
 
 test('Contracting has a dedicated, evidence-bounded service page', () => {

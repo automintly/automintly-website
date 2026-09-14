@@ -16,6 +16,23 @@
   border-top: 1px solid var(--line);
 }
 
+.contracting-recommendation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid rgba(143,232,199,.48);
+  border-radius: 14px;
+  background: rgba(143,232,199,.08);
+}
+
+.contracting-recommendation h3 { margin: 0 0 8px; font-size: 22px; }
+.contracting-recommendation p:not(.eyebrow) { margin: 0; color: var(--muted); font-size: 13px; }
+.contracting-recommendation a { display: inline-flex; margin-top: 10px; color: var(--mint); font-size: 12px; font-weight: 800; }
+.contracting-action { white-space: nowrap; }
+
 .preselected-note {
   margin: -10px 0 26px;
   padding: 14px 16px;
@@ -96,6 +113,9 @@
   .addon-card b {
     grid-column: 2;
   }
+
+  .contracting-recommendation { grid-template-columns: 1fr; }
+  .contracting-action { width: 100%; }
 }
 
 .outcome-systems {

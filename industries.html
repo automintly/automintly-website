@@ -76,6 +76,7 @@
   }
   .indtab:hover{ color:var(--navy-900); }
   .indtab[aria-selected="true"]{ color:var(--navy-900); border-bottom-color:var(--blue-600); }
+  .indtab-link{ display:inline-flex; align-items:center; text-decoration:none; }
 
   /* Hero */
   .hero{ background:var(--bg-2); border-bottom:1px solid var(--line); }
@@ -520,6 +521,11 @@ const INDUSTRIES = {
     b.dataset.key = k;
     bar.appendChild(b);
   });
+  var contractingTab = document.createElement('a');
+  contractingTab.className = 'indtab indtab-link';
+  contractingTab.href = 'contracting.html';
+  contractingTab.textContent = 'Contracting';
+  bar.appendChild(contractingTab);
 
   function el(id){ return document.getElementById(id); }
 

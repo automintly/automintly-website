@@ -121,13 +121,20 @@
     document.querySelector('#addons-monthly').textContent = `${money(optional.monthly)}/mo`;
   }
 
+  function renderContractingRecommendation() {
+    const product = byId('government-opportunity-finder');
+    const added = selected.has(product.id);
+    document.querySelector('#contracting-recommendation').innerHTML = `<div><p class="eyebrow">BEFORE YOU FINISH</p><h3 id="contracting-recommendation-title">Check whether Contracting fits your business</h3><p>Automintly can screen official opportunities against your verified capabilities at no upfront search charge. A percentage-based success fee applies only after a qualifying award, where legally permitted and agreed in writing before bid support begins. No bid is submitted automatically.</p><a href="contracting.html">See how Contracting works</a></div><button type="button" class="${added?'secondary added':'primary'} contracting-action" data-product="${product.id}">${added?'Contracting check added ✓':'Add Contracting check · $0 upfront'}</button>`;
+  }
+
   function renderFinalPlan() {
     const chosen = [...selected].map(byId), optional = addonTotals();
     const setup = chosen.reduce((total,product)=>total+product.price,0), dashboard = dashboardPlan();
     document.querySelector('#final-plan').innerHTML = `<div class="plan-breakdown">${chosen.map(product=>`<div class="plan-row"><span>${escapeHtml(product.name)}${product.includedAddon?'':' setup'}</span><strong>${product.includedAddon?'Included · $0 upfront':money(product.price)}</strong></div>`).join('')}</div><div class="plan-total"><div><span>Automation setup total</span><strong>${money(setup)}</strong></div><div><span>${escapeHtml(dashboard.name)}</span><strong>${money(dashboard.price)}/month</strong></div>${optional.oneTime?`<div><span>Optional one-time services</span><strong>${money(optional.oneTime)}</strong></div>`:''}${optional.monthly?`<div><span>Optional monthly services</span><strong>${money(optional.monthly)}/month</strong></div>`:''}</div><p class="fineprint">Dashboard access is a separate required monthly fee based on automation scope. Contracting adds no setup charge or dashboard scope points. Any award-based success fee requires a legally permitted signed agreement before bid support. Optional services are separate selections. Required phone, messaging, AI, CRM, calendar, hosting, and other third-party charges are paid separately by the customer.</p>`;
+    renderContractingRecommendation();
     document.querySelector('#addon-list').innerHTML = addons.map(addon=>`<label class="addon-card"><input type="checkbox" data-addon="${addon.id}" ${selectedAddons.has(addon.id)?'checked':''}><span><strong>${escapeHtml(addon.name)}</strong><small>${escapeHtml(addon.description)}</small></span><b>${money(addon.price)}${addon.billing==='monthly'?'/mo':' once'}</b></label>`).join('');
     const addonLines = optional.chosen.length ? ['', 'Optional services:', ...optional.chosen.map(addon=>`- ${addon.name}: ${money(addon.price)}${addon.billing==='monthly'?'/month':' one-time'}`), `Optional one-time total: ${money(optional.oneTime)}`, `Optional monthly total: ${money(optional.monthly)}/month`] : [];
-    const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${money(product.price)} setup`),'',`Automation setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,...addonLines,'','Third-party provider and usage charges are separate. No payment is authorized by this email.',`Business description: ${profile.description}`].join('\n');
+    const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${product.includedAddon?'$0 upfront search fee':`${money(product.price)} setup`}`),'',`Automation setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,...addonLines,'','Contracting success-fee terms, if applicable, require a legally permitted signed agreement before bid support. Third-party provider and usage charges are separate. No payment is authorized by this email.',`Business description: ${profile.description}`].join('\n');
     document.querySelector('#email-plan').href = `mailto:automintly@gmail.com?subject=${encodeURIComponent(`Automation plan for ${profile.businessName}`)}&body=${encodeURIComponent(body)}`;
   }
 
@@ -203,6 +210,7 @@
       document.querySelectorAll(`[data-product="${id}"]`).forEach(button=>{button.textContent=selected.has(id)?'Added ✓':'Add to plan';button.className=selected.has(id)?'secondary added':'primary';});
       renderCart();
       renderBundles();
+      if (!document.querySelector('#step-three').hidden) renderContractingRecommendation();
       return;
     }
     const bundleButton = event.target.closest('[data-bundle]');
