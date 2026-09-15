@@ -3,7 +3,12 @@
 (function () {
   const downloadButton = document.getElementById('download-dashboard');
   const status = document.getElementById('install-status');
-  const dashboardUrl = 'https://automintly-platform-staging.onrender.com/platform/login';
+  const protectedDashboardUrl = 'https://automintly-platform-staging.onrender.com/platform/login';
+  const localDashboardUrl = new URL('/platform', location.origin);
+  localDashboardUrl.port = '3100';
+  const localPreview = ['localhost', '127.0.0.1'].includes(location.hostname);
+  const dashboardUrl = localPreview ? localDashboardUrl.href : protectedDashboardUrl;
+  document.querySelectorAll('[data-dashboard-access]').forEach(function (link) { link.href = dashboardUrl; });
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
