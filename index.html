@@ -143,12 +143,25 @@
   .service-link{display:inline-flex;margin-top:16px;color:var(--blue-600);font-size:13.5px;font-weight:700;text-decoration:none}
   .service-link:hover{text-decoration:underline}
   .service-actions{display:flex;flex-wrap:wrap;gap:0 18px}
-  .navlinks{ display:flex; gap:32px; list-style:none; margin:0; padding:0; }
+  .navlinks{ display:flex; gap:24px; list-style:none; margin:0; padding:0; }
   .navlinks a{ text-decoration:none; font-size:14.5px; color:var(--muted); font-weight:500; }
   .navlinks a:hover, .navlinks a:focus-visible{ color:var(--navy-900); }
+  .navlinks .dashboard-link{ color:var(--blue-600); font-weight:700; }
+  .nav-account{ display:none; color:var(--blue-600); border:1px solid currentColor; border-radius:var(--radius); padding:9px 12px; font-size:13px; font-weight:700; text-decoration:none; }
+  .nav-cta-short{ display:none; }
   .navcta{ background:var(--blue-600); color:#fff; text-decoration:none; padding:10px 20px; border-radius:var(--radius); font-size:14px; font-weight:600; }
   .navcta:hover, .navcta:focus-visible, .navcta:active{ background:var(--blue-500); color:#fff; }
-  @media (max-width:840px){ .navlinks{ display:none; } }
+  @media (max-width:840px){
+    .nav{ min-height:70px; padding:16px 14px; gap:8px; }
+    .logo{ font-size:21px; margin-right:auto; }
+    .navlinks{ display:none; }
+    .nav-account{ display:inline-flex; align-items:center; justify-content:center; }
+    .navcta{ padding:9px 12px; font-size:13px; }
+  }
+  @media (max-width:420px){
+    .nav-cta-full{ display:none; }
+    .nav-cta-short{ display:inline; }
+  }
 
   /* ---------- Industry bar ---------- */
   .indbar{ background:var(--bg-2); border-bottom:1px solid var(--line); }
@@ -487,8 +500,10 @@
       <li><a href="#commitments">Commitments</a></li>
       <li><a href="#recovery">Recovery</a></li>
       <li><a href="#packages">Pricing</a></li>
+      <li><a class="dashboard-link" href="client-dashboard.html">Client Dashboard</a></li>
     </ul>
-    <a href="build-your-automation.html" class="navcta">Build Your Automation</a>
+    <a href="client-dashboard.html" class="nav-account">Dashboard</a>
+    <a href="build-your-automation.html" class="navcta"><span class="nav-cta-full">Build Your Automation</span><span class="nav-cta-short">Build</span></a>
   </div>
 </header>
 
@@ -1502,6 +1517,7 @@
           <li><a href="website-trust-check.html">Website Trust Check</a></li>
           <li><a href="website-trust-cleanup.html">Website Trust Cleanup</a></li>
           <li><a href="website-upgrader.html">Website Studio</a></li>
+          <li><a href="client-dashboard.html">Client Dashboard</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1514,6 +1530,7 @@
           <li><a href="cookie-policy.html">Cookie policy</a></li>
           <li><a href="refund-policy.html">Refund policy</a></li>
           <li><a href="accessibility.html">Accessibility</a></li>
+          <li><a href="client-dashboard.html#install">Install dashboard app</a></li>
         </ul>
       </div>
     </div>

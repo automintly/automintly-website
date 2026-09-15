@@ -1,0 +1,19 @@
+{
+  "id": "/client-dashboard.html",
+  "name": "Automintly Client Dashboard",
+  "short_name": "Automintly",
+  "description": "Secure access to your Automintly automation workspace.",
+  "start_url": "/client-dashboard.html?source=installed",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#151918",
+  "theme_color": "#101513",
+  "icons": [
+    {
+      "src": "/dashboard-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

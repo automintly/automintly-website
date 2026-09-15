@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Client Dashboard | Automintly</title>
+  <meta name="description" content="Open your protected Automintly workspace or install the Automintly dashboard launcher on your phone or computer.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://automintly.com/client-dashboard.html">
+  <link rel="manifest" href="dashboard.webmanifest">
+  <link rel="icon" href="dashboard-icon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#101513">
+  <link rel="stylesheet" href="compliance.css?v=legal-v1">
+  <script defer src="site-compliance.js?v=legal-v1"></script>
+  <script defer src="dashboard-install.js"></script>
+  <style>
+    :root{--bg:#151918;--surface:#1d2321;--surface-2:#222a27;--line:#3d4a45;--text:#f4fff9;--muted:#b8c9c1;--mint:#75e6b7;--mint-dark:#08291c;--max:1120px}
+    *{box-sizing:border-box}
+    html{color-scheme:dark;scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+    a{color:inherit}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+    header{border-bottom:1px solid var(--line);background:rgba(21,25,24,.94)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{font-size:24px;font-weight:850;letter-spacing:-.04em;text-decoration:none}.logo span{color:var(--mint)}
+    .return{color:var(--muted);font-size:14px;font-weight:700;text-decoration:none}.return:hover,.return:focus-visible{color:var(--text)}
+    main{min-height:calc(100vh - 160px)}
+    .hero{padding:88px 0 54px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 75% 5%,rgba(117,230,183,.13),transparent 34%)}
+    .eyebrow{margin:0 0 17px;color:var(--mint);font-size:12px;font-weight:850;letter-spacing:.13em;text-transform:uppercase}
+    h1{max-width:780px;margin:0;font-size:clamp(42px,7vw,78px);line-height:.98;letter-spacing:-.055em}
+    .lead{max-width:690px;margin:25px 0 0;color:var(--muted);font-size:clamp(17px,2vw,20px)}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+    .button{min-height:50px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--mint);border-radius:10px;padding:0 22px;font:inherit;font-size:15px;font-weight:800;text-decoration:none;cursor:pointer}
+    .button.primary{background:var(--mint);color:var(--mint-dark)}
+    .button.secondary{background:transparent;color:var(--text)}
+    .button:hover,.button:focus-visible{outline:3px solid rgba(117,230,183,.24);outline-offset:2px}
+    .notice{max-width:780px;margin-top:24px;padding:15px 17px;border:1px solid #4d665d;border-radius:9px;background:#1a2521;color:#d4e4dd;font-size:14px}
+    .status-badge{display:inline-flex;margin-right:8px;color:var(--mint);font-weight:850;text-transform:uppercase;letter-spacing:.06em}
+    .choices{padding:58px 0 78px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .card{padding:30px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+    .card h2{margin:0;font-size:25px;letter-spacing:-.025em}.card p{margin:13px 0 0;color:var(--muted)}
+    .card .button{margin-top:24px}
+    .card ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:11px;color:#dce9e3;font-size:14px}
+    .card li::before{content:"✓";margin-right:10px;color:var(--mint);font-weight:900}
+    #install-status{min-height:48px;margin-top:16px;color:#dce9e3;font-size:14px}
+    .security{margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+    .security strong{color:var(--mint)}
+    footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    @media(max-width:720px){.wrap{width:min(100% - 28px,var(--max))}.hero{padding:60px 0 42px}.grid{grid-template-columns:1fr}.card{padding:24px}.actions,.actions .button,.card .button{width:100%}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap nav" aria-label="Dashboard access navigation">
+      <a class="logo" href="index.html">auto<span>mintly</span></a>
+      <a class="return" href="index.html">Return to website</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="dashboard-title">
+      <div class="wrap">
+        <p class="eyebrow">Automintly client access</p>
+        <h1 id="dashboard-title">Your automations.<br>Your results. One dashboard.</h1>
+        <p class="lead">Open your protected Automintly workspace from any browser, or install this lightweight dashboard launcher on your phone or computer.</p>
+        <div class="actions">
+          <a class="button primary" href="https://automintly-platform-staging.onrender.com/platform/login" target="_blank" rel="noopener noreferrer">Open protected dashboard</a>
+          <a class="button secondary" href="#install">Install dashboard app</a>
+        </div>
+        <div class="notice"><span class="status-badge">Invitation-only</span>Client access is currently limited to approved pilot workspaces while production identity, recovery, backups, capacity and provider checks are completed. Use the protected dashboard only after Automintly confirms that your workspace has been activated.</div>
+      </div>
+    </section>
+    <section class="choices" id="install">
+      <div class="wrap grid">
+        <article class="card">
+          <h2>Open in your browser</h2>
+          <p>Use the secure sign-in page whenever you need to review your automations, setup status, activity, analytics or evidence.</p>
+          <ul>
+            <li>Workspace access remains account-protected</li>
+            <li>Each business is separated by server-side authorization</li>
+            <li>Practice results remain separate from verified live outcomes</li>
+          </ul>
+          <a class="button secondary" href="https://automintly-platform-staging.onrender.com/platform/login" target="_blank" rel="noopener noreferrer">Open protected dashboard</a>
+        </article>
+        <article class="card">
+          <h2>Install the dashboard launcher</h2>
+          <p>Add Automintly to your home screen, desktop or app list for faster access without downloading an unsafe installer.</p>
+          <ul>
+            <li>Launches in its own app-style window where supported</li>
+            <li>Works on modern desktop and mobile browsers</li>
+            <li>The launcher does not cache customer records</li>
+          </ul>
+          <button class="button primary" id="install-dashboard" type="button">Install dashboard app</button>
+          <p id="install-status" role="status" aria-live="polite">Installation is completed by your browser so you stay in control.</p>
+        </article>
+      </div>
+      <div class="wrap">
+        <div class="security"><strong>Important:</strong> The downloadable experience is a web-app launcher, not a copy of your business data. Sensitive records stay behind the protected dashboard sign-in and are never stored in this public website’s offline cache.</div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap">© 2026 Automintly. Client access and activation are provided under the applicable service agreement.</div></footer>
+</body>
+</html>
