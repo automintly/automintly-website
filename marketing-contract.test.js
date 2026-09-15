@@ -66,6 +66,8 @@ test('customers have an honest dashboard access and install path', () => {
   assert.match(dashboardInstall, /new Blob\(\[launcher\]/);
   assert.match(dashboardInstall, /link\.download = 'automintly-dashboard\.html'/);
   assert.match(dashboardInstall, /automintly-platform-staging\.onrender\.com\/platform\/login/);
+  assert.match(dashboardInstall, /localDashboardUrl\.port = '3100'/);
+  assert.match(dashboardInstall, /data-dashboard-access/);
   assert.doesNotMatch(dashboardInstall, /localStorage|sessionStorage|document\.cookie/);
   assert.match(dashboardInstall, /serviceWorker\.register\('dashboard-sw\.js'\)/);
   assert.match(dashboardServiceWorker, /automintly-dashboard-launcher-v3/);
