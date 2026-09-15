@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'automintly-dashboard-launcher-v1';
+const CACHE_NAME = 'automintly-dashboard-launcher-v2';
 const PUBLIC_SHELL = [
   '/client-dashboard.html',
   '/dashboard-install.js',
@@ -13,6 +13,8 @@ const PUBLIC_SHELL = [
 self.addEventListener('install', function (event) {
   event.waitUntil(caches.open(CACHE_NAME).then(function (cache) {
     return cache.addAll(PUBLIC_SHELL);
+  }).then(function () {
+    return self.skipWaiting();
   }));
 });
 
@@ -33,7 +35,15 @@ self.addEventListener('fetch', function (event) {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin || !PUBLIC_SHELL.includes(url.pathname)) return;
 
-  event.respondWith(caches.match(event.request, { ignoreSearch: true }).then(function (cached) {
-    return cached || fetch(event.request);
+  event.respondWith(fetch(event.request).then(function (response) {
+    if (response.ok) {
+      const copy = response.clone();
+      event.waitUntil(caches.open(CACHE_NAME).then(function (cache) {
+        return cache.put(event.request, copy);
+      }));
+    }
+    return response;
+  }).catch(function () {
+    return caches.match(event.request, { ignoreSearch: true });
   }));
 });

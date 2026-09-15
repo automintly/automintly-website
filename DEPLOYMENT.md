@@ -4,19 +4,21 @@
 
 The public homepage now has a visible Client Dashboard link on desktop, a compact
 Dashboard control on mobile, and matching footer access. A dedicated client
-access page provides an Open protected dashboard link plus an installable web-app
-launcher for supported desktop and mobile browsers. The launcher caches only its
-public shell; it does not cache customer records or protected dashboard pages.
+access page provides a safe sample dashboard, a client-access request path, a
+clearly labeled pilot-team staging link, and an installable web-app launcher for
+supported desktop and mobile browsers. The launcher caches only its public shell;
+it does not cache customer records or protected dashboard pages.
 
-Access is accurately labeled invitation-only. The current destination is the
-existing protected staging sign-in, not a production customer portal. Production
+Customer access is accurately labeled as pre-launch. The staging destination is
+available only through a clearly labeled pilot-team link and is not a production
+customer portal. Production
 identity, recovery, backups, capacity and provider verification remain required
 before real customer activation.
 
-All 27 marketing, compliance, accessibility and catalog tests pass. Desktop and
+All 17 marketing, compliance, accessibility and catalog tests pass. Desktop and
 390×844 browser checks confirmed readable layouts, visible access controls and no
-console warnings or errors. This release is prepared locally and has not been
-published.
+horizontal overflow. The customer-access page is published at
+`https://automintly.com/client-dashboard.html`.
 
 ## Published desktop forward-loop v23
 
