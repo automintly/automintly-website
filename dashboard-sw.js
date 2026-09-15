@@ -5,6 +5,8 @@ const PUBLIC_SHELL = [
   '/client-dashboard.html',
   '/dashboard-install.js',
   '/dashboard-icon.svg',
+  '/dashboard-icon-192.png',
+  '/dashboard-icon-512.png',
   '/dashboard-manifest.json'
 ];
 

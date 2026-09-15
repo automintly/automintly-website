@@ -52,6 +52,10 @@ test('customers have an honest dashboard access and install path', () => {
   assert.doesNotMatch(clientDashboardHtml, /127\.0\.0\.1|localhost/);
   assert.equal(dashboardManifest.start_url, '/client-dashboard.html?source=installed');
   assert.equal(dashboardManifest.display, 'standalone');
+  assert.deepEqual(dashboardManifest.icons.slice(0, 2).map(icon => [icon.src, icon.sizes, icon.type]), [
+    ['/dashboard-icon-192.png', '192x192', 'image/png'],
+    ['/dashboard-icon-512.png', '512x512', 'image/png']
+  ]);
   assert.match(dashboardInstall, /beforeinstallprompt/);
   assert.match(dashboardInstall, /serviceWorker\.register\('dashboard-sw\.js'\)/);
   assert.match(dashboardServiceWorker, /url\.origin !== self\.location\.origin/);
