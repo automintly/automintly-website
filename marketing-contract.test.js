@@ -309,8 +309,10 @@ test('homepage leads with the HVAC missed-call offer and a two-stage sales path'
   assert.match(homepage, /Implementation is quoted separately\./);
   assert.match(homepage, /Lead added to the CRM workflow/);
   assert.match(homepage, /Follow-up queue with human controls/);
-  assert.match(homepage, /fetch\('\/'/);
-  assert.doesNotMatch(homepage, /sweet-puffpuff-9243c4\.netlify\.app/);
+  assert.match(homepage, /action="https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/"/);
+  assert.match(homepage, /fetch\('https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/'/);
+  assert.match(homepage, /mode: 'no-cors'/);
+  assert.match(homepage, /cannot confirm receipt/i);
 });
 
 test('industry pages use the same free-health-check and paid-audit path', () => {

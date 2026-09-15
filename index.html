@@ -1441,7 +1441,7 @@
       <div class="form-card">
         <h3>Request the free health check</h3>
         <p>We reply within one business day.</p>
-        <form id="contact-form" name="health-check" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form id="contact-form" name="health-check" method="POST" action="https://sweet-puffpuff-9243c4.netlify.app/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="health-check">
           <p hidden>
             <label>Do not fill this out: <input name="bot-field"></label>
@@ -1689,16 +1689,17 @@
         window.AutomintlyConversions.track('estimate_form_submit', { page: window.location.pathname });
       }
 
-      fetch('/', {
+      fetch('https://sweet-puffpuff-9243c4.netlify.app/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: data.toString()
+        body: data.toString(),
+        mode: 'no-cors'
       }).then(function(res){
-        if(!res.ok) throw new Error('Request failed');
+        if(res.type !== 'opaque' && !res.ok) throw new Error('Request failed');
         status.className = 'form-status ok';
-        status.textContent = 'Thanks — your request was received. We\'ll be in touch within one business day.';
+        status.textContent = res.type === 'opaque' ? 'Your request was sent, but this browser cannot confirm receipt. For a confirmed follow-up, email automintly@gmail.com.' : 'Thanks — we\'ll be in touch within one business day.';
         if(window.AutomintlyConversions){
-          window.AutomintlyConversions.track('estimate_form_success', { page: window.location.pathname });
+          window.AutomintlyConversions.track(res.type === 'opaque' ? 'estimate_form_submitted_unverified' : 'estimate_form_success', { page: window.location.pathname });
         }
         form.reset();
         updateProjectTypes();
