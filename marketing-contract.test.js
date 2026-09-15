@@ -230,7 +230,6 @@ test('shared charcoal theme keeps text readable on every themed page', () => {
     'industries.html',
     'recovery.html',
     'roi-calculator.html',
-    'privacy.html',
     'n8n-workflow-active-but-not-running.html',
     'website-upgrader.html'
   ];
@@ -245,6 +244,9 @@ test('shared charcoal theme keeps text readable on every themed page', () => {
   assert.match(charcoalTheme, /body\.charcoal-theme \.money-systems \{[\s\S]*?background:var\(--bg-2\);/);
   assert.match(charcoalTheme, /body\.charcoal-theme \.money-systems-head p,[\s\S]*?\.money-system-note \{ color:#b8c8c0; \}/);
   assert.match(charcoalTheme, /body\.charcoal-theme \.offer-facts dd \{ color:#dce8e2; \}/);
+  const privacyHtml = fs.readFileSync(path.join(root, 'privacy.html'), 'utf8');
+  assert.match(privacyHtml, /compliance\.css\?v=legal-v1/);
+  assert.match(privacyHtml, /<body class="legal-page">/);
 });
 
 test('included dashboard band uses the green Automintly palette', () => {

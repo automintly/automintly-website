@@ -4,6 +4,8 @@
   var config = window.AUTOMINTLY_TRACKING_CONFIG || {};
   var enabled = config.enabled === true;
   var provider = String(config.provider || "none").toLowerCase();
+  var consentCookie = "automintly_cookie_choice_v1";
+  var providerLoaded = false;
   var allowedEvents = {
     estimate_cta_click: true,
     estimate_form_start: true,
@@ -34,7 +36,7 @@
   }
 
   function track(name, properties) {
-    if (!enabled || !allowedEvents[name]) return false;
+    if (!enabled || !hasAnalyticsConsent() || !providerLoaded || !allowedEvents[name]) return false;
 
     var safe = cleanProperties(properties);
     if (provider === "ga4" && typeof window.gtag === "function") {
@@ -52,7 +54,7 @@
   }
 
   function loadProvider() {
-    if (!enabled) return;
+    if (!enabled || !hasAnalyticsConsent() || providerLoaded) return;
 
     var script;
     if (provider === "ga4" && /^G-[A-Z0-9]+$/.test(config.measurementId || "")) {
@@ -64,6 +66,7 @@
       script.async = true;
       script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(config.measurementId);
       document.head.appendChild(script);
+      providerLoaded = true;
     } else if (provider === "plausible" && /^[a-z0-9.-]+$/i.test(config.domain || "")) {
       window.plausible = window.plausible || function () {
         (window.plausible.q = window.plausible.q || []).push(arguments);
@@ -73,15 +76,69 @@
       script.dataset.domain = config.domain;
       script.src = "https://plausible.io/js/script.js";
       document.head.appendChild(script);
+      providerLoaded = true;
     }
   }
 
+  function readConsent() {
+    var match = document.cookie.match(new RegExp("(?:^|; )" + consentCookie + "=([^;]*)"));
+    return match ? decodeURIComponent(match[1]) : "";
+  }
+
+  function privacySignalBlocksAnalytics() {
+    return navigator.globalPrivacyControl === true || navigator.doNotTrack === "1" || window.doNotTrack === "1";
+  }
+
+  function hasAnalyticsConsent() {
+    return readConsent() === "analytics" && !privacySignalBlocksAnalytics();
+  }
+
+  function saveConsent(choice) {
+    var secure = location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = consentCookie + "=" + encodeURIComponent(choice) + "; Max-Age=15552000; Path=/; SameSite=Lax" + secure;
+  }
+
+  function closeBanner() {
+    var banner = document.getElementById("automintly-cookie-banner");
+    if (banner) banner.remove();
+  }
+
+  function showConsentBanner() {
+    if (!enabled || readConsent() || privacySignalBlocksAnalytics() || document.getElementById("automintly-cookie-banner")) return;
+    var banner = document.createElement("section");
+    banner.id = "automintly-cookie-banner";
+    banner.className = "cookie-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-modal", "false");
+    banner.setAttribute("aria-labelledby", "cookie-banner-title");
+    banner.innerHTML = '<h2 id="cookie-banner-title">Optional analytics choice</h2>' +
+      '<p>We use necessary site technology. Optional, privacy-limited analytics will run only if you allow it. Read our <a href="cookie-policy.html">cookie policy</a>.</p>' +
+      '<div class="cookie-actions"><button type="button" data-cookie-choice="analytics">Allow optional analytics</button>' +
+      '<button type="button" class="cookie-decline" data-cookie-choice="necessary">Use necessary cookies only</button></div>';
+    document.body.appendChild(banner);
+    banner.querySelectorAll("button[data-cookie-choice]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var choice = button.getAttribute("data-cookie-choice") === "analytics" ? "analytics" : "necessary";
+        saveConsent(choice);
+        closeBanner();
+        if (choice === "analytics") loadProvider();
+        document.dispatchEvent(new CustomEvent("automintly:consent", { detail: { choice: choice } }));
+      });
+    });
+  }
+
   window.AutomintlyConversions = Object.freeze({
-    enabled: enabled,
+    enabled: enabled && hasAnalyticsConsent(),
     track: track
   });
 
   loadProvider();
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showConsentBanner);
+  } else {
+    showConsentBanner();
+  }
 
   document.addEventListener("click", function (event) {
     var link = event.target.closest("a");

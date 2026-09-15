@@ -14,9 +14,6 @@
   <meta property="og:description" content="Know when the public path customers use to book, inquire, or buy stops working as expected.">
   <meta property="og:image" content="https://automintly.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy:#0a2240; --navy-soft:#163a63; --green:#35a889; --green-dark:#247b68;
@@ -27,14 +24,14 @@
     a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
     .utility{background:var(--navy);color:#d5e1ef;font-size:13px}.utility .wrap{display:flex;justify-content:space-between;gap:20px;padding:8px 0}.utility a{color:#fff;font-weight:700;text-decoration:none}
     header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
-    nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{color:var(--navy);font-size:24px;font-weight:800;letter-spacing:-.04em;text-decoration:none}.logo span{color:var(--green)}.nav-link{color:var(--navy);font-size:14px;font-weight:700;text-decoration:none}.nav-link:hover{color:var(--green-dark)}
+    nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{color:var(--navy);font-size:24px;font-weight:800;letter-spacing:-.04em;text-decoration:none}.logo span{color:var(--green-dark)}.nav-link{color:var(--navy);font-size:14px;font-weight:700;text-decoration:none}.nav-link:hover{color:var(--green-dark)}
     .hero{overflow:hidden;background:linear-gradient(150deg,#f9fcff 0%,#edf7f4 100%);border-bottom:1px solid var(--line)}.hero-grid{min-height:650px;display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center;padding:84px 0}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green-dark);font-size:13px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}.eyebrow::before{content:"";width:30px;height:2px;background:var(--green)}
     h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.04em;line-height:1.08}h1{margin-top:20px;font-size:clamp(44px,6vw,76px);max-width:760px}h2{font-size:clamp(34px,4.5vw,52px)}h3{font-size:21px}.hero-copy{margin:24px 0 0;color:var(--muted);font-size:19px;max-width:640px}
     .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:32px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 23px;border-radius:10px;background:var(--green-dark);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 12px 24px rgba(36,123,104,.2)}.button:hover{background:#1d6858}.quiet-link{color:var(--navy);font-size:14px;font-weight:700;text-decoration:none}.quiet-link:hover{text-decoration:underline}
     .price-card{position:relative;padding:34px;background:var(--navy);color:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.price-card::after{content:"";position:absolute;right:-70px;top:-70px;width:190px;height:190px;border-radius:50%;background:rgba(53,168,137,.22)}.price-label{color:#a9c8d9;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.price{margin:10px 0 2px;font-size:52px;font-weight:800;letter-spacing:-.06em;line-height:1}.price-note{color:#cbd8e6;font-size:14px}.checklist{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:15px}.checklist li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}.check{width:22px;height:22px;display:inline-grid;place-items:center;border-radius:50%;background:var(--green);color:var(--navy);font-size:12px;font-weight:900}
     section{padding:92px 0}.section-head{max-width:760px;margin-bottom:42px}.section-head p{color:var(--muted);font-size:17px;margin:17px 0 0}.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{padding:25px;background:var(--wash);border:1px solid var(--line);border-radius:16px}.card-num{color:var(--green-dark);font-size:12px;font-weight:800;letter-spacing:.12em}.card h3{margin-top:13px}.card p{margin:11px 0 0;color:var(--muted);font-size:15px}
-    .scope{background:var(--navy);color:#fff}.scope h2,.scope h3{color:#fff}.scope .section-head p{color:#cbd8e6}.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.scope-card{padding:30px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.055)}.scope-card ul{margin:22px 0 0;padding-left:20px;color:#dbe4ee}.scope-card li+li{margin-top:10px}
+    .scope{background:var(--navy);color:#fff}.scope h2,.scope h3{color:#fff}.scope .eyebrow{color:#86f5c4}.scope .section-head p{color:#cbd8e6}.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.scope-card{padding:30px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.055)}.scope-card ul{margin:22px 0 0;padding-left:20px;color:#dbe4ee}.scope-card li+li{margin-top:10px}
     .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.step{padding:30px 0 0;border-top:3px solid var(--mint)}.step strong{color:var(--green-dark);font-size:13px;text-transform:uppercase;letter-spacing:.1em}.step h3{margin-top:13px}.step p{color:var(--muted);margin:12px 0 0}.proof{padding:24px;border:1px solid #b8e2d5;background:var(--mint);border-radius:16px;color:var(--navy)}
     .faq{background:var(--wash)}details{padding:21px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;color:var(--navy);font-weight:800;list-style:none}summary::-webkit-details-marker{display:none}details p{color:var(--muted);max-width:780px;margin:12px 0 0}
     .final{padding:88px 0;background:linear-gradient(120deg,var(--mint),#f8fcff)}.final-box{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.final p{color:var(--muted);max-width:680px;margin:15px 0 0}footer{padding:36px 0;border-top:1px solid var(--line)}.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--muted);font-size:13px}.foot a{color:var(--navy);text-decoration:none;font-weight:700}
@@ -56,6 +53,8 @@
   </script>
   <script src="conversion-tracking-config.js"></script>
   <script defer src="conversion-tracking.js"></script>
+  <link rel="stylesheet" href="compliance.css?v=legal-v1">
+  <script defer src="site-compliance.js?v=legal-v1"></script>
 </head>
 <body>
   <div class="utility"><div class="wrap"><span>Public customer-path monitoring</span><a href="mailto:automintly@gmail.com?subject=Revenue%20Path%20Watch">automintly@gmail.com</a></div></div>
@@ -140,5 +139,3 @@
   <footer><div class="wrap foot"><a class="logo" href="https://automintly.com/">auto<span>mintly</span></a><span>© 2026 Automintly. All rights reserved.</span><a href="https://automintly.com/privacy.html">Privacy policy</a></div></footer>
 </body>
 </html>
-
-
