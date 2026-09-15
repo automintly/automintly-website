@@ -5,7 +5,7 @@ const PUBLIC_SHELL = [
   '/client-dashboard.html',
   '/dashboard-install.js',
   '/dashboard-icon.svg',
-  '/dashboard.webmanifest'
+  '/dashboard-manifest.json'
 ];
 
 self.addEventListener('install', function (event) {
