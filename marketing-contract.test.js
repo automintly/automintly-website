@@ -16,6 +16,10 @@ const trustCleanupHtml = fs.readFileSync(path.join(root, 'website-trust-cleanup.
 const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html'), 'utf8');
 const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch.html'), 'utf8');
 const websiteUpgraderHtml = fs.readFileSync(path.join(root, 'website-upgrader.html'), 'utf8');
+const clientDashboardHtml = fs.readFileSync(path.join(root, 'client-dashboard.html'), 'utf8');
+const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard.webmanifest'), 'utf8'));
+const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install.js'), 'utf8');
+const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
 const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
 const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
 const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf8');
@@ -31,6 +35,25 @@ function arrayConstant(name) {
 const products = arrayConstant('products');
 const bundles = arrayConstant('outcomeBundles');
 const addons = arrayConstant('addons');
+
+test('customers have an honest dashboard access and install path', () => {
+  assert.match(homepage, /href="client-dashboard\.html">Client Dashboard<\/a>/);
+  assert.match(homepage, /href="client-dashboard\.html" class="nav-account">Dashboard<\/a>/);
+  assert.match(homepage, /href="client-dashboard\.html#install">Install dashboard app<\/a>/);
+  assert.match(clientDashboardHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/client-dashboard\.html">/);
+  assert.match(clientDashboardHtml, /Open protected dashboard/);
+  assert.match(clientDashboardHtml, /Install dashboard app/);
+  assert.match(clientDashboardHtml, /invitation-only/i);
+  assert.match(clientDashboardHtml, /does not cache customer records/i);
+  assert.match(clientDashboardHtml, /https:\/\/automintly-platform-staging\.onrender\.com\/platform\/login/);
+  assert.doesNotMatch(clientDashboardHtml, /127\.0\.0\.1|localhost/);
+  assert.equal(dashboardManifest.start_url, '/client-dashboard.html?source=installed');
+  assert.equal(dashboardManifest.display, 'standalone');
+  assert.match(dashboardInstall, /beforeinstallprompt/);
+  assert.match(dashboardInstall, /serviceWorker\.register\('dashboard-sw\.js'\)/);
+  assert.match(dashboardServiceWorker, /url\.origin !== self\.location\.origin/);
+  assert.doesNotMatch(dashboardServiceWorker, /automintly-platform-staging/);
+});
 
 test('marketing catalog keeps 30 paid products plus one included Contracting add-on', () => {
   assert.equal(products.length, 31);
