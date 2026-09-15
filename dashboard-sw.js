@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'automintly-dashboard-launcher-v2';
+const CACHE_NAME = 'automintly-dashboard-launcher-v3';
 const PUBLIC_SHELL = [
   '/client-dashboard.html',
   '/dashboard-install.js',
