@@ -45,6 +45,9 @@ test('customers have an honest dashboard access and install path', () => {
   assert.match(clientDashboardHtml, /Install dashboard app/);
   assert.match(clientDashboardHtml, /invitation-only/i);
   assert.match(clientDashboardHtml, /does not cache customer records/i);
+  assert.match(clientDashboardHtml, /href="#main-content">Skip to main content/);
+  assert.match(clientDashboardHtml, /aria-label="Legal and accessibility"/);
+  assert.doesNotMatch(clientDashboardHtml, /site-compliance\.js|compliance\.css/);
   assert.match(clientDashboardHtml, /https:\/\/automintly-platform-staging\.onrender\.com\/platform\/login/);
   assert.doesNotMatch(clientDashboardHtml, /127\.0\.0\.1|localhost/);
   assert.equal(dashboardManifest.start_url, '/client-dashboard.html?source=installed');
