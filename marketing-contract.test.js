@@ -39,20 +39,22 @@ const addons = arrayConstant('addons');
 test('customers have an honest dashboard access and install path', () => {
   assert.match(homepage, /href="client-dashboard\.html">Client Dashboard<\/a>/);
   assert.match(homepage, /href="client-dashboard\.html" class="nav-account">Dashboard<\/a>/);
-  assert.match(homepage, /href="client-dashboard\.html#install">Install dashboard app<\/a>/);
+  assert.match(homepage, /href="client-dashboard\.html#install">Download dashboard shortcut<\/a>/);
   assert.match(clientDashboardHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/client-dashboard\.html">/);
-  assert.match(clientDashboardHtml, /View dashboard demo/);
+  assert.match(clientDashboardHtml, /Open my dashboard/);
+  assert.match(clientDashboardHtml, /View safe demo/);
   assert.match(clientDashboardHtml, /Request client access/);
-  assert.match(clientDashboardHtml, /Install dashboard app/);
+  assert.match(clientDashboardHtml, /Download dashboard shortcut/);
+  assert.match(clientDashboardHtml, /Your AI Sales Closer appears under My Automations/);
   assert.match(clientDashboardHtml, /real customer accounts are not open yet/i);
   assert.match(clientDashboardHtml, /do not enter real customer data there/i);
-  assert.match(clientDashboardHtml, /does not cache customer records/i);
+  assert.match(clientDashboardHtml, /does not contain your business data, password, session or API keys/i);
   assert.match(clientDashboardHtml, /href="#main-content">Skip to main content/);
   assert.match(clientDashboardHtml, /aria-label="Legal and accessibility"/);
   assert.doesNotMatch(clientDashboardHtml, /site-compliance\.js|compliance\.css/);
   assert.match(clientDashboardHtml, /https:\/\/automintly-platform-staging\.onrender\.com\/platform\/login/);
   assert.match(clientDashboardHtml, /https:\/\/automintly-platform-preview\.onrender\.com\//);
-  assert.equal((clientDashboardHtml.match(/automintly-platform-staging\.onrender\.com/g) || []).length, 1);
+  assert.equal((clientDashboardHtml.match(/automintly-platform-staging\.onrender\.com/g) || []).length, 3);
   assert.doesNotMatch(clientDashboardHtml, />Open protected dashboard</);
   assert.doesNotMatch(clientDashboardHtml, /127\.0\.0\.1|localhost/);
   assert.equal(dashboardManifest.start_url, '/client-dashboard.html?source=installed');
@@ -61,9 +63,12 @@ test('customers have an honest dashboard access and install path', () => {
     ['/dashboard-icon-192.png', '192x192', 'image/png'],
     ['/dashboard-icon-512.png', '512x512', 'image/png']
   ]);
-  assert.match(dashboardInstall, /beforeinstallprompt/);
+  assert.match(dashboardInstall, /new Blob\(\[launcher\]/);
+  assert.match(dashboardInstall, /link\.download = 'automintly-dashboard\.html'/);
+  assert.match(dashboardInstall, /automintly-platform-staging\.onrender\.com\/platform\/login/);
+  assert.doesNotMatch(dashboardInstall, /localStorage|sessionStorage|document\.cookie/);
   assert.match(dashboardInstall, /serviceWorker\.register\('dashboard-sw\.js'\)/);
-  assert.match(dashboardServiceWorker, /automintly-dashboard-launcher-v2/);
+  assert.match(dashboardServiceWorker, /automintly-dashboard-launcher-v3/);
   assert.match(dashboardServiceWorker, /self\.skipWaiting\(\)/);
   assert.match(dashboardServiceWorker, /event\.respondWith\(fetch\(event\.request\)/);
   assert.match(dashboardServiceWorker, /url\.origin !== self\.location\.origin/);

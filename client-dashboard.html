@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Client Dashboard | Automintly</title>
-  <meta name="description" content="Preview the Automintly dashboard, request client access, or install the dashboard launcher on your phone or computer.">
+  <meta name="description" content="Open your protected Automintly workspace, preview the dashboard, or download a safe dashboard shortcut.">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="https://automintly.com/client-dashboard.html">
   <link rel="manifest" href="dashboard-manifest.json">
@@ -62,10 +62,10 @@
       <div class="wrap">
         <p class="eyebrow">Automintly client access</p>
         <h1 id="dashboard-title">Your automations.<br>Your results. One dashboard.</h1>
-        <p class="lead">See how the Automintly dashboard works, request an activated client workspace, or install this lightweight launcher on your phone or computer.</p>
+        <p class="lead">Sign in to your own Automintly workspace, open your AI Sales Closer, or download a lightweight shortcut for faster access.</p>
         <div class="actions">
-          <a class="button primary" href="https://automintly-platform-preview.onrender.com/" target="_blank" rel="noopener noreferrer">View dashboard demo</a>
-          <a class="button secondary" href="index.html#cta">Request client access</a>
+          <a class="button primary" id="open-dashboard" href="https://automintly-platform-staging.onrender.com/platform/login" target="_blank" rel="noopener noreferrer">Open my dashboard</a>
+          <a class="button secondary" href="https://automintly-platform-preview.onrender.com/" target="_blank" rel="noopener noreferrer">View safe demo</a>
         </div>
         <div class="notice"><span class="status-badge">Pre-launch access</span>The demo uses sample information and is safe to explore. Real customer accounts are not open yet while production identity, recovery, backups, capacity and provider checks are completed. Approved testers can use the <a href="https://automintly-platform-staging.onrender.com/platform/login" target="_blank" rel="noopener noreferrer">pilot-team staging sign-in</a>; do not enter real customer data there.</div>
       </div>
@@ -73,29 +73,30 @@
     <section class="choices" id="install">
       <div class="wrap grid">
         <article class="card">
-          <h2>Explore the dashboard demo</h2>
-          <p>Review the dashboard layout, automation controls and reporting experience using sample information.</p>
+          <h2>Open your workspace</h2>
+          <p>Sign in to your isolated workspace. After sign-in, your dashboard shows only the business and automations assigned to your account.</p>
           <ul>
-            <li>No sign-in is required for the sample demo</li>
-            <li>No customer records or credentials should be entered</li>
-            <li>Sample results are not presented as verified live outcomes</li>
+            <li>Your AI Sales Closer appears under My Automations</li>
+            <li>Your login—not the shortcut—determines which dashboard opens</li>
+            <li>Current protected access is for approved fictional pilot testing</li>
           </ul>
-          <a class="button secondary" href="https://automintly-platform-preview.onrender.com/" target="_blank" rel="noopener noreferrer">View dashboard demo</a>
+          <a class="button secondary" href="https://automintly-platform-staging.onrender.com/platform/login" target="_blank" rel="noopener noreferrer">Sign in to my dashboard</a>
+          <a class="button secondary" href="index.html#cta">Request client access</a>
         </article>
         <article class="card">
-          <h2>Install the dashboard launcher</h2>
-          <p>Add Automintly to your home screen, desktop or app list for faster access without downloading an unsafe installer.</p>
+          <h2>Download a dashboard shortcut</h2>
+          <p>Download one small HTML shortcut that opens Automintly’s protected sign-in page. It is not an installer and contains no customer data.</p>
           <ul>
-            <li>Launches in its own app-style window where supported</li>
-            <li>Works on modern desktop and mobile browsers</li>
-            <li>The launcher does not cache customer records</li>
+            <li>Produces a visible file in your Downloads folder</li>
+            <li>Double-click the file whenever you want your dashboard</li>
+            <li>The shortcut never stores a password, session or customer record</li>
           </ul>
-          <button class="button primary" id="install-dashboard" type="button">Install dashboard app</button>
-          <p id="install-status" role="status" aria-live="polite">Installation is completed by your browser so you stay in control.</p>
+          <button class="button primary" id="download-dashboard" type="button">Download dashboard shortcut</button>
+          <p id="install-status" role="status" aria-live="polite">Nothing has been downloaded yet.</p>
         </article>
       </div>
       <div class="wrap">
-        <div class="security"><strong>Important:</strong> The downloadable experience is a web-app launcher, not a copy of your business data. It currently opens this access page while customer production access remains gated. The public website’s offline cache never stores customer records, credentials or protected dashboard pages.</div>
+        <div class="security"><strong>Important:</strong> The shortcut contains only the protected HTTPS dashboard address. It cannot bypass sign-in and does not contain your business data, password, session or API keys. Production customer access remains gated; the current protected workspace is for approved fictional pilot testing.</div>
       </div>
     </section>
   </main>
