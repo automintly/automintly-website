@@ -257,6 +257,23 @@ test('included dashboard band uses the green Automintly palette', () => {
   assert.match(charcoalTheme, /body\.charcoal-theme \.included \.inc-item \{[\s\S]*?background:#1b2924;[\s\S]*?border:1px solid #405249;[\s\S]*?color:#86f5c4;/);
 });
 
+test('homepage leads with the HVAC missed-call offer and a two-stage sales path', () => {
+  assert.match(homepage, /Stop losing HVAC leads after a missed call\./);
+  assert.match(homepage, /free 20-minute Automation Health Check/i);
+  assert.match(homepage, /\$795 Automation Opportunity Audit/);
+  assert.match(homepage, /Implementation is quoted separately\./);
+  assert.match(homepage, /Lead added to the CRM workflow/);
+  assert.match(homepage, /Follow-up queue with human controls/);
+  assert.match(homepage, /fetch\('\/'/);
+  assert.doesNotMatch(homepage, /sweet-puffpuff-9243c4\.netlify\.app/);
+});
+
+test('industry pages use the same free-health-check and paid-audit path', () => {
+  assert.match(industriesHtml, /Free 20-minute Health Check/);
+  assert.match(industriesHtml, /\$795 Automation Opportunity Audit/);
+  assert.match(industriesHtml, /Implementation is never included automatically and is quoted separately\./);
+});
+
 test('landing videos prefer lower-bandwidth AV1 while preserving MP4 fallbacks', () => {
   assert.match(homepage, /automintly-mobile-type-v17c-av1\.webm/);
   assert.match(homepage, /automintly-mobile-type-v17c\.mp4/);

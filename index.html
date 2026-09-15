@@ -513,23 +513,23 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
-        <h1>End-to-end automation, engineered under one roof.</h1>
-        <p class="sub">Automintly designs, builds, and maintains AI phone agents, workflow automations, and custom systems — all under one roof, with published pricing and outcomes you can measure.</p>
-        <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Start with the automation that creates the clearest measurable return.</p>
+        <h1>Stop losing HVAC leads after a missed call.</h1>
+        <p class="sub">Automintly builds a focused missed-call and lead-follow-up system for HVAC and home-service teams. It helps respond while the customer is still looking, keeps follow-up work visible, and records the outcome in one dashboard.</p>
+        <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Start with a free 20-minute Automation Health Check. If there is a worthwhile opportunity, the next step is a paid Automation Audit.</p>
         <div class="hero-ctas">
-          <a href="build-your-automation.html" class="btn-primary">Build Your Automation</a>
-          <a href="#cta" class="btn-outline">Book a consultation</a>
+          <a href="#cta" class="btn-primary">Book the free health check</a>
+          <a href="#services" class="btn-outline">See the system</a>
         </div>
       </div>
       <div class="coverage-panel">
-        <div class="panel-title">Automation coverage</div>
+        <div class="panel-title">Missed-call recovery system</div>
         <div class="coverage-list">
-          <div class="coverage-item"><span class="coverage-check">✓</span> Phone &amp; voice agents</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Customer support &amp; chat</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Sales &amp; CRM automation</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Data &amp; reporting</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Custom systems integration</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Live automation dashboard</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Missed call captured</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Approved text response prepared</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Lead added to the CRM workflow</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Booking link and escalation rules</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Follow-up queue with human controls</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Results and failures in the dashboard</div>
         </div>
       </div>
     </div>
@@ -1418,13 +1418,13 @@
   <section class="cta" id="cta">
     <div class="wrap cta-inner">
       <div>
-        <h2>Find the automation worth building first.</h2>
-        <p>Start with a complimentary 20-minute health check. We'll identify the strongest opportunity, explain what it would take to build, and show you how its results would be measured.</p>
-        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1eRk4Lj5et4_Sl8zZqZzZ4tybVrWLLq3aBD36NcXSlFtjmkQ6nJ1A2ENMD-Jmy49nTDh1CiJKm" class="btn-primary" target="_blank" rel="noopener">Book a 20-minute call</a>
+        <h2>Start with a free 20-minute Automation Health Check.</h2>
+        <p>We'll look at missed calls, response time, booking flow, and follow-up gaps. If there is a measurable opportunity, the next step is the $795 Automation Opportunity Audit, which maps the workflow, baseline, safeguards, implementation scope, and success measures. Implementation is quoted separately.</p>
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1eRk4Lj5et4_Sl8zZqZzZ4tybVrWLLq3aBD36NcXSlFtjmkQ6nJ1A2ENMD-Jmy49nTDh1CiJKm" class="btn-primary" target="_blank" rel="noopener">Book the free health check</a>
       </div>
 
       <div class="form-card">
-        <h3>Start with a 20-minute call</h3>
+        <h3>Request the free health check</h3>
         <p>We reply within one business day.</p>
         <form id="contact-form" name="health-check" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="health-check">
@@ -1446,6 +1446,7 @@
           <div class="field">
             <label for="f-interest">What are you looking to automate?</label>
             <select id="f-interest" name="interest">
+              <option>HVAC missed-call &amp; lead follow-up</option>
               <option>Phone answering &amp; booking</option>
               <option>Customer support &amp; chat</option>
               <option>Sales &amp; CRM workflows</option>
@@ -1671,17 +1672,16 @@
         window.AutomintlyConversions.track('estimate_form_submit', { page: window.location.pathname });
       }
 
-      fetch('https://sweet-puffpuff-9243c4.netlify.app/', {
+      fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: data.toString(),
-        mode: 'no-cors'
+        body: data.toString()
       }).then(function(res){
-        if(res.type !== 'opaque' && !res.ok) throw new Error('Request failed');
+        if(!res.ok) throw new Error('Request failed');
         status.className = 'form-status ok';
-        status.textContent = res.type === 'opaque' ? 'Your request was sent, but this browser cannot confirm receipt. For a confirmed follow-up, email automintly@gmail.com.' : 'Thanks — we\'ll be in touch within one business day.';
+        status.textContent = 'Thanks — your request was received. We\'ll be in touch within one business day.';
         if(window.AutomintlyConversions){
-          window.AutomintlyConversions.track(res.type === 'opaque' ? 'estimate_form_submitted_unverified' : 'estimate_form_success', { page: window.location.pathname });
+          window.AutomintlyConversions.track('estimate_form_success', { page: window.location.pathname });
         }
         form.reset();
         updateProjectTypes();
