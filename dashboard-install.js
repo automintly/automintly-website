@@ -39,6 +39,6 @@
     const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent);
     status.textContent = isAppleMobile
       ? 'On iPhone or iPad: tap Share, then choose Add to Home Screen.'
-      : 'Open your browser menu and choose Install app or Add to home screen. You can also keep using Open protected dashboard.';
+      : 'Open your browser menu and choose Install app or Add to home screen. You can also keep using the dashboard demo in your browser.';
   });
 })();
