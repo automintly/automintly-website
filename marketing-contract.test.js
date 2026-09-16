@@ -18,6 +18,8 @@ const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch
 const websiteUpgraderHtml = fs.readFileSync(path.join(root, 'website-upgrader.html'), 'utf8');
 const clientDashboardHtml = fs.readFileSync(path.join(root, 'client-dashboard.html'), 'utf8');
 const partnersHtml = fs.readFileSync(path.join(root, 'partners.html'), 'utf8');
+const healthCheckHtml = fs.readFileSync(path.join(root, 'health-check.html'), 'utf8');
+const solutionsHtml = fs.readFileSync(path.join(root, 'solutions.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
 const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
@@ -27,18 +29,53 @@ const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const charcoalTheme = fs.readFileSync(path.join(root, 'charcoal-theme.css'), 'utf8');
 
-test('agency partner page has a bounded paid delivery path', () => {
+test('partner page has bounded delivery and referral paths', () => {
   assert.match(partnersHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/partners\.html">/);
   assert.match(partnersHtml, /Add automation delivery without building a new department\./);
   assert.match(partnersHtml, /Workflow rescue/);
   assert.match(partnersHtml, /Content operations/);
   assert.match(partnersHtml, /Lead operations/);
   assert.match(partnersHtml, /written wholesale scope and invoice/i);
-  assert.match(partnersHtml, /href="index\.html#cta">Request a partner scope<\/a>/);
+  assert.match(partnersHtml, /bookkeeping, IT, MSP, or CRM partner/i);
+  assert.match(partnersHtml, /Any referral fee or account credit must be agreed in writing before the introduction/i);
+  assert.match(partnersHtml, /payable only after Automintly receives the client's payment/i);
+  assert.match(partnersHtml, /href="health-check\.html\?source=partner-bottom">Request a partner scope<\/a>/);
   assert.doesNotMatch(partnersHtml, /mailto:/i);
-  assert.doesNotMatch(partnersHtml, /\bfree\b/i);
-  assert.match(homepage, /href="partners\.html">For agencies<\/a>/);
+  assert.match(homepage, /href="partners\.html">Partners<\/a>/);
   assert.match(sitemapXml, /https:\/\/automintly\.com\/partners\.html/);
+});
+
+test('dedicated no-call Health Check preserves consent and anti-abuse controls', () => {
+  assert.match(healthCheckHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/health-check\.html">/);
+  assert.match(healthCheckHtml, /name="health-check"/);
+  assert.match(healthCheckHtml, /action="https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/"/);
+  assert.match(healthCheckHtml, /data-netlify="true"/);
+  assert.match(healthCheckHtml, /netlify-honeypot="bot-field"/);
+  assert.match(healthCheckHtml, /name="consent"[^>]+required/);
+  assert.match(healthCheckHtml, /Do not include passwords, payment information, health information/i);
+  assert.match(healthCheckHtml, /Submitting this form does not charge you|No charge to submit/i);
+  assert.match(healthCheckHtml, /Paid work begins only after you review and accept a written scope and payment request/i);
+  assert.doesNotMatch(healthCheckHtml, /name="phone"|type="tel"/i);
+  assert.match(healthCheckHtml, /mode:'no-cors'/);
+  assert.match(healthCheckHtml, /cannot confirm receipt/i);
+  assert.match(homepage, /href="health-check\.html\?source=homepage-hero"/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/health-check\.html/);
+});
+
+test('solutions hub creates specific outcome-led acquisition paths without guarantees', () => {
+  assert.match(solutionsHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/solutions\.html">/);
+  assert.match(solutionsHtml, /HVAC and home services/);
+  assert.match(solutionsHtml, /Dental and medical/);
+  assert.match(solutionsHtml, /Salons and spas/);
+  assert.match(solutionsHtml, /Property management/);
+  assert.match(solutionsHtml, /Roofing and skilled trades/);
+  assert.match(solutionsHtml, /Dashboard evidence/g);
+  assert.match(solutionsHtml, /cannot guarantee a booking or sale/i);
+  assert.match(solutionsHtml, /Health Check is directional|Written Health Check/i);
+  assert.match(solutionsHtml, /\$249/);
+  assert.match(solutionsHtml, /health-check\.html\?source=solutions/);
+  assert.match(homepage, /href="solutions\.html">Solutions<\/a>/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/solutions\.html/);
 });
 
 function arrayConstant(name) {
