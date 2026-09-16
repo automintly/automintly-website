@@ -8,7 +8,7 @@ Scope: public marketing pages listed in `sitemap.xml`. This is an engineering an
 
 - Added public Privacy, Website Terms, Cookie, Refund and Cancellation, and Accessibility pages.
 - Added a required, plain-language consent acknowledgment to the public inquiry form.
-- Limited required inquiry fields to name and work email; company, interests, timing, and message remain optional.
+- Limited the written-health-check form to name, work email, response preference, three short workflow questions, and consent. Company, business website, interest, and conditional project type remain optional. The public form still collects no phone number.
 - Added field length limits and a warning not to submit passwords, payment information, health information, government identifiers, or other sensitive personal data.
 - Removed `novalidate`; native validation and keyboard-operable controls now remain available.
 - Added a skip link, consistent visible keyboard focus, legal footer links, reduced-motion handling, and responsive policy layouts.
@@ -24,8 +24,8 @@ Scope: public marketing pages listed in `sitemap.xml`. This is an engineering an
 
 | Data or request | Purpose | Provider or recipient | Required? |
 | --- | --- | --- | --- |
-| Name and work email | Respond to an inquiry | Automintly; Netlify form processing; email provider | Yes for the form |
-| Company, interest, project type, preferred time, message | Scope the requested response | Same as above | No |
+| Name, work email, response preference, current inquiry or task channels, response process, and outcome-tracking method | Respond to and scope the requested written health check | Automintly; Netlify form processing; email provider | Yes for the form |
+| Company, business website, interest, and conditional project type | Add optional business context | Same as above | No |
 | IP, browser, request and security logs | Deliver and protect the site | Cloudflare, Render, and possibly Netlify for form processing | Operational |
 | Appointment details after following the booking link | Schedule the selected appointment | Google Calendar under Google's terms | User choice |
 | Optional analytics | Aggregate site measurement | None currently; configured provider only after consent | Disabled |

@@ -1443,7 +1443,7 @@
 
       <div class="form-card">
         <h3>Request your written health check</h3>
-        <p>No sales call is required. We reply by email within one business day.</p>
+        <p>Answer three short workflow questions. No phone number or sales call is required. We reply by email within one business day.</p>
         <form id="contact-form" name="health-check" method="POST" action="https://sweet-puffpuff-9243c4.netlify.app/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="health-check">
           <p hidden>
@@ -1494,8 +1494,16 @@
             </select>
           </div>
           <div class="field">
-            <label for="f-message">What happens today when this work is missed, delayed, or handled manually?</label>
+            <label for="f-channels">1. Where do new inquiries or tasks arrive today?</label>
+            <input type="text" id="f-channels" name="current_channels" maxlength="500" aria-describedby="form-privacy-hint" placeholder="For example: phone, email, website form, CRM" required>
+          </div>
+          <div class="field">
+            <label for="f-message">2. What happens when nobody responds immediately?</label>
             <textarea id="f-message" name="message" maxlength="2000" aria-describedby="form-privacy-hint" required></textarea>
+          </div>
+          <div class="field">
+            <label for="f-outcomes">3. How do you know whether the work was booked, completed, closed, or lost?</label>
+            <textarea id="f-outcomes" name="outcome_tracking" maxlength="1500" aria-describedby="form-privacy-hint" required></textarea>
           </div>
           <p class="form-privacy-hint" id="form-privacy-hint">Do not include passwords, payment information, health information, government ID numbers, or other sensitive personal data.</p>
           <div class="consent-field">

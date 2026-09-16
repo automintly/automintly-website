@@ -324,6 +324,10 @@ test('homepage leads with the HVAC missed-call offer and a no-call written sales
   assert.match(homepage, /\$249 Automation Revenue-Leak Snapshot/);
   assert.match(homepage, /\$795 Automation Opportunity Audit/);
   assert.match(homepage, /Implementation is always quoted separately\./);
+  assert.match(homepage, /Answer three short workflow questions\./);
+  assert.match(homepage, /Where do new inquiries or tasks arrive today\?/);
+  assert.match(homepage, /What happens when nobody responds immediately\?/);
+  assert.match(homepage, /How do you know whether the work was booked, completed, closed, or lost\?/);
   assert.match(homepage, /Lead added to the CRM workflow/);
   assert.match(homepage, /Follow-up queue with human controls/);
   assert.match(homepage, /action="https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/"/);
