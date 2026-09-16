@@ -17,6 +17,7 @@ const trustCheckHtml = fs.readFileSync(path.join(root, 'website-trust-check.html
 const revenuePathWatchHtml = fs.readFileSync(path.join(root, 'revenue-path-watch.html'), 'utf8');
 const websiteUpgraderHtml = fs.readFileSync(path.join(root, 'website-upgrader.html'), 'utf8');
 const clientDashboardHtml = fs.readFileSync(path.join(root, 'client-dashboard.html'), 'utf8');
+const partnersHtml = fs.readFileSync(path.join(root, 'partners.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
 const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
@@ -25,6 +26,20 @@ const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js')
 const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const charcoalTheme = fs.readFileSync(path.join(root, 'charcoal-theme.css'), 'utf8');
+
+test('agency partner page has a bounded paid delivery path', () => {
+  assert.match(partnersHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/partners\.html">/);
+  assert.match(partnersHtml, /Add automation delivery without building a new department\./);
+  assert.match(partnersHtml, /Workflow rescue/);
+  assert.match(partnersHtml, /Content operations/);
+  assert.match(partnersHtml, /Lead operations/);
+  assert.match(partnersHtml, /written wholesale scope and invoice/i);
+  assert.match(partnersHtml, /href="index\.html#cta">Request a partner scope<\/a>/);
+  assert.doesNotMatch(partnersHtml, /mailto:/i);
+  assert.doesNotMatch(partnersHtml, /\bfree\b/i);
+  assert.match(homepage, /href="partners\.html">For agencies<\/a>/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/partners\.html/);
+});
 
 function arrayConstant(name) {
   const match = builder.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n  \\]);`));
