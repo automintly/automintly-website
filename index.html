@@ -531,9 +531,9 @@
       <div>
         <h1>Stop losing HVAC leads after a missed call.</h1>
         <p class="sub">Automintly builds a focused missed-call and lead-follow-up system for HVAC and home-service teams. It helps respond while the customer is still looking, keeps follow-up work visible, and records the outcome in one dashboard.</p>
-        <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Start with a free 20-minute Automation Health Check. If there is a worthwhile opportunity, the next step is a paid Automation Audit.</p>
+        <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Start with a free written Automation Health Check. No call is required. If one workflow deserves a closer look, the next step is a fixed-price Revenue-Leak Snapshot.</p>
         <div class="hero-ctas">
-          <a href="#cta" class="btn-primary">Book the free health check</a>
+          <a href="#cta" class="btn-primary">Get a written assessment</a>
           <a href="#services" class="btn-outline">See the system</a>
         </div>
       </div>
@@ -1434,14 +1434,16 @@
   <section class="cta" id="cta">
     <div class="wrap cta-inner">
       <div>
-        <h2>Start with a free 20-minute Automation Health Check.</h2>
-        <p>We'll look at missed calls, response time, booking flow, and follow-up gaps. If there is a measurable opportunity, the next step is the $795 Automation Opportunity Audit, which maps the workflow, baseline, safeguards, implementation scope, and success measures. Implementation is quoted separately.</p>
-        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1eRk4Lj5et4_Sl8zZqZzZ4tybVrWLLq3aBD36NcXSlFtjmkQ6nJ1A2ENMD-Jmy49nTDh1CiJKm" class="btn-primary" target="_blank" rel="noopener">Book the free health check</a>
+        <h2>Get a written Automation Health Check. No call required.</h2>
+        <p>Tell us what is getting missed, delayed, or repeated. We will reply by email with an honest fit check and the most useful next step. If one workflow needs deeper analysis, the $249 Automation Revenue-Leak Snapshot maps the current path, identifies likely leaks and control gaps, and defines the recommended fix and success measures. If you approve the implementation described in that snapshot, its full $249 price is credited toward the setup.</p>
+        <p class="form-note">Need a broader multi-workflow plan? The complete $795 Automation Opportunity Audit remains available. Implementation is always quoted separately.</p>
+        <a href="#contact-form" class="btn-primary">Start the no-call assessment</a>
+        <p class="form-note">Prefer a live conversation? <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1eRk4Lj5et4_Sl8zZqZzZ4tybVrWLLq3aBD36NcXSlFtjmkQ6nJ1A2ENMD-Jmy49nTDh1CiJKm" target="_blank" rel="noopener">Book an optional 20-minute call.</a></p>
       </div>
 
       <div class="form-card">
-        <h3>Request the free health check</h3>
-        <p>We reply within one business day.</p>
+        <h3>Request your written health check</h3>
+        <p>No sales call is required. We reply by email within one business day.</p>
         <form id="contact-form" name="health-check" method="POST" action="https://sweet-puffpuff-9243c4.netlify.app/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="health-check">
           <p hidden>
@@ -1458,6 +1460,10 @@
           <div class="field">
             <label for="f-company">Company</label>
             <input type="text" id="f-company" name="company" autocomplete="organization" maxlength="160">
+          </div>
+          <div class="field">
+            <label for="f-website">Business website <span aria-hidden="true">(optional)</span></label>
+            <input type="url" id="f-website" name="website" autocomplete="url" maxlength="500" placeholder="https://example.com">
           </div>
           <div class="field">
             <label for="f-interest">What are you looking to automate?</label>
@@ -1480,21 +1486,25 @@
             <select id="f-project-type" name="project_type" disabled></select>
           </div>
           <div class="field">
-            <label for="f-time">Best time for a 20-minute call</label>
-            <input type="text" id="f-time" name="preferred_time" maxlength="160" placeholder="For example: Tuesday afternoon, Pacific time">
+            <label for="f-contact">How should we respond?</label>
+            <select id="f-contact" name="preferred_contact" required>
+              <option>Email only — no call</option>
+              <option>Email first — I may request a call later</option>
+              <option>I would like an optional 20-minute call</option>
+            </select>
           </div>
           <div class="field">
-            <label for="f-message">Anything else we should know?</label>
-            <textarea id="f-message" name="message" maxlength="2000" aria-describedby="form-privacy-hint"></textarea>
+            <label for="f-message">What happens today when this work is missed, delayed, or handled manually?</label>
+            <textarea id="f-message" name="message" maxlength="2000" aria-describedby="form-privacy-hint" required></textarea>
           </div>
           <p class="form-privacy-hint" id="form-privacy-hint">Do not include passwords, payment information, health information, government ID numbers, or other sensitive personal data.</p>
           <div class="consent-field">
             <input type="checkbox" id="f-consent" name="consent" value="yes" required>
             <label for="f-consent">I agree that Automintly may use the information I submit to respond to this request, as described in the <a href="privacy.html">Privacy Policy</a>. <strong>Required.</strong></label>
           </div>
-          <button type="submit">Request my health check</button>
+          <button type="submit">Request my written assessment</button>
           <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-          <p class="form-note">We'll only use your details to respond to this request. Prefer email? <a href="mailto:automintly@gmail.com">automintly@gmail.com</a></p>
+          <p class="form-note">We'll only use your details to respond to this request. Email is the default: <a href="mailto:automintly@gmail.com">automintly@gmail.com</a></p>
         </form>
       </div>
     </div>
@@ -1699,7 +1709,7 @@
       }).then(function(res){
         if(res.type !== 'opaque' && !res.ok) throw new Error('Request failed');
         status.className = 'form-status ok';
-        status.textContent = res.type === 'opaque' ? 'Your request was sent, but this browser cannot confirm receipt. For a confirmed follow-up, email automintly@gmail.com.' : 'Thanks — we\'ll be in touch within one business day.';
+        status.textContent = res.type === 'opaque' ? 'Your written-assessment request was sent, but this browser cannot confirm receipt. For a confirmed follow-up, email automintly@gmail.com.' : 'Thanks — we\'ll reply by email within one business day. No call is required.';
         if(window.AutomintlyConversions){
           window.AutomintlyConversions.track(res.type === 'opaque' ? 'estimate_form_submitted_unverified' : 'estimate_form_success', { page: window.location.pathname });
         }
@@ -1713,7 +1723,7 @@
         }
       }).then(function(){
         btn.disabled = false;
-        btn.textContent = 'Request my health check';
+        btn.textContent = 'Request my written assessment';
       });
     });
   })();

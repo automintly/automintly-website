@@ -317,11 +317,13 @@ test('included dashboard band uses the green Automintly palette', () => {
   assert.match(charcoalTheme, /body\.charcoal-theme \.included \.inc-item \{[\s\S]*?background:#1b2924;[\s\S]*?border:1px solid #405249;[\s\S]*?color:#86f5c4;/);
 });
 
-test('homepage leads with the HVAC missed-call offer and a two-stage sales path', () => {
+test('homepage leads with the HVAC missed-call offer and a no-call written sales path', () => {
   assert.match(homepage, /Stop losing HVAC leads after a missed call\./);
-  assert.match(homepage, /free 20-minute Automation Health Check/i);
+  assert.match(homepage, /free written Automation Health Check/i);
+  assert.match(homepage, /No call is required/i);
+  assert.match(homepage, /\$249 Automation Revenue-Leak Snapshot/);
   assert.match(homepage, /\$795 Automation Opportunity Audit/);
-  assert.match(homepage, /Implementation is quoted separately\./);
+  assert.match(homepage, /Implementation is always quoted separately\./);
   assert.match(homepage, /Lead added to the CRM workflow/);
   assert.match(homepage, /Follow-up queue with human controls/);
   assert.match(homepage, /action="https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/"/);
@@ -330,10 +332,19 @@ test('homepage leads with the HVAC missed-call offer and a two-stage sales path'
   assert.match(homepage, /cannot confirm receipt/i);
 });
 
-test('industry pages use the same free-health-check and paid-audit path', () => {
-  assert.match(industriesHtml, /Free 20-minute Health Check/);
-  assert.match(industriesHtml, /\$795 Automation Opportunity Audit/);
-  assert.match(industriesHtml, /Implementation is never included automatically and is quoted separately\./);
+test('industry pages use the same no-call health-check and paid-review path', () => {
+  assert.match(industriesHtml, /Free written Health Check/);
+  assert.match(industriesHtml, /\$249 Revenue-Leak Snapshot/);
+  assert.match(industriesHtml, /Automation Opportunity Audit remains available for \$795/);
+  assert.match(industriesHtml, /implementation is always quoted separately\./i);
+});
+
+test('builder includes the fixed-price no-call revenue-leak snapshot', () => {
+  const snapshot = addons.find(addon => addon.id === 'revenue-leak-snapshot');
+  assert.ok(snapshot);
+  assert.equal(snapshot.price, 249);
+  assert.equal(snapshot.billing, 'one-time');
+  assert.match(snapshot.description, /one workflow/i);
 });
 
 test('landing videos prefer lower-bandwidth AV1 while preserving MP4 fallbacks', () => {
