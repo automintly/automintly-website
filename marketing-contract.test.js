@@ -325,6 +325,12 @@ test('homepage leads with the HVAC missed-call offer and a no-call written sales
   assert.match(homepage, /\$795 Automation Opportunity Audit/);
   assert.match(homepage, /Implementation is always quoted separately\./);
   assert.match(homepage, /Answer three short workflow questions\./);
+  assert.match(homepage, /What written next step would you like\?/);
+  assert.match(homepage, /Free written Automation Health Check/);
+  assert.match(homepage, /\$249 Revenue-Leak Snapshot — send the written scope and payment request/);
+  assert.match(homepage, /\$795 Automation Opportunity Audit — send the written scope and payment request/);
+  assert.match(homepage, /Submitting this form does not charge you\./);
+  assert.match(homepage, /Paid work begins only after you review and accept the written scope and payment request\./);
   assert.match(homepage, /Where do new inquiries or tasks arrive today\?/);
   assert.match(homepage, /What happens when nobody responds immediately\?/);
   assert.match(homepage, /How do you know whether the work was booked, completed, closed, or lost\?/);

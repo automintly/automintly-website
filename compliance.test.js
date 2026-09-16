@@ -68,12 +68,14 @@ test("the inquiry form minimizes data and requires clear consent", () => {
   assert.match(form, /id="f-name"[^>]+maxlength="100"[^>]+required/i);
   assert.match(form, /id="f-email"[^>]+maxlength="254"[^>]+required/i);
   assert.match(form, /id="f-contact"[^>]+required/i);
+  assert.match(form, /id="f-step"[^>]+name="requested_step"[^>]+required/i);
   assert.match(form, /id="f-channels"[^>]+maxlength="500"[^>]+required/i);
   assert.match(form, /id="f-message"[^>]+maxlength="2000"[^>]+required/i);
   assert.match(form, /id="f-outcomes"[^>]+maxlength="1500"[^>]+required/i);
   assert.match(form, /id="f-consent"[^>]+required/i);
   assert.match(form, /for="f-consent"[\s\S]*Privacy Policy/i);
   assert.match(form, /Do not include passwords, payment information, health information/i);
+  assert.match(form, /Submitting this form does not charge you/i);
   assert.match(read("index.html"), /form\.checkValidity\(\)/);
   assert.match(read("index.html"), /form\.reportValidity\(\)/);
 });

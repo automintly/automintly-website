@@ -24,7 +24,7 @@ Scope: public marketing pages listed in `sitemap.xml`. This is an engineering an
 
 | Data or request | Purpose | Provider or recipient | Required? |
 | --- | --- | --- | --- |
-| Name, work email, response preference, current inquiry or task channels, response process, and outcome-tracking method | Respond to and scope the requested written health check | Automintly; Netlify form processing; email provider | Yes for the form |
+| Name, work email, response preference, requested written next step, current inquiry or task channels, response process, and outcome-tracking method | Respond to and scope the requested written health check or paid written review | Automintly; Netlify form processing; email provider | Yes for the form |
 | Company, business website, interest, and conditional project type | Add optional business context | Same as above | No |
 | IP, browser, request and security logs | Deliver and protect the site | Cloudflare, Render, and possibly Netlify for form processing | Operational |
 | Appointment details after following the booking link | Schedule the selected appointment | Google Calendar under Google's terms | User choice |
