@@ -188,6 +188,70 @@
   color: #79e8bd;
 }
 
+/* Automintly's compact leaf signature sits like a superscript after the y. */
+.logo::after,
+.brand::after,
+.space-brand::after,
+.legal-logo::after {
+  content: "";
+  display: inline-block;
+  width: 0.3em;
+  height: 0.42em;
+  margin-left: 0.07em;
+  border-radius: 100% 0 100% 0;
+  background: #79e8bd;
+  box-shadow: 0 0 0 1px rgba(121, 232, 189, 0.12);
+  transform: translateY(-0.5em) rotate(-18deg);
+  transform-origin: 50% 100%;
+}
+
+/* Use the full desktop header so the wordmark anchors the left edge and links breathe. */
+@media (min-width: 1001px) {
+  header > .nav {
+    width: 100%;
+    max-width: none;
+    padding-inline: clamp(16px, 2vw, 36px);
+    gap: clamp(12px, 1.6vw, 24px);
+  }
+
+  header > .nav > .logo,
+  header > .nav > .navcta {
+    flex: 0 0 auto;
+  }
+
+  header > .nav > .logo {
+    margin-right: 0;
+  }
+
+  header > .nav > .navlinks {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: clamp(8px, 1vw, 16px);
+    min-width: 0;
+  }
+
+  header > .nav > .navlinks a {
+    white-space: nowrap;
+    font-size: clamp(11.5px, 0.95vw, 14px);
+  }
+}
+
+@media (min-width: 841px) and (max-width: 1000px) {
+  header > .nav > .logo {
+    margin-right: auto;
+  }
+
+  header > .nav > .navlinks {
+    display: none;
+  }
+
+  header > .nav > .nav-account {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .legal-home {
   min-height: 44px;
   display: inline-flex;
