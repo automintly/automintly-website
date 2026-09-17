@@ -1,9 +1,10 @@
 'use strict';
 
-const CACHE_NAME = 'automintly-dashboard-launcher-v3';
+const CACHE_NAME = 'automintly-dashboard-launcher-v5';
 const PUBLIC_SHELL = [
   '/client-dashboard.html',
-  '/dashboard-install.js',
+  '/automintly-dashboard.html',
+  '/dashboard-install-v4.js',
   '/dashboard-icon.svg',
   '/dashboard-icon-192.png',
   '/dashboard-icon-512.png',

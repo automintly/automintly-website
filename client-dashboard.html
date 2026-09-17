@@ -10,7 +10,7 @@
   <link rel="manifest" href="dashboard-manifest.json">
   <link rel="icon" href="dashboard-icon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#101513">
-  <script defer src="dashboard-install.js"></script>
+  <script defer src="dashboard-install-v4.js"></script>
   <style>
     :root{--bg:#151918;--surface:#1d2321;--surface-2:#222a27;--line:#3d4a45;--text:#f4fff9;--muted:#b8c9c1;--mint:#75e6b7;--mint-dark:#08291c;--max:1120px}
     *{box-sizing:border-box}
@@ -91,12 +91,12 @@
             <li>Double-click the file whenever you want your dashboard</li>
             <li>The shortcut never stores a password, session or customer record</li>
           </ul>
-          <button class="button primary" id="download-dashboard" type="button">Download dashboard shortcut</button>
+          <a class="button primary" id="download-dashboard" href="automintly-dashboard.html" download="automintly-dashboard.html">Download dashboard shortcut</a>
           <p id="install-status" role="status" aria-live="polite">Nothing has been downloaded yet.</p>
         </article>
       </div>
       <div class="wrap">
-        <div class="security"><strong>Important:</strong> The shortcut contains only a dashboard address. On the public website it opens protected HTTPS sign-in; in this local preview it opens the local owner workspace. It cannot bypass sign-in and does not contain your business data, password, session or API keys. Production customer access remains gated.</div>
+        <div class="security"><strong>Important:</strong> The downloaded shortcut contains only the protected HTTPS dashboard address. The Open Dashboard buttons use the local owner workspace during local preview. The shortcut cannot bypass sign-in and does not contain your business data, password, session or API keys. Production customer access remains gated.</div>
       </div>
     </section>
   </main>

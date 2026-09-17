@@ -23,8 +23,9 @@ const solutionsHtml = fs.readFileSync(path.join(root, 'solutions.html'), 'utf8')
 const acquisitionOperationsScreenHtml = fs.readFileSync(path.join(root, 'acquisition-operations-screen.html'), 'utf8');
 const vendorPaymentScreenHtml = fs.readFileSync(path.join(root, 'vendor-payment-screen.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
-const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install.js'), 'utf8');
+const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install-v4.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
+const dashboardShortcut = fs.readFileSync(path.join(root, 'automintly-dashboard.html'), 'utf8');
 const trackingConfig = fs.readFileSync(path.join(root, 'conversion-tracking-config.js'), 'utf8');
 const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js'), 'utf8');
 const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf8');
@@ -145,15 +146,21 @@ test('customers have an honest dashboard access and install path', () => {
     ['/dashboard-icon-192.png', '192x192', 'image/png'],
     ['/dashboard-icon-512.png', '512x512', 'image/png']
   ]);
-  assert.match(dashboardInstall, /new Blob\(\[launcher\]/);
-  assert.match(dashboardInstall, /link\.download = 'automintly-dashboard\.html'/);
+  assert.match(clientDashboardHtml, /href="automintly-dashboard\.html" download="automintly-dashboard\.html"/);
+  assert.match(clientDashboardHtml, /src="dashboard-install-v4\.js"/);
+  assert.doesNotMatch(dashboardInstall, /new Blob|createObjectURL|link\.click\(\)/);
   assert.match(dashboardInstall, /automintly-platform-staging\.onrender\.com\/platform\/login/);
   assert.match(dashboardInstall, /localDashboardUrl\.port = '3100'/);
   assert.match(dashboardInstall, /data-dashboard-access/);
   assert.doesNotMatch(dashboardInstall, /localStorage|sessionStorage|document\.cookie/);
   assert.match(dashboardInstall, /serviceWorker\.register\('dashboard-sw\.js'\)/);
-  assert.match(dashboardServiceWorker, /automintly-dashboard-launcher-v3/);
+  assert.match(dashboardServiceWorker, /automintly-dashboard-launcher-v5/);
+  assert.match(dashboardServiceWorker, /'\/automintly-dashboard\.html'/);
+  assert.match(dashboardServiceWorker, /'\/dashboard-install-v4\.js'/);
   assert.match(dashboardServiceWorker, /self\.skipWaiting\(\)/);
+  assert.match(dashboardShortcut, /automintly-platform-staging\.onrender\.com\/platform\/login/);
+  assert.match(dashboardShortcut, /noindex,nofollow/);
+  assert.doesNotMatch(dashboardShortcut, /password|session|api[_ -]?key/i);
   assert.match(dashboardServiceWorker, /event\.respondWith\(fetch\(event\.request\)/);
   assert.match(dashboardServiceWorker, /url\.origin !== self\.location\.origin/);
   assert.doesNotMatch(dashboardServiceWorker, /automintly-platform-staging/);
