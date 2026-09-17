@@ -422,3 +422,17 @@ test('landing videos prefer lower-bandwidth AV1 while preserving MP4 fallbacks',
   assert.match(homepage, /automintly-orbital-forward-desktop-4k-seamless-v23\.mp4/);
   assert.match(spaceEntryScript, /primary\.canPlayType\(source\.type\)!==''/);
 });
+
+test('homepage presents OutcomeOS as three measurable systems with six honest control layers', () => {
+  assert.match(homepage, /id="outcomeos"/);
+  assert.match(homepage, /Find the leak\. Supervise the fix\. Prove the result\./);
+  for (const system of ['Revenue Rescue', 'Cash &amp; Cost Control', 'Growth Intelligence']) {
+    assert.match(homepage, new RegExp(system));
+  }
+  for (const layer of ['Business Leak Map', 'Human Approval Center', 'Unified Customer Timeline', 'Automation Test Center', 'Outcome Ledger', 'Reliability Center']) {
+    assert.match(homepage, new RegExp(layer));
+  }
+  assert.match(homepage, /separate estimates from evidence/i);
+  assert.match(homepage, /AI can prepare work; a person decides/i);
+  assert.doesNotMatch(homepage, /guaranteed (revenue|savings|results)/i);
+});
