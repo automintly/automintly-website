@@ -48,6 +48,9 @@ test('partner page has bounded delivery and referral paths', () => {
 
 test('dedicated no-call Health Check preserves consent and anti-abuse controls', () => {
   assert.match(healthCheckHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/health-check\.html">/);
+  assert.match(healthCheckHtml, /<title>Written Automation Health Check \| Automintly<\/title>/);
+  assert.match(healthCheckHtml, /recommended scope and price/i);
+  assert.doesNotMatch(healthCheckHtml.replace(/value="free-health-check"/g, ''), /free written|free health check/i);
   assert.match(healthCheckHtml, /name="health-check"/);
   assert.match(healthCheckHtml, /action="https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/"/);
   assert.match(healthCheckHtml, /data-netlify="true"/);
@@ -84,6 +87,8 @@ test('solutions hub creates specific outcome-led acquisition paths without guara
   assert.match(solutionsHtml, /Dashboard evidence/g);
   assert.match(solutionsHtml, /cannot guarantee a booking or sale/i);
   assert.match(solutionsHtml, /Health Check is directional|Written Health Check/i);
+  assert.match(solutionsHtml, /01 · SCOPE \+ PRICE/);
+  assert.doesNotMatch(solutionsHtml, /Free Health Check|01 · FREE/i);
   assert.match(solutionsHtml, /\$249/);
   assert.match(solutionsHtml, /health-check\.html\?source=solutions/);
   assert.match(homepage, /href="solutions\.html">Solutions<\/a>/);
@@ -439,7 +444,9 @@ test('homepage leads with the broad Automintly proposition before the dedicated 
 });
 
 test('industry pages use the same no-call health-check and paid-review path', () => {
-  assert.match(industriesHtml, /Free written Health Check/);
+  assert.match(industriesHtml, /Written Health Check/);
+  assert.match(industriesHtml, /recommended scope, and price/i);
+  assert.doesNotMatch(industriesHtml, /Free written Health Check/i);
   assert.match(industriesHtml, /\$249 Revenue-Leak Snapshot/);
   assert.match(industriesHtml, /Automation Opportunity Audit remains available for \$795/);
   assert.match(industriesHtml, /implementation is always quoted separately\./i);
