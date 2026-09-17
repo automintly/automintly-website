@@ -413,14 +413,16 @@ test('homepage leads with the broad Automintly proposition before the dedicated 
   assert.match(homepage, /Featured solution · HVAC &amp; home services/);
   assert.match(homepage, /Recover the lead after a missed call\./);
   assert.match(homepage, /Built as a focused industry solution—not the limit of what Automintly can automate\./);
-  assert.match(homepage, /free written Automation Health Check/i);
+  assert.match(homepage, /Start with a written Automation Health Check\./);
   assert.match(homepage, /No call is required/i);
   assert.match(homepage, /\$249 Automation Revenue-Leak Snapshot/);
   assert.match(homepage, /\$795 Automation Opportunity Audit/);
   assert.match(homepage, /Implementation is always quoted separately\./);
   assert.match(homepage, /Answer three short workflow questions\./);
   assert.match(homepage, /What written next step would you like\?/);
-  assert.match(homepage, /Free written Automation Health Check/);
+  assert.match(homepage, /Written Automation Health Check — send the scope and price/);
+  assert.match(homepage, /value="free-health-check"/);
+  assert.doesNotMatch(homepage.replace(/value="free-health-check"/g, ''), /free written Automation Health Check/i);
   assert.match(homepage, /\$249 Revenue-Leak Snapshot — send the written scope and payment request/);
   assert.match(homepage, /\$795 Automation Opportunity Audit — send the written scope and payment request/);
   assert.match(homepage, /Submitting this form does not charge you\./);
