@@ -256,6 +256,17 @@ test('focused offers live in the shopping flow instead of a duplicate homepage p
   assert.match(builder, /See the combined total in your cart\./);
 });
 
+test('builder organizes itemized selections into the three OutcomeOS systems', () => {
+  assert.match(builderHtml, /id="outcome-fit"/);
+  assert.match(builderHtml, /id="cart-system-mix"/);
+  assert.match(builder, /id:'revenue-rescue',name:'Revenue Rescue'/);
+  assert.match(builder, /id:'cash-cost-control',name:'Cash & Cost Control'/);
+  assert.match(builder, /id:'growth-intelligence',name:'Growth Intelligence'/);
+  assert.match(builder, /function systemMix\(productIds\)/);
+  assert.match(builder, /System labels organize the work; they do not add another charge\./);
+  assert.match(builderHtml, /Every automation and price remains itemized\./);
+});
+
 test('dashboard access and external costs remain separate from setup', () => {
   assert.match(builderHtml, /dashboard fee is based on their combined scope/i);
   assert.match(builderHtml, /Third-party provider and usage charges are separate and paid by the customer/i);

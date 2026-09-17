@@ -39,6 +39,12 @@
     {id:'quote-to-cash-accelerator',name:'Quote-to-Cash Accelerator',description:'Connect inquiry follow-up, CRM handoff, approved quote drafts, and receivables follow-up so work moves toward payment without hidden package pricing.',products:['lead-follow-up','crm-automation','quote-flow','cashchaser']}
   ];
 
+  const outcomeSystems = [
+    {id:'revenue-rescue',name:'Revenue Rescue',description:'Recover and move customer demand through response, booking, follow-up, and retention.',products:['ai-receptionist','missed-call-text-back','lead-follow-up','lead-qualification','appointment-booking','appointment-reminders','review-generation','old-lead-reactivation','crm-automation','customer-support-agent','lost-revenue-mystery-shopper','revenue-forensics','slotyield','quote-flow','onboard-flow','inbox-pilot','meeting-flow','renew-guard']},
+    {id:'cash-cost-control',name:'Cash & Cost Control',description:'Protect cash and margin with receivables, invoice, supplier, document, and spend controls.',products:['vendorleak-recovery','warrantyminer','business-exception-radar','cashchaser','agent-spend-governor','document-flow','spend-guard']},
+    {id:'growth-intelligence',name:'Growth Intelligence',description:'Turn approved market, prospect, operating, and performance evidence into reviewable decisions.',products:['reporting-automation','processclone-audit','agent-rehearsal-lab','lead-intel','advanced-market-research']}
+  ];
+
   const addons = [
     {id:'website-studio-clean-launch',group:'website-studio',name:'Website Studio — Clean Launch',billing:'one-time',price:200,description:'A clean three-section one-page website with a focused offer, services, and contact path.'},
     {id:'website-studio-service-snapshot',group:'website-studio',name:'Website Studio — Service Snapshot',billing:'one-time',price:200,description:'A compact four-section one-page website for local services, proof, and booking or contact.'},
@@ -78,6 +84,7 @@
   const escapeHtml = value => String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const byId = id => products.find(product => product.id === id);
   const addonById = id => addons.find(addon => addon.id === id);
+  const systemByProductId = id => outcomeSystems.find(system => system.products.includes(id));
   const addonAliases = {
     'website-upgrader-starter':'website-studio-clean-launch',
     'website-upgrader-growth':'website-studio-lead-engine',
@@ -114,12 +121,38 @@
     return {name:'Expanded dashboard',price:1499};
   }
 
+  function systemMix(productIds) {
+    return outcomeSystems.map(system => ({...system,count:productIds.filter(id=>system.products.includes(id)).length})).filter(system=>system.count>0).sort((a,b)=>b.count-a.count);
+  }
+
+  function systemChips(mix) {
+    return mix.map(system=>`<span class="system-chip">${escapeHtml(system.name)} · ${system.count}</span>`).join('');
+  }
+
+  function renderRecommendedSystemFit(productIds) {
+    const mix = systemMix(productIds);
+    const panel = document.querySelector('#outcome-fit');
+    if (!mix.length) {
+      panel.hidden = true;
+      return;
+    }
+    const strongest = mix[0];
+    panel.hidden = false;
+    document.querySelector('#outcome-fit-title').textContent = mix.length === 1 ? strongest.name : `${strongest.name} leads your system mix`;
+    document.querySelector('#outcome-fit-copy').textContent = strongest.description;
+    document.querySelector('#outcome-fit-chips').innerHTML = systemChips(mix);
+  }
+
   function renderCart() {
     const chosen = [...selected].map(byId);
     const setup = chosen.reduce((total,product)=>total+product.price,0);
     const dashboard = dashboardPlan();
     const optional = addonTotals();
     document.querySelector('#cart-count').textContent = `${chosen.length} automation${chosen.length===1?'':'s'}`;
+    const mix = systemMix(chosen.map(product=>product.id));
+    const mixPanel = document.querySelector('#cart-system-mix');
+    mixPanel.hidden = !mix.length;
+    mixPanel.innerHTML = mix.length ? `<span>OutcomeOS system mix</span><div class="system-chips">${systemChips(mix)}</div>` : '';
     const productRows = chosen.map(product=>`<div class="cart-item"><strong>${escapeHtml(product.name)}</strong><span>${product.includedAddon?'Included':money(product.price)}</span></div>`);
     const addonRows = optional.chosen.map(addon=>`<div class="cart-item optional-item"><strong>${escapeHtml(addon.name)}</strong><span>${money(addon.price)}${addon.billing==='monthly'?'/mo':''}</span></div>`);
     document.querySelector('#cart-items').innerHTML = productRows.length || addonRows.length ? [...productRows,...addonRows].join('') : '<p class="empty">Add an automation to see your tailored price.</p>';
@@ -139,11 +172,13 @@
   function renderFinalPlan() {
     const chosen = [...selected].map(byId), optional = addonTotals();
     const setup = chosen.reduce((total,product)=>total+product.price,0), dashboard = dashboardPlan();
-    document.querySelector('#final-plan').innerHTML = `<div class="plan-breakdown">${chosen.map(product=>`<div class="plan-row"><span>${escapeHtml(product.name)}${product.includedAddon?'':' setup'}</span><strong>${product.includedAddon?'Included · $0 upfront':money(product.price)}</strong></div>`).join('')}</div><div class="plan-total"><div><span>Automation setup total</span><strong>${money(setup)}</strong></div><div><span>${escapeHtml(dashboard.name)}</span><strong>${money(dashboard.price)}/month</strong></div>${optional.oneTime?`<div><span>Optional one-time services</span><strong>${money(optional.oneTime)}</strong></div>`:''}${optional.monthly?`<div><span>Optional monthly services</span><strong>${money(optional.monthly)}/month</strong></div>`:''}</div><p class="fineprint">Dashboard access is a separate required monthly fee based on automation scope. Contracting adds no setup charge or dashboard scope points. Any award-based success fee requires a legally permitted signed agreement before bid support. Optional services are separate selections. Required phone, messaging, AI, CRM, calendar, hosting, and other third-party charges are paid separately by the customer.</p>`;
+    const mix = systemMix(chosen.map(product=>product.id));
+    const mixSummary = mix.length ? `<section class="final-system-mix" aria-label="OutcomeOS system mix"><span>OutcomeOS system mix</span><div class="system-chips">${systemChips(mix)}</div><small>System labels organize the work; they do not add another charge.</small></section>` : '';
+    document.querySelector('#final-plan').innerHTML = `${mixSummary}<div class="plan-breakdown">${chosen.map(product=>`<div class="plan-row"><span>${escapeHtml(product.name)}${product.includedAddon?'':' setup'}</span><strong>${product.includedAddon?'Included · $0 upfront':money(product.price)}</strong></div>`).join('')}</div><div class="plan-total"><div><span>Automation setup total</span><strong>${money(setup)}</strong></div><div><span>${escapeHtml(dashboard.name)}</span><strong>${money(dashboard.price)}/month</strong></div>${optional.oneTime?`<div><span>Optional one-time services</span><strong>${money(optional.oneTime)}</strong></div>`:''}${optional.monthly?`<div><span>Optional monthly services</span><strong>${money(optional.monthly)}/month</strong></div>`:''}</div><p class="fineprint">Dashboard access is a separate required monthly fee based on automation scope. Contracting adds no setup charge or dashboard scope points. Any award-based success fee requires a legally permitted signed agreement before bid support. Optional services are separate selections. Required phone, messaging, AI, CRM, calendar, hosting, and other third-party charges are paid separately by the customer.</p>`;
     renderContractingRecommendation();
     document.querySelector('#addon-list').innerHTML = addons.map(addon=>`<label class="addon-card"><input type="checkbox" data-addon="${addon.id}" ${selectedAddons.has(addon.id)?'checked':''}><span><strong>${escapeHtml(addon.name)}</strong><small>${escapeHtml(addon.description)}</small></span><b>${money(addon.price)}${addon.billing==='monthly'?'/mo':' once'}</b></label>`).join('');
     const addonLines = optional.chosen.length ? ['', 'Optional services:', ...optional.chosen.map(addon=>`- ${addon.name}: ${money(addon.price)}${addon.billing==='monthly'?'/month':' one-time'}`), `Optional one-time total: ${money(optional.oneTime)}`, `Optional monthly total: ${money(optional.monthly)}/month`] : [];
-    const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${product.includedAddon?'$0 upfront search fee':`${money(product.price)} setup`}`),'',`Automation setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,...addonLines,'','Contracting success-fee terms, if applicable, require a legally permitted signed agreement before bid support. Third-party provider and usage charges are separate. No payment is authorized by this email.',`Business description: ${profile.description}`].join('\n');
+    const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,`OutcomeOS system mix: ${mix.length?mix.map(system=>system.name).join(', '):'None assigned'}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${product.includedAddon?'$0 upfront search fee':`${money(product.price)} setup`}`),'',`Automation setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,...addonLines,'','Contracting success-fee terms, if applicable, require a legally permitted signed agreement before bid support. Third-party provider and usage charges are separate. No payment is authorized by this email.',`Business description: ${profile.description}`].join('\n');
     document.querySelector('#email-plan').href = `mailto:automintly@gmail.com?subject=${encodeURIComponent(`Automation plan for ${profile.businessName}`)}&body=${encodeURIComponent(body)}`;
   }
 
@@ -207,6 +242,7 @@
     document.querySelector('#recommendation-list').innerHTML = recommendations.map(item=>productCard(item.product,item.reason,true)).join('');
     const recommendedIds = new Set(recommendations.map(item=>item.product.id));
     document.querySelector('#catalog-list').innerHTML = products.filter(product=>!recommendedIds.has(product.id)).map(product=>productCard(product)).join('');
+    renderRecommendedSystemFit(recommendations.map(item=>item.product.id));
     renderBundles();
     setStep(2);
   });
