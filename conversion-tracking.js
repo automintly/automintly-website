@@ -21,7 +21,8 @@
     website_trust_check_complete: true,
     website_trust_offer_click: true,
     website_trust_scope_email_click: true,
-    revenue_path_scope_click: true
+    revenue_path_scope_click: true,
+    vendorleak_offer_click: true
   };
 
   function cleanProperties(properties) {

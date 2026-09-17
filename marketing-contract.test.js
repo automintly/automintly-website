@@ -21,6 +21,7 @@ const partnersHtml = fs.readFileSync(path.join(root, 'partners.html'), 'utf8');
 const healthCheckHtml = fs.readFileSync(path.join(root, 'health-check.html'), 'utf8');
 const solutionsHtml = fs.readFileSync(path.join(root, 'solutions.html'), 'utf8');
 const acquisitionOperationsScreenHtml = fs.readFileSync(path.join(root, 'acquisition-operations-screen.html'), 'utf8');
+const vendorPaymentScreenHtml = fs.readFileSync(path.join(root, 'vendor-payment-screen.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
 const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
@@ -373,6 +374,26 @@ test('Revenue Path Watch has an honest invoice-based offer and dormant measureme
   assert.match(trackingConfig, /enabled:\s*false/);
   assert.match(trackingConfig, /provider:\s*"none"/);
   assert.match(trackingScript, /revenue_path_scope_click/);
+});
+
+test('VendorLeak has a bounded owned page and dormant source-tagged checkout path', () => {
+  assert.match(vendorPaymentScreenHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/vendor-payment-screen\.html">/);
+  assert.match(vendorPaymentScreenHtml, /\$199 one time/);
+  assert.match(vendorPaymentScreenHtml, /up to 10,000 rows/i);
+  assert.match(vendorPaymentScreenHtml, /three business days/i);
+  assert.match(vendorPaymentScreenHtml, /Fictional product proof only/i);
+  assert.match(vendorPaymentScreenHtml, /Candidates are not proof of error or fraud/i);
+  assert.doesNotMatch(vendorPaymentScreenHtml, /\bfree\b/i);
+  assert.doesNotMatch(vendorPaymentScreenHtml, /noindex/i);
+  assert.match(vendorPaymentScreenHtml, /utm_source=automintly/);
+  assert.match(vendorPaymentScreenHtml, /utm_campaign=vendorleak_pilot/);
+  assert.match(vendorPaymentScreenHtml, /data-conversion-event="vendorleak_offer_click"/);
+  assert.match(vendorPaymentScreenHtml, /conversion-tracking-config\.js/);
+  assert.match(homepage, /href="vendor-payment-screen\.html"/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/vendor-payment-screen\.html/);
+  assert.match(trackingScript, /vendorleak_offer_click/);
+  assert.match(trackingConfig, /enabled:\s*false/);
+  assert.match(trackingConfig, /provider:\s*"none"/);
 });
 
 test('shared charcoal theme keeps text readable on every themed page', () => {
