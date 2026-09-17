@@ -179,8 +179,44 @@
     document.querySelector('#addon-list').innerHTML = addons.map(addon=>`<label class="addon-card"><input type="checkbox" data-addon="${addon.id}" ${selectedAddons.has(addon.id)?'checked':''}><span><strong>${escapeHtml(addon.name)}</strong><small>${escapeHtml(addon.description)}</small></span><b>${money(addon.price)}${addon.billing==='monthly'?'/mo':' once'}</b></label>`).join('');
     const addonLines = optional.chosen.length ? ['', 'Optional services:', ...optional.chosen.map(addon=>`- ${addon.name}: ${money(addon.price)}${addon.billing==='monthly'?'/month':' one-time'}`), `Optional one-time total: ${money(optional.oneTime)}`, `Optional monthly total: ${money(optional.monthly)}/month`] : [];
     const body = [`Business: ${profile.businessName}`,`Industry: ${profile.industry}`,`OutcomeOS system mix: ${mix.length?mix.map(system=>system.name).join(', '):'None assigned'}`,'', 'Selected automations:',...chosen.map(product=>`- ${product.name}: ${product.includedAddon?'$0 upfront search fee':`${money(product.price)} setup`}`),'',`Automation setup total: ${money(setup)}`,`${dashboard.name}: ${money(dashboard.price)}/month`,...addonLines,'','Contracting success-fee terms, if applicable, require a legally permitted signed agreement before bid support. Third-party provider and usage charges are separate. No payment is authorized by this email.',`Business description: ${profile.description}`].join('\n');
+    document.querySelector('#plan-company').value = profile.businessName;
+    document.querySelector('#plan-interest').value = mix.length ? mix.map(system=>system.name).join(', ') : 'Custom automation plan';
+    document.querySelector('#plan-summary').value = body.slice(0,6000);
+    document.querySelector('#plan-system-summary').value = mix.length ? `OutcomeOS systems: ${mix.map(system=>`${system.name} (${system.count})`).join(', ')}. Requested written scope; no call required.` : 'Custom automation plan requested; no call required.';
     document.querySelector('#email-plan').href = `mailto:automintly@gmail.com?subject=${encodeURIComponent(`Automation plan for ${profile.businessName}`)}&body=${encodeURIComponent(body)}`;
   }
+
+  document.querySelector('#plan-request-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const status = document.querySelector('#plan-request-status');
+    const button = form.querySelector('button[type="submit"]');
+    status.className = 'plan-request-status';
+    status.textContent = '';
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      status.className = 'plan-request-status error';
+      status.textContent = 'Enter your name and work email, then accept the privacy consent.';
+      return;
+    }
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    const data = new URLSearchParams(new FormData(form));
+    fetch(form.action,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString(),mode:'no-cors'}).then(response => {
+      if (response.type !== 'opaque' && !response.ok) throw new Error('Request failed');
+      status.className = 'plan-request-status success';
+      status.textContent = response.type === 'opaque' ? 'Your request was sent, but this page cannot confirm delivery from the form provider. Use the email fallback if you do not hear from us within one business day.' : 'Your plan request was received. We will reply by email within one business day.';
+      form.querySelector('[name="name"]').value = '';
+      form.querySelector('[name="email"]').value = '';
+      form.querySelector('[name="consent"]').checked = false;
+    }).catch(() => {
+      status.className = 'plan-request-status error';
+      status.textContent = 'The form could not send your request. Use the email fallback beside the button.';
+    }).then(() => {
+      button.disabled = false;
+      button.textContent = 'Send My Plan Request';
+    });
+  });
 
   function scoreProducts(data) {
     const description = data.description.toLowerCase();

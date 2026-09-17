@@ -267,6 +267,20 @@ test('builder organizes itemized selections into the three OutcomeOS systems', (
   assert.match(builderHtml, /Every automation and price remains itemized\./);
 });
 
+test('builder can submit a minimal no-call plan request without collecting payment data', () => {
+  assert.match(builderHtml, /id="plan-request-form"/);
+  assert.match(builderHtml, /name="form-name" value="health-check"/);
+  assert.match(builderHtml, /netlify-honeypot="bot-field"/);
+  assert.match(builderHtml, /name="email" type="email"[^>]+required/);
+  assert.match(builderHtml, /name="consent" type="checkbox"[^>]+required/);
+  assert.match(builderHtml, /Email only — no call/);
+  assert.match(builderHtml, /no payment information is collected on this page/i);
+  assert.doesNotMatch(builderHtml, /name="(?:card|card_number|cvv|cvc|payment)"/i);
+  assert.match(builder, /mode:'no-cors'/);
+  assert.match(builder, /cannot confirm delivery from the form provider/);
+  assert.match(builder, /Use the email fallback/);
+});
+
 test('dashboard access and external costs remain separate from setup', () => {
   assert.match(builderHtml, /dashboard fee is based on their combined scope/i);
   assert.match(builderHtml, /Third-party provider and usage charges are separate and paid by the customer/i);

@@ -155,8 +155,23 @@
           </div>
           <div class="checkout-notice">
             <strong>Your builder and pricing are ready.</strong>
-            <p>Secure online payment and automatic customer-account creation are the next connection being completed. Until that connection is live, no payment information is collected on this page.</p>
-            <a class="primary" id="email-plan" href="mailto:automintly@gmail.com">Send My Plan to Automintly</a>
+            <p>Request a written scope by email without booking a call. Secure online payment and automatic customer-account creation are still being connected, so no payment information is collected on this page.</p>
+            <form id="plan-request-form" name="health-check" method="POST" action="https://sweet-puffpuff-9243c4.netlify.app/" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="health-check">
+              <input type="hidden" name="source" value="builder-plan">
+              <input type="hidden" id="plan-company" name="company">
+              <input type="hidden" id="plan-interest" name="interest">
+              <input type="hidden" name="preferred_contact" value="Email only — no call">
+              <input type="hidden" name="requested_step" value="builder-plan">
+              <input type="hidden" name="current_channels" value="Automintly self-service builder">
+              <input type="hidden" id="plan-summary" name="message">
+              <input type="hidden" id="plan-system-summary" name="outcome_tracking">
+              <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+              <div class="plan-contact-grid"><label>Your name<input name="name" type="text" autocomplete="name" maxlength="100" required></label><label>Work email<input name="email" type="email" autocomplete="email" maxlength="254" required></label></div>
+              <label class="plan-consent"><input name="consent" type="checkbox" value="yes" required><span>I agree that Automintly may use this information to respond to my request, as described in the <a href="privacy.html">Privacy Policy</a>.</span></label>
+              <div class="checkout-actions"><button class="primary" type="submit">Send My Plan Request</button><a class="secondary" id="email-plan" href="mailto:automintly@gmail.com">Use Email Instead</a></div>
+              <div id="plan-request-status" class="plan-request-status" role="status" aria-live="polite"></div>
+            </form>
           </div>
           <div class="step-actions"><button class="secondary" type="button" data-back="2">← Change automations</button></div>
         </div>
