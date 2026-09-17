@@ -288,6 +288,9 @@ test('builder can submit a minimal no-call plan request without collecting payme
   assert.match(builderHtml, /name="consent" type="checkbox"[^>]+required/);
   assert.match(builderHtml, /Email only — no call/);
   assert.match(builderHtml, /no payment information is collected on this page/i);
+  assert.match(builderHtml, /What happens after your plan request/);
+  assert.match(builderHtml, /No paid work begins until you review and accept both/);
+  assert.doesNotMatch(builderHtml, /What happens after checkout/i);
   assert.doesNotMatch(builderHtml, /name="(?:card|card_number|cvv|cvc|payment)"/i);
   assert.match(builder, /mode:'no-cors'/);
   assert.match(builder, /cannot confirm delivery from the form provider/);
