@@ -20,6 +20,7 @@ const clientDashboardHtml = fs.readFileSync(path.join(root, 'client-dashboard.ht
 const partnersHtml = fs.readFileSync(path.join(root, 'partners.html'), 'utf8');
 const healthCheckHtml = fs.readFileSync(path.join(root, 'health-check.html'), 'utf8');
 const solutionsHtml = fs.readFileSync(path.join(root, 'solutions.html'), 'utf8');
+const acquisitionOperationsScreenHtml = fs.readFileSync(path.join(root, 'acquisition-operations-screen.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
 const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
@@ -76,6 +77,18 @@ test('solutions hub creates specific outcome-led acquisition paths without guara
   assert.match(solutionsHtml, /health-check\.html\?source=solutions/);
   assert.match(homepage, /href="solutions\.html">Solutions<\/a>/);
   assert.match(sitemapXml, /https:\/\/automintly\.com\/solutions\.html/);
+});
+
+test('acquisition operations screen preserves its fixed scope, proof, and boundaries', () => {
+  assert.match(acquisitionOperationsScreenHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/acquisition-operations-screen\.html">/);
+  assert.match(acquisitionOperationsScreenHtml, /\$399/);
+  assert.match(acquisitionOperationsScreenHtml, /Up to 12 recurring workflows and 10 tools/);
+  assert.match(acquisitionOperationsScreenHtml, /https:\/\/contra\.com\/s\/Q66qrXB2-find-the-automation-upside-before-you-buy-a-business/);
+  assert.match(acquisitionOperationsScreenHtml, /https:\/\/contra\.com\/p\/lkUsLW7Q-automation-upside-autopsy-or-fictional-buyer-operations-screen/);
+  assert.match(acquisitionOperationsScreenHtml, /Financial, legal, tax, valuation, security, ownership, or seller verification/);
+  assert.match(acquisitionOperationsScreenHtml, /A guarantee of savings, revenue, purchase quality, or acquisition outcome/);
+  assert.match(homepage, /href="acquisition-operations-screen\.html">Screen the operation before buying a business/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/acquisition-operations-screen\.html/);
 });
 
 function arrayConstant(name) {
