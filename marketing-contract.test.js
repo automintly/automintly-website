@@ -478,6 +478,10 @@ test('industry pages use the same no-call health-check and paid-review path', ()
   assert.match(industriesHtml, /\$249 Revenue-Leak Snapshot/);
   assert.match(industriesHtml, /Automation Opportunity Audit remains available for \$795/);
   assert.match(industriesHtml, /implementation is always quoted separately\./i);
+  assert.match(industriesHtml, /b\.id = k/);
+  assert.match(industriesHtml, /b\.setAttribute\('aria-controls', 'top'\)/);
+  assert.match(industriesHtml, /window\.addEventListener\('hashchange'/);
+  assert.match(industriesHtml, /if\(INDUSTRIES\[next\] && next !== current\) select\(next, false\)/);
 });
 
 test('builder includes the fixed-price no-call revenue-leak snapshot', () => {

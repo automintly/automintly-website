@@ -184,7 +184,7 @@
   <div class="indbar-inner" role="tablist" id="indbar"></div>
 </nav>
 
-<main id="top">
+<main id="top" role="tabpanel">
 
   <section class="hero">
     <div class="wrap hero-inner">
@@ -514,6 +514,8 @@ const INDUSTRIES = {
     b.className = 'indtab';
     b.type = 'button';
     b.role = 'tab';
+    b.id = k;
+    b.setAttribute('aria-controls', 'top');
     b.textContent = INDUSTRIES[k].tab;
     b.setAttribute('aria-selected', 'false');
     b.addEventListener('click', function(){ select(k, true); });
@@ -553,6 +555,7 @@ const INDUSTRIES = {
   function select(k, scroll){
     current = k;
     var d = INDUSTRIES[k];
+    el('top').setAttribute('aria-labelledby', k);
 
     Array.prototype.forEach.call(bar.children, function(b){
       b.setAttribute('aria-selected', b.dataset.key === k ? 'true' : 'false');
@@ -602,6 +605,10 @@ const INDUSTRIES = {
 
   var hash = window.location.hash.replace('#','');
   select(INDUSTRIES[hash] ? hash : keys[0], false);
+  window.addEventListener('hashchange', function(){
+    var next = window.location.hash.replace('#','');
+    if(INDUSTRIES[next] && next !== current) select(next, false);
+  });
 })();
 </script>
 
