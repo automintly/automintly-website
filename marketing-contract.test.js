@@ -354,8 +354,16 @@ test('included dashboard band uses the green Automintly palette', () => {
   assert.match(charcoalTheme, /body\.charcoal-theme \.included \.inc-item \{[\s\S]*?background:#1b2924;[\s\S]*?border:1px solid #405249;[\s\S]*?color:#86f5c4;/);
 });
 
-test('homepage leads with the HVAC missed-call offer and a no-call written sales path', () => {
-  assert.match(homepage, /Stop losing HVAC leads after a missed call\./);
+test('homepage leads with the broad Automintly proposition before the dedicated HVAC solution', () => {
+  const heroPosition = homepage.indexOf('<section class="hero"');
+  const hvacPosition = homepage.indexOf('<section class="industry-focus" id="hvac-home-services"');
+  assert.ok(heroPosition >= 0 && hvacPosition > heroPosition);
+  assert.match(homepage, /Turn repetitive work into systems that run\./);
+  assert.match(homepage, /customer service, sales, operations, finance, and reporting/i);
+  assert.match(homepage, /What Automintly can connect/);
+  assert.match(homepage, /Featured solution · HVAC &amp; home services/);
+  assert.match(homepage, /Recover the lead after a missed call\./);
+  assert.match(homepage, /Built as a focused industry solution—not the limit of what Automintly can automate\./);
   assert.match(homepage, /free written Automation Health Check/i);
   assert.match(homepage, /No call is required/i);
   assert.match(homepage, /\$249 Automation Revenue-Leak Snapshot/);

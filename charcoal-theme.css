@@ -55,7 +55,8 @@ body.charcoal-theme .services,
 body.charcoal-theme .stack,
 body.charcoal-theme .steps-sec,
 body.charcoal-theme .why,
-body.charcoal-theme .recovery { background:var(--bg-2); border-color:var(--line); }
+body.charcoal-theme .recovery,
+body.charcoal-theme .industry-focus { background:var(--bg-2); border-color:var(--line); }
 body.charcoal-theme .problem,
 body.charcoal-theme .included,
 body.charcoal-theme .process,

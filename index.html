@@ -201,6 +201,15 @@
   .problem-card h3{ font-size:17.5px; margin-top:12px; }
   .problem-card p{ color:var(--muted); font-size:14px; margin-top:10px; }
 
+  /* ---------- Featured industry solution ---------- */
+  .industry-focus{ padding:80px 0; background:#fff; border-bottom:1px solid var(--line); scroll-margin-top:96px; }
+  .industry-focus-grid{ display:grid; grid-template-columns:1.08fr .92fr; gap:52px; align-items:center; }
+  .industry-focus .eyebrow{ display:inline-block; color:var(--blue-600); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .industry-focus h2{ margin-top:12px; max-width:19ch; font-size:32px; line-height:1.16; }
+  .industry-focus .lead{ margin-top:16px; max-width:54ch; color:var(--muted); font-size:15.5px; line-height:1.65; }
+  .industry-focus .fit-note{ margin-top:16px; max-width:58ch; color:var(--navy-900); font-size:13.5px; font-weight:600; }
+  @media (max-width:900px){ .industry-focus-grid{ grid-template-columns:1fr; gap:34px; } }
+
   /* ---------- Services ---------- */
   .services{ padding:80px 0; background:var(--bg-2); border-bottom:1px solid var(--line); }
   .services-head h2{ font-size:32px; }
@@ -529,23 +538,23 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
-        <h1>Stop losing HVAC leads after a missed call.</h1>
-        <p class="sub">Automintly builds a focused missed-call and lead-follow-up system for HVAC and home-service teams. It helps respond while the customer is still looking, keeps follow-up work visible, and records the outcome in one dashboard.</p>
+        <h1>Turn repetitive work into systems that run.</h1>
+        <p class="sub">Automintly finds the manual work, broken handoffs, and revenue leaks slowing your business down. We build focused automation across customer service, sales, operations, finance, and reporting—then show you what every system is doing in one dashboard.</p>
         <p class="sub" style="margin-top:14px; color:var(--navy-900); font-weight:600;">Start with a free written Automation Health Check. No call is required. If one workflow deserves a closer look, the next step is a fixed-price Revenue-Leak Snapshot.</p>
         <div class="hero-ctas">
           <a href="health-check.html?source=homepage-hero" class="btn-primary">Get a written assessment</a>
-          <a href="#services" class="btn-outline">See the system</a>
+          <a href="#services" class="btn-outline">See what we automate</a>
         </div>
       </div>
       <div class="coverage-panel">
-        <div class="panel-title">Missed-call recovery system</div>
+        <div class="panel-title">What Automintly can connect</div>
         <div class="coverage-list">
-          <div class="coverage-item"><span class="coverage-check">✓</span> Missed call captured</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Approved text response prepared</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Lead added to the CRM workflow</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Booking link and escalation rules</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Follow-up queue with human controls</div>
-          <div class="coverage-item"><span class="coverage-check">✓</span> Results and failures in the dashboard</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Leads, customer requests, and follow-up</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Phone, text, email, and website chat</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Scheduling, CRM, and sales handoffs</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Documents, invoices, and approvals</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Internal tasks with human controls</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Time, revenue, and failures in one dashboard</div>
         </div>
       </div>
     </div>
@@ -573,6 +582,33 @@
           <div class="tagnum">Slow follow-up</div>
           <h3>Leads that go cold waiting</h3>
           <p>Deals and clients stall out because no one had the hours to reach back out in time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED INDUSTRY SOLUTION -->
+  <section class="industry-focus" id="hvac-home-services">
+    <div class="wrap industry-focus-grid">
+      <div>
+        <span class="eyebrow">Featured solution · HVAC &amp; home services</span>
+        <h2>Recover the lead after a missed call.</h2>
+        <p class="lead">When a technician or office team cannot answer, Automintly can keep the inquiry moving with an approved response, a visible follow-up queue, booking and escalation rules, and a complete outcome record.</p>
+        <p class="fit-note">Built as a focused industry solution—not the limit of what Automintly can automate.</p>
+        <div class="hero-ctas">
+          <a href="health-check.html?source=homepage-hvac" class="btn-primary">Check my lead handoff</a>
+          <a href="industries.html#home-services" class="btn-outline">Explore home services</a>
+        </div>
+      </div>
+      <div class="coverage-panel">
+        <div class="panel-title">HVAC missed-call recovery</div>
+        <div class="coverage-list">
+          <div class="coverage-item"><span class="coverage-check">✓</span> Missed call captured</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Approved text response prepared</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Lead added to the CRM workflow</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Booking link and escalation rules</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Follow-up queue with human controls</div>
+          <div class="coverage-item"><span class="coverage-check">✓</span> Results and failures in the dashboard</div>
         </div>
       </div>
     </div>
