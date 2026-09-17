@@ -22,6 +22,7 @@ const healthCheckHtml = fs.readFileSync(path.join(root, 'health-check.html'), 'u
 const solutionsHtml = fs.readFileSync(path.join(root, 'solutions.html'), 'utf8');
 const acquisitionOperationsScreenHtml = fs.readFileSync(path.join(root, 'acquisition-operations-screen.html'), 'utf8');
 const vendorPaymentScreenHtml = fs.readFileSync(path.join(root, 'vendor-payment-screen.html'), 'utf8');
+const vendorPaymentGuideHtml = fs.readFileSync(path.join(root, 'check-duplicate-vendor-payments-csv.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
 const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install-v4.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
@@ -404,6 +405,22 @@ test('VendorLeak has a bounded owned page and dormant source-tagged checkout pat
   assert.match(trackingScript, /vendorleak_offer_click/);
   assert.match(trackingConfig, /enabled:\s*false/);
   assert.match(trackingConfig, /provider:\s*"none"/);
+});
+
+test('VendorLeak search guide is evidence-bounded and routes to the unchanged offer', () => {
+  assert.match(vendorPaymentGuideHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/check-duplicate-vendor-payments-csv\.html">/);
+  assert.match(vendorPaymentGuideHtml, /How to check a vendor payment CSV for duplicate-payment candidates/);
+  assert.match(vendorPaymentGuideHtml, /review queue, not an accounting conclusion/i);
+  assert.match(vendorPaymentGuideHtml, /not use the screening file itself as authority to reverse, withhold, reclaim, or dispute a payment/i);
+  assert.match(vendorPaymentGuideHtml, /docs\.oracle\.com/);
+  assert.match(vendorPaymentGuideHtml, /learn\.microsoft\.com/);
+  assert.match(vendorPaymentGuideHtml, /gao\.gov/);
+  assert.match(vendorPaymentGuideHtml, /utm_medium=organic_search/);
+  assert.match(vendorPaymentGuideHtml, /utm_campaign=vendorleak_csv_guide/);
+  assert.equal((vendorPaymentGuideHtml.match(/data-conversion-event="vendorleak_offer_click"/g) || []).length, 3);
+  assert.doesNotMatch(vendorPaymentGuideHtml, /guarantee|recovered amount|we found|we saved/i);
+  assert.match(vendorPaymentScreenHtml, /href="check-duplicate-vendor-payments-csv\.html"/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/check-duplicate-vendor-payments-csv\.html/);
 });
 
 test('shared charcoal theme keeps text readable on every themed page', () => {
