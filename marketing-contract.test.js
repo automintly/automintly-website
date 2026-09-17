@@ -65,6 +65,17 @@ test('dedicated no-call Health Check preserves consent and anti-abuse controls',
 
 test('solutions hub creates specific outcome-led acquisition paths without guarantees', () => {
   assert.match(solutionsHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/solutions\.html">/);
+  assert.match(solutionsHtml, /id="systems"/);
+  assert.match(solutionsHtml, /Revenue Rescue/);
+  assert.match(solutionsHtml, /Cash &amp; Cost Control/);
+  assert.match(solutionsHtml, /Growth Intelligence/);
+  assert.match(solutionsHtml, /Every system reports into the Outcome Control Center/);
+  assert.match(solutionsHtml, /interest=Revenue%20Rescue/);
+  assert.match(solutionsHtml, /interest=Cash%20%26%20Cost%20Control/);
+  assert.match(solutionsHtml, /interest=Growth%20Intelligence/);
+  assert.match(healthCheckHtml, /<option>Revenue Rescue<\/option>/);
+  assert.match(healthCheckHtml, /<option>Cash &amp; Cost Control<\/option>/);
+  assert.match(healthCheckHtml, /<option>Growth Intelligence<\/option>/);
   assert.match(solutionsHtml, /HVAC and home services/);
   assert.match(solutionsHtml, /Dental and medical/);
   assert.match(solutionsHtml, /Salons and spas/);
