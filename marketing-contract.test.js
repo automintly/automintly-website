@@ -110,6 +110,12 @@ test('acquisition operations screen preserves its fixed scope, proof, and bounda
   assert.match(sitemapXml, /https:\/\/automintly\.com\/acquisition-operations-screen\.html/);
 });
 
+test('agent action audit ledger has one attributable self-service path', () => {
+  assert.match(homepage, /Get the local agent audit ledger — \$49/);
+  assert.match(homepage, /https:\/\/tymilroy\.gumroad\.com\/l\/agent-action-audit-ledger\?utm_source=automintly&amp;utm_medium=website&amp;utm_campaign=agent_action_audit_ledger&amp;utm_content=custom_systems_card/);
+  assert.equal((homepage.match(/tymilroy\.gumroad\.com\/l\/agent-action-audit-ledger/g) || []).length, 1);
+});
+
 function arrayConstant(name) {
   const match = builder.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n  \\]);`));
   assert.ok(match, `${name} must remain a readable array constant`);
