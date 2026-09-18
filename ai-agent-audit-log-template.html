@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Crect width=&apos;32&apos; height=&apos;32&apos; rx=&apos;6&apos; fill=&apos;%2317191b&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;5&apos; fill=&apos;%2375e8b0&apos;/%3E%3C/svg%3E">
+<title>AI Agent Audit Log: What to Record Before Agents Take Real Actions | Automintly</title>
+<meta name="description" content="A practical AI agent audit log template: what to record, what to exclude, and how to separate authorization, execution, and business outcomes.">
+<link rel="canonical" href="https://automintly.com/ai-agent-audit-log-template.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://automintly.com/ai-agent-audit-log-template.html">
+<meta property="og:site_name" content="Automintly">
+<meta property="og:title" content="AI Agent Audit Log: What to Record Before Agents Take Real Actions">
+<meta property="og:description" content="A field-tested structure for recording agent identity, authorization, action, target, result, and evidence without dumping secrets into logs.">
+<meta property="og:image" content="https://automintly.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "AI Agent Audit Log: What to Record Before Agents Take Real Actions",
+  "description": "A practical template for recording consequential AI agent actions, authorization decisions, execution outcomes, and evidence while excluding secrets and sensitive data.",
+  "author": { "@type": "Organization", "name": "Automintly" },
+  "publisher": { "@type": "Organization", "name": "Automintly", "url": "https://automintly.com" },
+  "datePublished": "2026-09-17",
+  "dateModified": "2026-09-17",
+  "mainEntityOfPage": "https://automintly.com/ai-agent-audit-log-template.html"
+}
+</script>
+<link rel="stylesheet" href="charcoal-theme.css?v=green-contrast-v4">
+<link rel="stylesheet" href="compliance.css?v=legal-v1">
+<script src="conversion-tracking-config.js"></script>
+<script defer src="conversion-tracking.js"></script>
+<script defer src="site-compliance.js?v=legal-v1"></script>
+<style>
+  :root{--bg:#17191b;--bg-2:#1c1f21;--surface:#24292b;--line:#3a4343;--text:#dfebe5;--muted:#a7b6af;--mint:#75e8b0;--mint-2:#a6facc;--sans:'Inter',system-ui,sans-serif}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 30px}.logo{font-size:23px;font-weight:800;letter-spacing:-.8px;text-decoration:none;color:#eef7f3}.logo span{color:var(--mint)}
+  header{position:sticky;top:0;z-index:20;background:rgba(23,25,27,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav{max-width:1120px;margin:0 auto;min-height:74px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:24px}.navlinks{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}.navlinks a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:600}.navlinks a:hover,.navlinks a:focus{color:var(--mint)}.navcta,.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:12px 18px;background:var(--mint);color:#09291d;text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(circle at 78% 10%,rgba(117,232,176,.13),transparent 34%),var(--bg-2);border-bottom:1px solid var(--line)}.hero-inner{padding:78px 0 66px;max-width:860px}.eyebrow{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:var(--mint);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.055em;margin:22px 0 18px;color:#eef7f3}.hero p{max-width:720px;font-size:18px;color:var(--muted);margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:54px;padding:64px 0 78px}.article h2{font-size:31px;line-height:1.2;letter-spacing:-.035em;color:#eef7f3;margin:54px 0 14px}.article h2:first-child{margin-top:0}.article h3{font-size:19px;color:#eef7f3;margin:28px 0 8px}.article p,.article li{color:var(--muted)}.article strong{color:var(--text)}.article a{color:var(--mint)}.signal{border-left:3px solid var(--mint);background:var(--bg-2);padding:19px 22px;margin:26px 0;color:var(--text)}
+  .fields{display:grid;gap:12px;margin:24px 0}.field{display:grid;grid-template-columns:150px 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px}.field dt{font-weight:800;color:var(--mint-2)}.field dd{margin:0;color:var(--muted)}
+  .example{overflow:auto;background:#101516;border:1px solid var(--line);border-radius:10px;padding:20px;margin:24px 0}.example pre{margin:0;color:#c8d8d0;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.three section{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}.three h3{margin:0 0 8px}.three p{margin:0;font-size:14px}
+  aside{align-self:start;position:sticky;top:98px}.side-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}.side-card h2{font-size:22px;line-height:1.25;letter-spacing:-.03em;color:#eef7f3;margin:0}.side-card p{font-size:14px;color:var(--muted);margin:12px 0 20px}.side-card .btn{width:100%;text-align:center}.side-note{font-size:12px;color:var(--muted);margin:13px 0 0!important}.sources{border-top:1px solid var(--line);margin-top:48px;padding-top:28px}.sources h2{font-size:21px;margin:0 0 10px}.sources ul{padding-left:20px}
+  .final-cta{background:#101516;border-top:1px solid var(--line);padding:64px 0}.final-cta .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px}.final-cta h2{font-size:34px;line-height:1.15;letter-spacing:-.04em;color:#eef7f3;margin:0}.final-cta p{color:var(--muted);margin:9px 0 0;max-width:620px}footer{background:#101516;border-top:1px solid var(--line);padding:30px 0}.foot{display:flex;justify-content:space-between;align-items:center;gap:18px;color:var(--muted);font-size:13px}.foot a{color:var(--muted)}
+  @media(max-width:850px){.navlinks{display:none}.layout{grid-template-columns:1fr}.layout aside{position:static}.final-cta .wrap{align-items:flex-start;flex-direction:column}.three{grid-template-columns:1fr}}@media(max-width:600px){.wrap,.nav{padding-left:20px;padding-right:20px}.hero-inner{padding:58px 0 50px}.hero h1{font-size:43px}.navcta{padding:10px 13px}.field{grid-template-columns:1fr;gap:4px}.foot{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body class="charcoal-theme site-entered">
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" class="logo">auto<span>mintly</span></a>
+    <ul class="navlinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="industries.html">Industries</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="index.html#packages">Pricing</a></li>
+    </ul>
+    <a href="build-your-automation.html" class="navcta">Build Your Automation</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="eyebrow">Agent operations guide</span>
+        <h1>What should an AI agent audit log record?</h1>
+        <p>Record the decision and the real-world effect—not a transcript dump. This guide gives you a compact event structure for agents that can publish, modify data, send messages, or trigger spending.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#template">Use the field template</a>
+          <a class="btn secondary" href="#before-production">Review the production gate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <article class="article">
+      <h2>A trace is not an audit trail</h2>
+      <p>Model traces help engineers debug prompts, tool calls, and latency. An operational audit trail answers a different question: <strong>who or what was allowed to do which consequential action, to which resource, and what actually happened?</strong></p>
+      <p>NIST's 2026 concept paper on agent identity and authorization explicitly calls out identification, authorization, auditing, and non-repudiation as open requirements for software and AI agents. NIST's AI Risk Management Framework is broader and voluntary; it helps organizations manage AI risk, but it does not prescribe one universal event schema.</p>
+      <div class="signal">A successful API response is evidence of execution. It is not proof that the intended business result occurred, that the agent had authority, or that the result remained correct afterward.</div>
+
+      <h2 id="template">A minimum useful event</h2>
+      <p>Start with these fields. Keep them structured and consistent so they can be filtered, compared, and reviewed.</p>
+      <dl class="fields">
+        <div class="field"><dt>Timestamp</dt><dd>When the decision or action occurred, with timezone or UTC.</dd></div>
+        <div class="field"><dt>Agent ID</dt><dd>A stable identifier for the agent or automation—not merely the model name.</dd></div>
+        <div class="field"><dt>Action type</dt><dd>A clear verb such as read, create, update, delete, publish, send, purchase, or deny.</dd></div>
+        <div class="field"><dt>Target</dt><dd>The resource kind and a non-secret reference, such as an order ID, post ID, or file hash.</dd></div>
+        <div class="field"><dt>Effect</dt><dd>Read-only, data write, public representation, communication, permission change, or financial effect.</dd></div>
+        <div class="field"><dt>Decision</dt><dd>Allowed, denied, or escalated—and the policy or approval basis used.</dd></div>
+        <div class="field"><dt>Outcome</dt><dd>Success, failure, partial, or unknown, plus a bounded evidence reference.</dd></div>
+      </dl>
+
+      <h2>Example event</h2>
+      <div class="example"><pre>{
+  "timestamp": "2026-09-17T16:42:11Z",
+  "agent_id": "publishing-agent-02",
+  "action_type": "publish",
+  "target": { "kind": "article", "ref": "sha256:9e4…" },
+  "effect": "public_representation",
+  "decision": "allowed",
+  "authorization_basis": "approval-ticket-1842",
+  "outcome": "success",
+  "evidence_ref": "platform-post-7319"
+}</pre></div>
+      <p>The example uses references rather than raw credentials, prompts, customer data, or message bodies. Your implementation should match your actual risk, retention, and legal requirements.</p>
+
+      <h2>Separate three kinds of proof</h2>
+      <div class="three">
+        <section><h3>Authorization</h3><p>Was this agent permitted to perform this action on this target at this time?</p></section>
+        <section><h3>Execution</h3><p>Did the tool or platform accept and complete the requested operation?</p></section>
+        <section><h3>Business result</h3><p>Did the intended outcome occur, remain correct, and avoid an unintended side effect?</p></section>
+      </div>
+      <p>Keeping these separate prevents a common failure: treating a green workflow run as proof that the customer, finance, or publishing outcome is correct.</p>
+
+      <h2>What should stay out of the log</h2>
+      <p>OWASP's logging guidance recommends removing, masking, sanitizing, hashing, or encrypting sensitive fields rather than recording them directly. For agent systems, the default exclusion list should include:</p>
+      <ul>
+        <li>Passwords, access tokens, API keys, recovery codes, and one-time verification codes.</li>
+        <li>Session identifiers, database connection strings, encryption keys, and payment-card or bank data.</li>
+        <li>Raw prompts, model responses, attachments, or message bodies unless they are necessary, authorized, minimized, and protected.</li>
+        <li>Customer personal data or commercially sensitive content when a stable reference will do.</li>
+      </ul>
+      <p>Also sanitize untrusted event values before writing them. Log data can contain hostile input, and the log itself needs access control, retention rules, monitoring, and tamper protection.</p>
+
+      <h2>Hash chains help—but do not prove truth</h2>
+      <p>Linking each event to the previous event's hash can reveal later deletion or alteration. It does not prove that the original event was complete, that the agent was authorized, or that the recorded outcome was true. Protect the signing or hashing process, restrict access, and verify high-risk outcomes independently.</p>
+
+      <h2 id="before-production">Before an agent can take real actions</h2>
+      <ol>
+        <li><strong>Define action classes.</strong> Separate reads from writes, public posts, messages, permission changes, and spending.</li>
+        <li><strong>Attach an authorization rule.</strong> Decide what is pre-approved, what is denied, and what needs a person.</li>
+        <li><strong>Record the decision before execution.</strong> A post-hoc log is weaker evidence of authorization.</li>
+        <li><strong>Record platform evidence after execution.</strong> Use stable IDs or hashes, not screenshots alone.</li>
+        <li><strong>Verify the business outcome.</strong> Confirm the destination state rather than trusting the tool response.</li>
+        <li><strong>Test denial and failure paths.</strong> Verify that blocked actions stay blocked and partial failures are visible.</li>
+        <li><strong>Review access and retention.</strong> Limit who can read, change, export, and delete logs.</li>
+      </ol>
+
+      <section class="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Primary sources</h2>
+        <ul>
+          <li><a href="https://csrc.nist.gov/pubs/other/2026/02/05/accelerating-the-adoption-of-software-and-ai-agent/ipd">NIST NCCoE: Accelerating the Adoption of Software and AI Agent Identity and Authorization</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html">OWASP Logging Cheat Sheet</a></li>
+        </ul>
+        <p>This guide is educational and does not provide legal, compliance, or security certification.</p>
+      </section>
+    </article>
+
+    <aside>
+      <div class="side-card">
+        <h2>Need a local starter implementation?</h2>
+        <p>The Agent Action Audit Ledger Starter includes a local audit log, policy gate, sample events, and setup guide for small teams testing consequential agent actions.</p>
+        <a class="btn" href="https://tymilroy.gumroad.com/l/agent-action-audit-ledger?utm_source=automintly&amp;utm_medium=seo_guide&amp;utm_campaign=agent_action_audit_ledger&amp;utm_content=ai_agent_audit_log_template">See the $49 starter</a>
+        <p class="side-note">One-time purchase. No account is required to run the local starter. It is not a compliance certification or a substitute for legal or security review.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <div><h2>Make agent actions reviewable before they become expensive.</h2><p>Start with a clear event schema, explicit authorization, and independent outcome checks. Add complexity only when the risk requires it.</p></div>
+      <a class="btn" href="https://tymilroy.gumroad.com/l/agent-action-audit-ledger?utm_source=automintly&amp;utm_medium=seo_guide&amp;utm_campaign=agent_action_audit_ledger&amp;utm_content=ai_agent_audit_log_template_bottom">Get the local starter — $49</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap foot"><span>© 2026 Automintly. Automation built around your business.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:tymilroyshop@outlook.com">Contact</a></span></div></footer>
+</body>
+</html>

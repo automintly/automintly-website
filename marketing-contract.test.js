@@ -23,6 +23,7 @@ const solutionsHtml = fs.readFileSync(path.join(root, 'solutions.html'), 'utf8')
 const acquisitionOperationsScreenHtml = fs.readFileSync(path.join(root, 'acquisition-operations-screen.html'), 'utf8');
 const vendorPaymentScreenHtml = fs.readFileSync(path.join(root, 'vendor-payment-screen.html'), 'utf8');
 const vendorPaymentGuideHtml = fs.readFileSync(path.join(root, 'check-duplicate-vendor-payments-csv.html'), 'utf8');
+const agentAuditGuideHtml = fs.readFileSync(path.join(root, 'ai-agent-audit-log-template.html'), 'utf8');
 const dashboardManifest = JSON.parse(fs.readFileSync(path.join(root, 'dashboard-manifest.json'), 'utf8'));
 const dashboardInstall = fs.readFileSync(path.join(root, 'dashboard-install-v4.js'), 'utf8');
 const dashboardServiceWorker = fs.readFileSync(path.join(root, 'dashboard-sw.js'), 'utf8');
@@ -32,6 +33,18 @@ const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js')
 const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const charcoalTheme = fs.readFileSync(path.join(root, 'charcoal-theme.css'), 'utf8');
+
+test('AI agent audit-log guide is source-backed, bounded, and routes to the existing product', () => {
+  assert.match(agentAuditGuideHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/ai-agent-audit-log-template\.html">/);
+  assert.match(agentAuditGuideHtml, /"@type": "TechArticle"/);
+  assert.match(agentAuditGuideHtml, /NIST NCCoE: Accelerating the Adoption of Software and AI Agent Identity and Authorization/);
+  assert.match(agentAuditGuideHtml, /OWASP Logging Cheat Sheet/);
+  assert.match(agentAuditGuideHtml, /Passwords, access tokens, API keys, recovery codes, and one-time verification codes/);
+  assert.match(agentAuditGuideHtml, /It is not a compliance certification or a substitute for legal or security review/);
+  assert.match(agentAuditGuideHtml, /https:\/\/tymilroy\.gumroad\.com\/l\/agent-action-audit-ledger\?utm_source=automintly&amp;utm_medium=seo_guide&amp;utm_campaign=agent_action_audit_ledger&amp;utm_content=ai_agent_audit_log_template/);
+  assert.match(homepage, /href="ai-agent-audit-log-template\.html"/);
+  assert.match(sitemapXml, /https:\/\/automintly\.com\/ai-agent-audit-log-template\.html/);
+});
 
 test('partner page has bounded delivery and referral paths', () => {
   assert.match(partnersHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/partners\.html">/);
