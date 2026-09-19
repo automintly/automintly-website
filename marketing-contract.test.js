@@ -33,6 +33,7 @@ const trackingScript = fs.readFileSync(path.join(root, 'conversion-tracking.js')
 const spaceEntryScript = fs.readFileSync(path.join(root, 'space-entry.js'), 'utf8');
 const sitemapXml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const charcoalTheme = fs.readFileSync(path.join(root, 'charcoal-theme.css'), 'utf8');
+const complianceCss = fs.readFileSync(path.join(root, 'compliance.css'), 'utf8');
 
 test('AI agent audit-log guide is source-backed, bounded, and routes to the existing product', () => {
   assert.match(agentAuditGuideHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/ai-agent-audit-log-template\.html">/);
@@ -532,6 +533,12 @@ test('homepage navigation is organized by universal business needs', () => {
   assert.match(homepage, /href="build-your-automation\.html">Pricing &amp; plan<\/a>/);
   assert.doesNotMatch(homepage, /<span class="indbar-label">By industry<\/span>/);
   assert.doesNotMatch(homepage, /<nav class="indbar"[^>]*>[\s\S]*?Home services[\s\S]*?<\/nav>/);
+});
+
+test('desktop header keeps its navigation links in a compact group', () => {
+  assert.match(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]*?flex:\s*0 1 auto;[\s\S]*?justify-content:\s*flex-start;/);
+  assert.match(complianceCss, /header > \.nav > \.navcta\s*\{[\s\S]*?margin-left:\s*auto;/);
+  assert.doesNotMatch(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]{0,160}?justify-content:\s*space-between;/);
 });
 
 test('builder includes the fixed-price no-call revenue-leak snapshot', () => {
