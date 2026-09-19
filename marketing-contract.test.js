@@ -525,6 +525,8 @@ test('industry pages use the same no-call health-check and paid-review path', ()
 });
 
 test('homepage navigation is organized by universal business needs', () => {
+  assert.match(homepage, /href="#services">Automations<\/a>/);
+  assert.doesNotMatch(homepage, /href="#services">Business needs<\/a>/);
   assert.match(homepage, /href="#customer-workflows">Customer response<\/a>/);
   assert.match(homepage, /href="#growth-workflows">Sales &amp; growth<\/a>/);
   assert.match(homepage, /href="#operations-workflows">Daily operations<\/a>/);
