@@ -213,13 +213,13 @@ test('automation rescue card offers the verified self-service kit', () => {
 });
 
 test('Contracting has a dedicated navigation tab and an honest pre-checkout recommendation', () => {
-  const industryTabsPosition = homepage.indexOf('<nav class="indbar"');
+  const headerPosition = homepage.indexOf('<header>');
   const mainPosition = homepage.indexOf('<main id="top">');
   const heroPosition = homepage.indexOf('<section class="hero"');
   const problemPosition = homepage.indexOf('<section class="problem"');
   const recoveryPosition = homepage.indexOf('<section class="recovery"');
   const servicesPosition = homepage.indexOf('<section class="services"');
-  assert.ok(industryTabsPosition >= 0 && mainPosition > industryTabsPosition);
+  assert.ok(headerPosition >= 0 && mainPosition > headerPosition);
   assert.ok(heroPosition > mainPosition && problemPosition > heroPosition);
   assert.ok(recoveryPosition > problemPosition);
   assert.ok(servicesPosition > recoveryPosition);
@@ -524,22 +524,16 @@ test('industry pages use the same no-call health-check and paid-review path', ()
   assert.match(industriesHtml, /if\(INDUSTRIES\[next\] && next !== current\) select\(next, false\)/);
 });
 
-test('homepage navigation is organized by universal business needs', () => {
+test('homepage primary navigation keeps the main customer decisions clear', () => {
   const primaryNavigation = homepage.match(/<ul class="navlinks">[\s\S]*?<\/ul>/)?.[0] || '';
   assert.match(primaryNavigation, /href="#services">Automations<\/a>/);
-  assert.doesNotMatch(primaryNavigation, /href="#services">Business needs<\/a>/);
-  assert.match(primaryNavigation, /href="solutions\.html">Systems<\/a>/);
-  assert.doesNotMatch(primaryNavigation, /href="solutions\.html">Solutions<\/a>/);
-  assert.match(homepage, /href="#customer-workflows">Customer response<\/a>/);
-  assert.match(homepage, /href="#growth-workflows">Sales &amp; growth<\/a>/);
-  assert.match(homepage, /href="#operations-workflows">Daily operations<\/a>/);
-  assert.match(homepage, /href="#visibility-workflows">Data &amp; reporting<\/a>/);
-  assert.match(homepage, /href="build-your-automation\.html">Pricing &amp; plan<\/a>/);
-  assert.doesNotMatch(homepage, /<span class="indbar-label">/);
-  assert.doesNotMatch(homepage, /<span class="indbar-label">By industry<\/span>/);
-  assert.doesNotMatch(homepage, /<nav class="indbar"[^>]*>[\s\S]*?Home services[\s\S]*?<\/nav>/);
-  assert.match(homepage, /\.indbar-inner\{[^}]*justify-content:center;/);
-  assert.match(homepage, /@media \(max-width:720px\)\{ \.indbar-inner\{[^}]*justify-content:flex-start;/);
+  assert.match(primaryNavigation, /href="#process">How It Works<\/a>/);
+  assert.match(primaryNavigation, /href="roi-calculator\.html">ROI Calculator<\/a>/);
+  assert.match(primaryNavigation, /href="#packages">Pricing<\/a>/);
+  assert.match(primaryNavigation, /href="contracting\.html">Contracting<\/a>/);
+  assert.match(primaryNavigation, /href="client-dashboard\.html">Dashboard<\/a>/);
+  assert.doesNotMatch(primaryNavigation, />Systems<\/a>|>UGC &amp; Ads<\/a>|>Commitments<\/a>|>Recovery<\/a>/);
+  assert.doesNotMatch(homepage, /<nav class="indbar"/);
 });
 
 test('desktop header keeps its navigation links in a compact centered group', () => {
