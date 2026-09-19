@@ -525,12 +525,12 @@ test('industry pages use the same no-call health-check and paid-review path', ()
 });
 
 test('homepage navigation is organized by universal business needs', () => {
-  assert.match(homepage, /<span class="indbar-label">By business need<\/span>/);
   assert.match(homepage, /href="#customer-workflows">Customer response<\/a>/);
   assert.match(homepage, /href="#growth-workflows">Sales &amp; growth<\/a>/);
   assert.match(homepage, /href="#operations-workflows">Daily operations<\/a>/);
   assert.match(homepage, /href="#visibility-workflows">Data &amp; reporting<\/a>/);
   assert.match(homepage, /href="build-your-automation\.html">Pricing &amp; plan<\/a>/);
+  assert.doesNotMatch(homepage, /<span class="indbar-label">/);
   assert.doesNotMatch(homepage, /<span class="indbar-label">By industry<\/span>/);
   assert.doesNotMatch(homepage, /<nav class="indbar"[^>]*>[\s\S]*?Home services[\s\S]*?<\/nav>/);
 });
