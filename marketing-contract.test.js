@@ -533,6 +533,8 @@ test('homepage navigation is organized by universal business needs', () => {
   assert.doesNotMatch(homepage, /<span class="indbar-label">/);
   assert.doesNotMatch(homepage, /<span class="indbar-label">By industry<\/span>/);
   assert.doesNotMatch(homepage, /<nav class="indbar"[^>]*>[\s\S]*?Home services[\s\S]*?<\/nav>/);
+  assert.match(homepage, /\.indbar-inner\{[^}]*justify-content:center;/);
+  assert.match(homepage, /@media \(max-width:720px\)\{ \.indbar-inner\{[^}]*justify-content:flex-start;/);
 });
 
 test('desktop header keeps its navigation links in a compact group', () => {
