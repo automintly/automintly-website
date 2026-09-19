@@ -532,7 +532,13 @@ test('homepage primary navigation keeps the main customer decisions clear', () =
   assert.match(primaryNavigation, /href="#packages">Pricing<\/a>/);
   assert.match(primaryNavigation, /href="client-dashboard\.html">Client Dashboard<\/a>/);
   assert.doesNotMatch(primaryNavigation, />Solutions<\/a>|>Automations<\/a>|>Process<\/a>|>How It Works<\/a>|>Commitments<\/a>/);
-  assert.doesNotMatch(homepage, /<nav class="indbar"/);
+  const secondaryNavigation = homepage.match(/<nav class="indbar"[\s\S]*?<\/nav>/)?.[0] || '';
+  assert.match(secondaryNavigation, /href="#customer-workflows">Customer response<\/a>/);
+  assert.match(secondaryNavigation, /href="#growth-workflows">Sales &amp; growth<\/a>/);
+  assert.match(secondaryNavigation, /href="#operations-workflows">Daily operations<\/a>/);
+  assert.match(secondaryNavigation, /href="#visibility-workflows">Data &amp; reporting<\/a>/);
+  assert.match(secondaryNavigation, /href="build-your-automation\.html">Pricing &amp; plan<\/a>/);
+  assert.match(secondaryNavigation, /href="contracting\.html">Contracting<\/a>/);
   assert.match(homepage, /<section class="process" id="process">/);
   assert.match(homepage, /<section class="guarantees" id="commitments">/);
 });
