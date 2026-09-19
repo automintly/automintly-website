@@ -537,9 +537,9 @@ test('homepage navigation is organized by universal business needs', () => {
   assert.match(homepage, /@media \(max-width:720px\)\{ \.indbar-inner\{[^}]*justify-content:flex-start;/);
 });
 
-test('desktop header keeps its navigation links in a compact group', () => {
-  assert.match(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]*?flex:\s*0 1 auto;[\s\S]*?justify-content:\s*flex-start;/);
-  assert.match(complianceCss, /header > \.nav > \.navcta\s*\{[\s\S]*?margin-left:\s*auto;/);
+test('desktop header keeps its navigation links in a compact centered group', () => {
+  assert.match(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/);
+  assert.match(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]*?justify-content:\s*flex-start;[\s\S]*?width:\s*max-content;/);
   assert.doesNotMatch(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]{0,160}?justify-content:\s*space-between;/);
 });
 

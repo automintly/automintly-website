@@ -211,7 +211,8 @@
     max-width: none;
     padding-inline: clamp(16px, 2vw, 36px);
     gap: 0;
-    justify-content: flex-start;
+    justify-content: space-between;
+    position: relative;
   }
 
   header > .nav > .logo,
@@ -220,14 +221,18 @@
   }
 
   header > .nav > .logo {
-    margin-right: clamp(24px, 2.2vw, 34px);
+    margin-right: 0;
   }
 
   header > .nav > .navlinks {
-    flex: 0 1 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    flex: 0 0 auto;
     justify-content: flex-start;
     gap: clamp(14px, 1.25vw, 20px);
-    min-width: 0;
+    width: max-content;
+    max-width: calc(100% - 390px);
   }
 
   header > .nav > .navlinks a {
@@ -236,7 +241,7 @@
   }
 
   header > .nav > .navcta {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 
