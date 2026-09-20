@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Written Automation Health Check | Automintly</title>
-  <meta name="description" content="Request a written review of one missed, delayed, or repetitive business workflow, including the recommended scope and price. No sales call or phone number required.">
+  <meta name="description" content="Request a written scope and price for one missed, delayed, or repetitive business workflow. No sales call or phone number required.">
   <link rel="canonical" href="https://automintly.com/health-check.html">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://automintly.com/health-check.html">
   <meta property="og:site_name" content="Automintly">
   <meta property="og:title" content="Written Automation Health Check | Automintly">
-  <meta property="og:description" content="Show us one workflow problem. Get an honest written fit check by email—no call required.">
+  <meta property="og:description" content="Show us one workflow problem. Get a written scope and price by email—no call required.">
   <meta property="og:image" content="https://automintly.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <style>
@@ -37,21 +37,21 @@
   <main id="main-content">
     <section class="hero">
       <div class="wrap">
-        <div class="eyebrow">Written workflow assessment</div>
+        <div class="eyebrow">Written workflow scope</div>
         <h1>Show us the workflow that keeps slipping through the cracks.</h1>
-        <p>Answer three short questions and Automintly will reply by email with an honest fit check, the most useful next step, and the information needed to scope it. No phone number or sales call is required.</p>
-        <div class="proof" aria-label="Assessment facts"><span>No charge to submit</span><span>Email response</span><span>One focused workflow</span><span>No sensitive data</span></div>
+        <p>Answer three short questions and Automintly will reply by email to confirm whether the request fits and provide a written scope and price. Assessment work begins only after you approve the scope and pay the invoice. No phone number or sales call is required.</p>
+        <div class="proof" aria-label="Request facts"><span>Written scope and price before work</span><span>Email response</span><span>One focused workflow</span><span>No sensitive data</span></div>
       </div>
     </section>
 
     <div class="wrap layout">
       <aside class="side" aria-label="What to expect">
-        <section class="panel"><h2>What you receive</h2><ol><li><strong>Fit check:</strong> whether the workflow is a sensible automation candidate.</li><li><strong>Leak summary:</strong> where time, follow-up, or visibility may be getting lost.</li><li><strong>Next step:</strong> a practical recommendation, including when no build is warranted.</li></ol></section>
-        <section class="panel boundary"><h2>Clear boundary</h2><p>The Health Check is directional, not a technical audit or promise of results. Paid work begins only after you review and accept a written scope and payment request. Third-party software and usage costs remain separate.</p></section>
+        <section class="panel"><h2>Before any paid work</h2><ol><li><strong>Scope fit:</strong> whether this request is within Automintly’s current service boundaries.</li><li><strong>Written price:</strong> the proposed deliverable and fee before any assessment starts.</li><li><strong>Next step:</strong> how to approve, pay, and begin if you choose to proceed.</li></ol></section>
+        <section class="panel boundary"><h2>Clear boundary</h2><p>Submitting this form requests a scope and price, not a completed assessment or promise of results. Analysis begins only after you accept the written scope and pay the invoice. Third-party software and usage costs remain separate.</p></section>
       </aside>
 
       <section class="form-card" aria-labelledby="form-title">
-        <h2 id="form-title">Request your Health Check</h2>
+        <h2 id="form-title">Request a scope and price</h2>
         <p>We normally reply within one business day. Required fields are marked by the browser.</p>
         <form id="health-check-form" name="health-check" method="POST" action="https://sweet-puffpuff-9243c4.netlify.app/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="health-check">
@@ -82,7 +82,7 @@
           <div class="field"><label for="outcomes">3. How do you know whether the work was booked, completed, closed, or lost?</label><textarea id="outcomes" name="outcome_tracking" maxlength="1500" required></textarea></div>
           <p class="privacy" id="privacy-hint">Do not include passwords, payment information, health information, government ID numbers, or other sensitive personal data.</p>
           <div class="consent"><input id="consent" name="consent" type="checkbox" value="yes" required><label for="consent">I agree that Automintly may use the information I submit to respond to this request, as described in the <a href="privacy.html">Privacy Policy</a>. <strong>Required.</strong></label></div>
-          <button type="submit">Request my written Health Check</button>
+          <button type="submit">Request a scope and price</button>
           <div class="status" id="form-status" role="status" aria-live="polite"></div>
           <p class="small">No phone number is requested. You can also email <a href="mailto:automintly@gmail.com">automintly@gmail.com</a>.</p>
         </form>
@@ -110,10 +110,10 @@
         fetch(form.action,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString(),mode:'no-cors'}).then(function(response){
           if(response.type!=='opaque'&&!response.ok) throw new Error('Request failed');
           status.className='status ok';
-          status.textContent=response.type==='opaque'?'Your request was sent, but this browser cannot confirm receipt. For confirmed follow-up, email automintly@gmail.com.':'Thanks — we will reply by email within one business day. No call is required.';
+          status.textContent=response.type==='opaque'?'Your request was sent, but this browser cannot confirm receipt. For confirmed follow-up, email automintly@gmail.com.':'Thanks — we will reply by email within one business day with a proposed scope and price. No call is required.';
           if(window.AutomintlyConversions) window.AutomintlyConversions.track(response.type==='opaque'?'health_check_submitted_unverified':'health_check_success',{page:window.location.pathname});
           form.reset();document.getElementById('source').value=source&&/^[a-z0-9-]{1,60}$/i.test(source)?source:'health-check-page';
-        }).catch(function(){status.className='status err';status.textContent='Something went wrong. Please try again or email automintly@gmail.com.';}).then(function(){button.disabled=false;button.textContent='Request my written Health Check';});
+        }).catch(function(){status.className='status err';status.textContent='Something went wrong. Please try again or email automintly@gmail.com.';}).then(function(){button.disabled=false;button.textContent='Request a scope and price';});
       });
     })();
   </script>
