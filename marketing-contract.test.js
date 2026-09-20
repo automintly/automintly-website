@@ -66,16 +66,16 @@ test('partner page has bounded delivery and referral paths', () => {
 test('dedicated no-call Health Check preserves consent and anti-abuse controls', () => {
   assert.match(healthCheckHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/health-check\.html">/);
   assert.match(healthCheckHtml, /<title>Written Automation Health Check \| Automintly<\/title>/);
-  assert.match(healthCheckHtml, /recommended scope and price/i);
-  assert.doesNotMatch(healthCheckHtml.replace(/value="free-health-check"/g, ''), /free written|free health check/i);
+  assert.match(healthCheckHtml, /written scope and price/i);
+  assert.doesNotMatch(healthCheckHtml.replace(/value="free-health-check"/g, ''), /No charge to submit|free written|free health check/i);
   assert.match(healthCheckHtml, /name="health-check"/);
   assert.match(healthCheckHtml, /action="https:\/\/sweet-puffpuff-9243c4\.netlify\.app\/"/);
   assert.match(healthCheckHtml, /data-netlify="true"/);
   assert.match(healthCheckHtml, /netlify-honeypot="bot-field"/);
   assert.match(healthCheckHtml, /name="consent"[^>]+required/);
   assert.match(healthCheckHtml, /Do not include passwords, payment information, health information/i);
-  assert.match(healthCheckHtml, /Submitting this form does not charge you|No charge to submit/i);
-  assert.match(healthCheckHtml, /Paid work begins only after you review and accept a written scope and payment request/i);
+  assert.match(healthCheckHtml, /Submitting this form requests a scope and price, not a completed assessment/i);
+  assert.match(healthCheckHtml, /Analysis begins only after you accept the written scope and pay the invoice/i);
   assert.doesNotMatch(healthCheckHtml, /name="phone"|type="tel"/i);
   assert.match(healthCheckHtml, /mode:'no-cors'/);
   assert.match(healthCheckHtml, /cannot confirm receipt/i);
