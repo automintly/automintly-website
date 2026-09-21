@@ -1,0 +1,13 @@
+TY MILROY - AI VISUAL PORTFOLIO
+
+Open index.html to view the portfolio locally.
+
+Collection: 74 unique pieces total
+- 34 people and fashion videos
+- 1 landscape and environment video
+- 39 photos and visual studies
+
+The full archive is separated into People & Fashion Videos, Landscapes & Environments, and Photos & Visuals. Exact duplicate source files were excluded.
+
+Public portfolio: https://ty-milroy-ai-portfolio.netlify.app/
+Note: the local package contains the newest work. Public publishing is pending because the current Netlify account has reached its deployment-credit limit.
