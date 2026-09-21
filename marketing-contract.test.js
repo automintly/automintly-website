@@ -543,6 +543,13 @@ test('homepage primary navigation keeps the main customer decisions clear', () =
   assert.match(homepage, /<section class="guarantees" id="commitments">/);
 });
 
+test('UGC offer opens the current public visual portfolio safely', () => {
+  const ugcSection = homepage.match(/<section class="growth-studio" id="ugc"[\s\S]*?<\/section>/)?.[0] || '';
+  assert.match(ugcSection, /href="https:\/\/ty-milroy-ai-portfolio\.tymilroy\.chatgpt\.site\/#work"/);
+  assert.match(ugcSection, /target="_blank" rel="noopener noreferrer"/);
+  assert.match(ugcSection, />View the UGC &amp; visual portfolio &rarr;<\/a>/);
+});
+
 test('desktop header keeps its navigation links in a compact centered group', () => {
   assert.match(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/);
   assert.match(complianceCss, /header > \.nav > \.navlinks\s*\{[\s\S]*?justify-content:\s*flex-start;[\s\S]*?width:\s*max-content;/);
