@@ -479,6 +479,14 @@
   .rec-line.tot .k{ font-weight:600; color:var(--navy-900); }
   .rec-line.tot .v{ font-size:22px; color:#B3261E; }
   .rec-card-foot{ padding:11px 22px; border-top:1px solid var(--line); background:#FBF6F5; font-size:12.5px; color:var(--muted); }
+
+  .dashboard-dropdown{position:relative}
+  .dashboard-dropdown summary{cursor:pointer;font-size:14px;font-weight:700;white-space:nowrap}
+  .dashboard-menu{position:absolute;right:0;top:calc(100% + 14px);z-index:100;min-width:270px;max-width:calc(100vw - 32px);padding:8px;background:#202826;border:1px solid #52635b;border-radius:10px;box-shadow:0 12px 28px #0006}
+  .navlinks .dashboard-menu a,.dashboard-menu a{display:block;padding:12px;color:#eef7f2;font-size:14px;line-height:1.4;text-decoration:none;white-space:normal}
+  .dashboard-menu a:hover,.dashboard-menu a:focus-visible{background:#33483e;color:#a6facc}
+  .dashboard-dropdown summary:focus-visible{outline:3px solid #75e8b0;outline-offset:4px}
+  @media(max-width:600px){.dashboard-menu{min-width:240px;right:-45px}}
 </style>
 
 <script src="conversion-tracking-config.js"></script>
@@ -530,9 +538,9 @@
       <li><a href="roi-calculator.html">ROI Calculator</a></li>
       <li><a href="#recovery">Recovery</a></li>
       <li><a href="#packages">Pricing</a></li>
-      <li><a class="dashboard-link" href="client-dashboard.html">Client Dashboard</a></li>
+      <li><details class="dashboard-dropdown"><summary class="dashboard-link">Client Dashboard</summary><div class="dashboard-menu"><a href="client-dashboard.html">Open Client Dashboard</a><a href="knowledge-hub.html">Business Knowledge Hub — $299 setup</a></div></details></li>
     </ul>
-    <a href="client-dashboard.html" class="nav-account">Dashboard</a>
+    <details class="nav-account dashboard-dropdown"><summary>Dashboard</summary><div class="dashboard-menu"><a href="client-dashboard.html">Open Client Dashboard</a><a href="knowledge-hub.html">Business Knowledge Hub — $299 setup</a></div></details>
     <a href="build-your-automation.html" class="navcta"><span class="nav-cta-full">Build Your Automation</span><span class="nav-cta-short">Build</span></a>
   </div>
 </header>
