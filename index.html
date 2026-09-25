@@ -495,6 +495,31 @@
 <script defer src="site-compliance.js?v=legal-v1"></script>
 <link rel="stylesheet" href="space-entry.css?v=22-desktop-only">
 <link rel="stylesheet" href="charcoal-theme.css?v=green-contrast-v4">
+<style id="mobile-layout-repair">
+  /* Mobile-only: keep the emblem attached and actions equally tappable. */
+  @media (max-width:840px) {
+    header .logo { white-space:nowrap; flex:0 0 auto; line-height:1.2; }
+    header .nav-account, header .navcta { min-height:44px; box-sizing:border-box; }
+  }
+  @media (max-width:600px) {
+    header .nav { padding:12px; gap:6px; }
+    header .logo { font-size:21px; }
+    header .nav-account { padding:0; flex:0 0 auto; }
+    header .nav-account summary { display:flex; align-items:center; justify-content:center; min-height:42px; padding:0 10px; font-size:13px; list-style:none; }
+    header .nav-account summary::-webkit-details-marker { display:none; }
+    header .navcta { display:inline-flex; align-items:center; justify-content:center; padding:0 12px; font-size:13px; white-space:nowrap; flex:0 0 auto; }
+    header .nav-cta-full { display:none; }
+    header .nav-cta-short { display:inline; }
+    header .dashboard-menu { right:0; min-width:220px; }
+    body.charcoal-theme .hero-inner { padding-inline:20px; }
+    .hero-ctas { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; }
+    .hero-ctas > a { display:flex; align-items:center; justify-content:center; width:100%; min-height:48px; box-sizing:border-box; padding:12px 16px; text-align:center; line-height:1.4; }
+  }
+  @media (max-width:360px) {
+    header .logo { font-size:18px; }
+    header .nav-account summary { padding-inline:8px; }
+  }
+</style>
 <script defer src="space-entry.js?v=24-media-load"></script>
 <script defer src="shooting-star.js?v=22-desktop-only"></script>
 </head>
