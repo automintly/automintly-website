@@ -496,6 +496,9 @@
 <link rel="stylesheet" href="space-entry.css?v=22-desktop-only">
 <link rel="stylesheet" href="charcoal-theme.css?v=green-contrast-v4">
 <style id="mobile-layout-repair">
+  @media(min-width:1121px){
+    header > .nav > .nav-account { display:block; margin-left:auto; margin-right:16px; padding:10px 0; border:0; }
+  }
   /* Mobile-only: keep the emblem attached and actions equally tappable. */
   @media (max-width:840px) {
     header .logo { white-space:nowrap; flex:0 0 auto; line-height:1.2; }
@@ -563,7 +566,6 @@
       <li><a href="roi-calculator.html">ROI Calculator</a></li>
       <li><a href="#recovery">Recovery</a></li>
       <li><a href="#packages">Pricing</a></li>
-      <li><details class="dashboard-dropdown"><summary class="dashboard-link">Client Dashboard</summary><div class="dashboard-menu"><a href="client-dashboard.html">Open Client Dashboard</a><a href="knowledge-hub.html">Business Knowledge Hub — $299 setup</a></div></details></li>
     </ul>
     <details class="nav-account dashboard-dropdown"><summary>Dashboard</summary><div class="dashboard-menu"><a href="client-dashboard.html">Open Client Dashboard</a><a href="knowledge-hub.html">Business Knowledge Hub — $299 setup</a></div></details>
     <a href="build-your-automation.html" class="navcta"><span class="nav-cta-full">Build Your Automation</span><span class="nav-cta-short">Build</span></a>
