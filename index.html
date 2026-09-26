@@ -498,6 +498,10 @@
 <style id="mobile-layout-repair">
   @media(min-width:1121px){
     header > .nav > .nav-account { display:block; margin-left:auto; margin-right:16px; padding:10px 0; border:0; }
+    body.site-entered header > .nav { gap:16px; }
+    body.site-entered header > .nav > .navlinks { position:static; transform:none; width:auto; max-width:none; }
+    body.site-entered header > .nav > .nav-account { margin: auto 0 0; }
+    body.site-entered header > .nav > .navcta { margin-top:0; }
   }
   /* Mobile-only: keep the emblem attached and actions equally tappable. */
   @media (max-width:840px) {
