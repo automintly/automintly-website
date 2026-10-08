@@ -142,7 +142,9 @@ const addons = arrayConstant('addons');
 
 test('customers have an honest dashboard access and install path', () => {
   assert.match(homepage, /href="client-dashboard\.html">Client Dashboard<\/a>/);
-  assert.match(homepage, /href="client-dashboard\.html" class="nav-account">Dashboard<\/a>/);
+  const dashboardMenu = homepage.match(/<details class="nav-account dashboard-dropdown">[\s\S]*?<\/details>/)?.[0] || '';
+  assert.match(dashboardMenu, /<summary>Dashboard<\/summary>/);
+  assert.match(dashboardMenu, /href="client-dashboard\.html">Open Client Dashboard<\/a>/);
   assert.match(homepage, /href="client-dashboard\.html#install">Download dashboard shortcut<\/a>/);
   assert.match(clientDashboardHtml, /<link rel="canonical" href="https:\/\/automintly\.com\/client-dashboard\.html">/);
   assert.match(clientDashboardHtml, /Open my dashboard/);
@@ -530,7 +532,9 @@ test('homepage primary navigation keeps the main customer decisions clear', () =
   assert.match(primaryNavigation, /href="roi-calculator\.html">ROI Calculator<\/a>/);
   assert.match(primaryNavigation, /href="#recovery">Recovery<\/a>/);
   assert.match(primaryNavigation, /href="#packages">Pricing<\/a>/);
-  assert.match(primaryNavigation, /href="client-dashboard\.html">Client Dashboard<\/a>/);
+  const accountNavigation = homepage.match(/<details class="nav-account dashboard-dropdown">[\s\S]*?<\/details>/)?.[0] || '';
+  assert.match(accountNavigation, /href="client-dashboard\.html">Open Client Dashboard<\/a>/);
+  assert.match(accountNavigation, /href="https:\/\/studio\.automintly\.com\/dashboard">Content Studio<\/a>/);
   assert.doesNotMatch(primaryNavigation, />Solutions<\/a>|>Automations<\/a>|>Process<\/a>|>How It Works<\/a>|>Commitments<\/a>/);
   const secondaryNavigation = homepage.match(/<nav class="indbar"[\s\S]*?<\/nav>/)?.[0] || '';
   assert.match(secondaryNavigation, /href="#customer-workflows">Customer response<\/a>/);

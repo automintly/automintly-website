@@ -1,0 +1,22 @@
+.customer-reviews{padding:40px 0;border-top:1px solid #354541;color:#eef7f2}
+.customer-reviews h2,.customer-reviews h3{color:#eef7f2}
+.customer-reviews>.wrap{max-width:850px;text-align:center}
+.customer-reviews h2{font-size:25px;margin:0 0 16px}
+.review-list{margin:0 auto 20px;max-width:700px}
+.review-empty{font-size:14px;color:#b2c5bc;margin:0;padding:16px;background:#202928;border:1px solid #354541;border-radius:10px}
+.customer-reviews button{cursor:pointer;min-height:44px;font:inherit}
+#testimonial-panel{max-width:560px;margin:24px auto 0;padding:24px;text-align:left;background:#202928;border:1px solid #354541;border-radius:12px}
+#testimonial-panel[hidden]{display:none}
+#testimonial-panel h3{font-size:20px;margin:0 0 10px}
+#testimonial-panel p{font-size:14px;line-height:1.6}
+#testimonial-panel .field{margin:14px 0}
+#testimonial-panel label{display:block;font-size:14px;margin-bottom:6px}
+#testimonial-panel input:not([type=checkbox]),#testimonial-panel textarea{width:100%;max-width:100%;box-sizing:border-box;padding:10px 12px;background:#151d1b;border:1px solid #50625b;border-radius:6px;color:#eef7f2;font:inherit;font-size:16px}
+#testimonial-panel textarea{resize:vertical}
+#testimonial-panel .consent-field{display:flex;align-items:flex-start;gap:10px;margin:18px 0}
+#testimonial-panel .consent-field input{flex-shrink:0;margin-top:4px}
+#testimonial-panel a{color:#80e4b5;text-decoration:underline}
+#testimonial-status:empty{display:none}
+#testimonial-status{padding:12px;border:1px solid #50625b;border-radius:6px}
+.customer-reviews button:focus-visible,#testimonial-panel a:focus-visible{outline:3px solid #80e4b5;outline-offset:4px}
+@media(max-width:600px){.customer-reviews{padding:28px 0}.customer-reviews>.wrap{padding:0 20px}#testimonial-panel{padding:18px}.customer-reviews h2{font-size:22px}}

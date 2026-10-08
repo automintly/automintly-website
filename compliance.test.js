@@ -118,7 +118,10 @@ test("unsupported absolute claims and fabricated social proof are absent", () =>
   for (const claim of disallowedClaims) {
     assert.equal(html.toLowerCase().includes(claim.toLowerCase()), false, `remove unsupported claim: ${claim}`);
   }
-  assert.doesNotMatch(html, /class=["'][^"']*(?:testimonial|star-rating|customer-review)[^"']*["']/i);
+  // A collection form is not social proof. Keep fabricated ratings and
+  // unapproved quote cards out while permitting the requested empty section.
+  assert.doesNotMatch(html, /class=["'][^"']*(?:star-rating|testimonial-card|customer-review-card)[^"']*["']/i);
+  assert.doesNotMatch(html, /"@type"\s*:\s*"(?:Review|AggregateRating)"/i);
   assert.doesNotMatch(html, /(?:★★★★★|5\.0\s*(?:out of 5|stars))/i);
 });
 

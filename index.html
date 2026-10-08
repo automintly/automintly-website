@@ -1676,6 +1676,33 @@
     </div>
   </section>
 
+  <section id="reviews" class="customer-reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <h2 id="reviews-title">Customer reviews</h2>
+      <div class="review-list" aria-label="Approved customer testimonials">
+        <p class="review-empty">Customer testimonials will appear here after review.</p>
+      </div>
+      <button class="btn-primary" id="testimonial-toggle" type="button" aria-expanded="false" aria-controls="testimonial-panel">Add your testimonial</button>
+      <div id="testimonial-panel" hidden>
+        <h3>Share your experience</h3>
+        <p>Tell us about your experience with Automintly. Testimonials are reviewed before publication; your email stays private.</p>
+        <form id="testimonial-form">
+          <p hidden><label>Leave this blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field"><label for="t-name">Name</label><input id="t-name" name="name" autocomplete="name" maxlength="100" required></div>
+          <div class="field"><label for="t-company">Business <span>(optional)</span></label><input id="t-company" name="company" autocomplete="organization" maxlength="160"></div>
+          <div class="field"><label for="t-email">Email <span>(private)</span></label><input id="t-email" type="email" name="email" autocomplete="email" maxlength="254" required></div>
+          <div class="field"><label for="t-review">Your testimonial</label><textarea id="t-review" name="review" rows="4" maxlength="1500" required aria-describedby="testimonial-privacy"></textarea></div>
+          <p id="testimonial-privacy">Please don't include customer details, passwords or other sensitive information.</p>
+          <div class="consent-field"><input id="t-consent" name="consent" type="checkbox" required><label for="t-consent">I agree that Automintly may review this submission and publish my testimonial, name and business on this website. My email will not be published. <a href="privacy.html">Privacy Policy</a>.</label></div>
+          <button type="submit" class="btn-primary">Submit testimonial</button>
+          <p id="testimonial-status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="testimonial-fallback">Prefer email? <a href="mailto:automintly@gmail.com?subject=Automintly%20testimonial">Send your testimonial directly</a>.</p>
+      </div>
+    </div>
+  </section>
+  <link rel="stylesheet" href="testimonials.css?v=1">
+  <script defer src="testimonials.js?v=1"></script>
 </main>
 
 <footer>
